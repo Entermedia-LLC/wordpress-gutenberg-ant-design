@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "gutenberg-ant-design/button",
+  "version": "0.1.0",
+  "title": "Button",
+  "description": "A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.",
+  "textdomain": "gutenberg-ant-design",
+  "icon": "button",
+  "category": "ant-design",
+  "attributes": {
+    "text": {
+      "type": "string",
+      "source": "html",
+      "selector": "button, a"
+    },
+    "block": {
+      "type": "boolean"
+    },
+    "danger": {
+      "type": "boolean"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
