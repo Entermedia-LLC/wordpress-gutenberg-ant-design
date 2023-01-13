@@ -10,9 +10,7 @@
 	"category": "ant-design",
 	"attributes": {
 		"text": {
-			"type": "string",
-			"source": "html",
-			"selector": "button, a"
+			"type": "string"
 		},
 		"block": {
 			"type": "boolean"
@@ -22,6 +20,12 @@
 		},
 		"disabled": {
 			"type": "boolean"
+		},
+		"ghost": {
+			"type": "boolean"
+		},
+		"href": {
+			"type": "string"
 		},
 		"placeholder": {
 			"type": "string"

@@ -1,15 +1,17 @@
 /**
+ * Retrieves the translation of text.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
+ */
+import { __ } from "@wordpress/i18n";
+
+/**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText } from "@wordpress/block-editor";
-
-/**
- * The Ant Design component dependencies.
- */
-import { Button } from "antd";
+import { useBlockProps } from "@wordpress/block-editor";
 
 /**
  * The save function defines the way in which the different attributes should
@@ -21,23 +23,15 @@ import { Button } from "antd";
  * @return {WPElement} Element to render.
  */
 export default function Save({ attributes }) {
-	const { block, danger, disabled, text } = attributes;
+	const { text } = attributes;
 
 	if (!text) {
 		return null;
 	}
 
-	const buttonProps = {
-		block: block || false,
-		danger: danger || false,
-		disabled: disabled || false,
-	};
-
 	return (
-		<div {...useBlockProps.save()}>
-			<Button {...buttonProps}>
-				<RichText.Content value={text} />
-			</Button>
-		</div>
+		<button {...useBlockProps.save()}>
+			{text} ({__("Gutenberg Ant Design Block: Button")})
+		</button>
 	);
 }

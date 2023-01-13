@@ -18,7 +18,12 @@ import {
 } from "@wordpress/block-editor";
 
 import { useRef } from "@wordpress/element";
-import { PanelBody, BaseControl, ToggleControl } from "@wordpress/components";
+import {
+	PanelBody,
+	BaseControl,
+	ToggleControl,
+	TextControl,
+} from "@wordpress/components";
 
 /**
  * The Ant Design component dependencies.
@@ -44,7 +49,7 @@ import "./editor.scss";
 export default function Edit(props) {
 	const { attributes, setAttributes } = props;
 
-	const { placeholder, text, block, danger, disabled } = attributes;
+	const { placeholder, text, block, danger, disabled, ghost } = attributes;
 
 	const blockProps = useBlockProps();
 
@@ -59,30 +64,31 @@ export default function Edit(props) {
 		block: block || false,
 		danger: danger || false,
 		disabled: disabled || false,
+		ghost: ghost || false,
 	};
 
 	return (
 		<>
-			<div {...blockProps}>
-				<Button {...buttonProps}>
-					<RichText
-						ref={richTextRef}
-						aria-label={__("Button text")}
-						placeholder={placeholder || __("Add text…")}
-						value={text}
-						onChange={(value) => setButtonText(value)}
-						withoutInteractiveFormatting
-					/>
-				</Button>
-			</div>
+			<Button {...blockProps} {...buttonProps}>
+				<RichText
+					ref={richTextRef}
+					aria-label={__("Button text")}
+					placeholder={placeholder || __("Add text…")}
+					value={text}
+					onChange={(value) => setButtonText(value)}
+					withoutInteractiveFormatting
+				/>
+			</Button>
 			<InspectorControls>
 				<PanelBody title={__("API settings")}>
 					<BaseControl label={wp.i18n.__("Block", "gutenberg-ant-design")}>
-						<ToggleControl
-							label={wp.i18n.__(
-								"Option to fit button width to its parent width",
+						<p>
+							{wp.i18n.__(
+								"Option to fit button width to its parent width.",
 								"gutenberg-ant-design"
 							)}
+						</p>
+						<ToggleControl
 							checked={block}
 							onChange={(val) => {
 								setAttributes({ block: val });
@@ -91,11 +97,13 @@ export default function Edit(props) {
 					</BaseControl>
 
 					<BaseControl label={wp.i18n.__("Danger", "gutenberg-ant-design")}>
-						<ToggleControl
-							label={wp.i18n.__(
-								"Set the danger status of button",
+						<p>
+							{wp.i18n.__(
+								"Set the danger status of button.",
 								"gutenberg-ant-design"
 							)}
+						</p>
+						<ToggleControl
 							checked={danger}
 							onChange={(val) => {
 								setAttributes({ danger: val });
@@ -104,14 +112,42 @@ export default function Edit(props) {
 					</BaseControl>
 
 					<BaseControl label={wp.i18n.__("Disabled", "gutenberg-ant-design")}>
+						<p>
+							{wp.i18n.__("Disabled state of button.", "gutenberg-ant-design")}
+						</p>
 						<ToggleControl
-							label={wp.i18n.__(
-								"Disabled state of button",
-								"gutenberg-ant-design"
-							)}
 							checked={disabled}
 							onChange={(val) => {
 								setAttributes({ disabled: val });
+							}}
+						/>
+					</BaseControl>
+
+					<BaseControl label={wp.i18n.__("Ghost", "gutenberg-ant-design")}>
+						<p>
+							{wp.i18n.__(
+								"Make background transparent and invert text and border colors.",
+								"gutenberg-ant-design"
+							)}
+						</p>
+						<ToggleControl
+							checked={disabled}
+							onChange={(val) => {
+								setAttributes({ ghost: val });
+							}}
+						/>
+					</BaseControl>
+
+					<BaseControl label={wp.i18n.__("Href", "gutenberg-ant-design")}>
+						<p>
+							{wp.i18n.__(
+								"Redirect url of link button.",
+								"gutenberg-ant-design"
+							)}
+						</p>
+						<TextControl
+							onChange={(val) => {
+								setAttributes({ href: val });
 							}}
 						/>
 					</BaseControl>
