@@ -27,6 +27,27 @@
     "href": {
       "type": "string"
     },
+    "htmlType": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "loading": {
+      "type": "number"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
     "placeholder": {
       "type": "string"
     }

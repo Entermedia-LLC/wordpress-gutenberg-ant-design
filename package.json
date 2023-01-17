@@ -25,6 +25,7 @@
 		"@wordpress/scripts": "^25.0.0"
 	},
 	"dependencies": {
+		"@ant-design/icons": "^5.0.0",
 		"antd": "^5.1.4"
 	}
 }
