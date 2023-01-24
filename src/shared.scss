@@ -1,0 +1,15 @@
+.wp-inspector-option-grid {
+	align-items: center;
+	column-gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+	margin-bottom: 24px;
+
+	.components-base-control {
+		margin-bottom: 0;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

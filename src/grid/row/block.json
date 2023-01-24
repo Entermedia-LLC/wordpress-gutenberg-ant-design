@@ -1,0 +1,34 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/row",
+	"version": "0.1.0",
+	"title": "Grid",
+	"description": "Ant Design 24-column grid system.",
+	"textdomain": "gutenberg-ant-design",
+	"icon": "columns",
+	"category": "ant-design",
+	"attributes": {
+		"row": {
+			"type": "boolean"
+		},
+		"gutter": {
+			"type": "array"
+		},
+		"align": {
+			"type": "object"
+		},
+		"justify": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "object"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

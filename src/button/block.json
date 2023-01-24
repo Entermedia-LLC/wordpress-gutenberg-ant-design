@@ -4,7 +4,7 @@
 	"name": "gutenberg-ant-design/button",
 	"version": "0.1.0",
 	"title": "Button",
-	"description": "A button means an operation (or a series of operations). Clicking a button will trigger corresponding business logic.",
+	"description": "Ant Design button component.",
 	"textdomain": "gutenberg-ant-design",
 	"icon": "button",
 	"category": "ant-design",
@@ -33,9 +33,6 @@
 		"icon": {
 			"type": "string"
 		},
-		"loading": {
-			"type": "number"
-		},
 		"shape": {
 			"type": "string"
 		},
@@ -48,8 +45,8 @@
 		"type": {
 			"type": "string"
 		},
-		"placeholder": {
-			"type": "string"
+		"visibility": {
+			"type": "object"
 		}
 	},
 	"editorScript": "file:./index.js",

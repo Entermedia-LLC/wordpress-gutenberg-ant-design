@@ -22,6 +22,8 @@
  */
 function gutenberg_ant_design_register_blocks() {
 	register_block_type( __DIR__ . '/build/button' );
+	register_block_type( __DIR__ . '/build/grid/row' );
+	register_block_type( __DIR__ . '/build/grid/col' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 

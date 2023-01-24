@@ -13,12 +13,13 @@ import { registerBlockType } from "@wordpress/blocks";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import "./style.scss";
+import "../../shared.scss";
 
 /**
  * Internal dependencies
  */
 import Edit from "./edit";
-import { Save } from "../shared";
+import { SaveWithInnerBlocks } from "../../shared";
 import metadata from "./block.json";
 
 /**
@@ -35,5 +36,5 @@ registerBlockType(metadata.name, {
 	/**
 	 * @see ./save.js
 	 */
-	save: Save,
+	save: SaveWithInnerBlocks,
 });

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "gutenberg-ant-design/col",
+  "version": "0.1.0",
+  "title": "Grid Column",
+  "description": "Ant Design grid column.",
+  "parent": [
+    "gutenberg-ant-design/row"
+  ],
+  "textdomain": "gutenberg-ant-design",
+  "icon": "columns",
+  "category": "ant-design",
+  "attributes": {
+    "xs": {
+      "type": "object"
+    },
+    "sm": {
+      "type": "object"
+    },
+    "md": {
+      "type": "object"
+    },
+    "lg": {
+      "type": "object"
+    },
+    "xl": {
+      "type": "object"
+    },
+    "xxl": {
+      "type": "object"
+    },
+    "visibility": {
+      "type": "object"
+    },
+    "styles": {
+      "type": "object"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

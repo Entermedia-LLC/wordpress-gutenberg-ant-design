@@ -1,0 +1,22 @@
+.wp-block-gutenberg-ant-design-col {
+	cursor: pointer;
+	min-height: 24px;
+	min-width: 24px;
+
+	&:hover {
+		padding: 10px;
+
+		&::before {
+			outline: 2px solid var(--wp-admin-theme-color, #fff);
+			content: "";
+			display: block;
+			height: 100%;
+			left: 0;
+			pointer-events: none;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 1;
+		}
+	}
+}
