@@ -15,14 +15,26 @@
 .wp-inspector-option-grid .components-base-control:last-child {
   margin-bottom: 0;
 }
+
+.ant-image {
+  max-width: 100%;
+  height: auto !important;
+}
+.ant-image img {
+  height: auto !important;
+  max-width: 100%;
+}
+
+.ant-typography del .rich-text,
+.ant-typography u .rich-text {
+  text-decoration: inherit;
+}
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/grid/row/editor.scss ***!
   \*************************************************************************************************************************************************************************************************************************************************/
 .wp-block-gutenberg-ant-design-row {
   cursor: pointer;
   min-height: 24px;
-}
-.wp-block-gutenberg-ant-design-row:hover {
   padding: 10px;
 }
 .wp-block-gutenberg-ant-design-row:hover::before {

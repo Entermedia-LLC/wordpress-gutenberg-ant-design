@@ -3,8 +3,8 @@
   "apiVersion": 2,
   "name": "gutenberg-ant-design/col",
   "version": "0.1.0",
-  "title": "Grid Column",
-  "description": "Ant Design grid column.",
+  "title": "Column",
+  "description": "A single column within a 24-column grid block.",
   "parent": [
     "gutenberg-ant-design/row"
   ],
@@ -12,26 +12,14 @@
   "icon": "columns",
   "category": "ant-design",
   "attributes": {
-    "xs": {
+    "api": {
       "type": "object"
     },
-    "sm": {
-      "type": "object"
-    },
-    "md": {
-      "type": "object"
-    },
-    "lg": {
-      "type": "object"
-    },
-    "xl": {
-      "type": "object"
-    },
-    "xxl": {
+    "settings": {
       "type": "object"
     },
     "visibility": {
-      "type": "object"
+      "type": "array"
     },
     "styles": {
       "type": "object"

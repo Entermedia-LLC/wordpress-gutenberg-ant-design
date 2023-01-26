@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "gutenberg-ant-design/title",
+  "version": "0.1.0",
+  "title": "Title",
+  "description": "Introduce new sections and organize content to help visitors (and search engines) understand the structure of your content.",
+  "textdomain": "gutenberg-ant-design",
+  "icon": "heading",
+  "category": "ant-design",
+  "attributes": {
+    "api": {
+      "type": "object"
+    },
+    "settings": {
+      "type": "object"
+    },
+    "visibility": {
+      "type": "array"
+    },
+    "styles": {
+      "type": "object"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {
+    "attributes": {
+      "api": {
+        "text": "Code is Poetry"
+      }
+    }
+  }
+}

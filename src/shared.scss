@@ -13,3 +13,24 @@
 		}
 	}
 }
+
+// Fix for large images that break layout.
+.ant-image {
+	max-width: 100%;
+	height: auto !important;
+
+	img {
+		height: auto !important;
+		max-width: 100%;
+	}
+}
+
+// Fix for typography settings specific to the Gutenberg editor.
+.ant-typography {
+	del,
+	u {
+		.rich-text {
+			text-decoration: inherit;
+		}
+	}
+}

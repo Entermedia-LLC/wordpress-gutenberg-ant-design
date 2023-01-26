@@ -4,25 +4,19 @@
 	"name": "gutenberg-ant-design/row",
 	"version": "0.1.0",
 	"title": "Grid",
-	"description": "Ant Design 24-column grid system.",
+	"description": "Display content in a 24-column grid, with blocks added to each column.",
 	"textdomain": "gutenberg-ant-design",
 	"icon": "columns",
 	"category": "ant-design",
 	"attributes": {
-		"row": {
-			"type": "boolean"
-		},
-		"gutter": {
-			"type": "array"
-		},
-		"align": {
+		"api": {
 			"type": "object"
 		},
-		"justify": {
+		"settings": {
 			"type": "object"
 		},
 		"visibility": {
-			"type": "object"
+			"type": "array"
 		},
 		"styles": {
 			"type": "object"

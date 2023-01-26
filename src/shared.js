@@ -1,3 +1,9 @@
+// Import external dependencies
+import { merge } from "lodash";
+
+/**
+ * Import @wordpress dependencies
+ */
 import { __ } from "@wordpress/i18n";
 import {
 	useBlockProps,
@@ -5,8 +11,6 @@ import {
 	MediaUpload,
 	MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { screenSizes } from "./_config";
-import { theme } from "antd";
 
 import {
 	PanelBody,
@@ -14,10 +18,80 @@ import {
 	BaseControl,
 	Button,
 	TextControl,
-	ButtonGroup,
 	ToggleControl,
-	SelectControl,
 } from "@wordpress/components";
+
+/**
+ * Import andt components, dependencies & configuration
+ */
+import { screenSizes } from "./_config";
+import { theme } from "antd";
+
+// Shared constants
+export const availableStyleProperties = [
+	"backgroundColor",
+	"backgroundImage",
+	"backgroundRepeat",
+	"backgroundSize",
+	"backgroundPosition",
+	"borderLeft",
+	"borderTop",
+	"borderRight",
+	"borderBottom",
+	"paddingLeft",
+	"paddingTop",
+	"paddingRight",
+	"paddingBottom",
+];
+
+/**
+ * Creates the standarized default attributes for components
+ *
+ * @param {Object} defaultAttributes
+ */
+export const createDefaultAttributes = (defaultAttributes) => {
+	const globalDefaults = {
+		api: {},
+		settings: {},
+		visibility: [],
+		styles: {},
+	};
+
+	for (const [screenSize] of Object.entries(screenSizes)) {
+		globalDefaults.styles[screenSize] = availableStyleProperties.reduce(
+			(acc, curr) => ((acc[curr] = ""), acc),
+			{}
+		);
+		globalDefaults.visibility.push(screenSize);
+	}
+
+	return merge(globalDefaults, defaultAttributes);
+};
+
+/**
+ * Updates a component attributes using the standarized pre-defined attributes
+ * api, settings, styles & visibility.
+ *
+ * @param {('api'|'settings'|'styles'|'visibility')} attribute The standarized component attribute
+ * @param {String} property The attribute property to update
+ * @param {(String|Object|Array)} value The value to update the attribute property to
+ * @param {Object} savedAttributes The saved attributes
+ * @param {Function} save Function to save the attribute (e.g. setAttributes)
+ */
+export const updateAttributes = (
+	attribute,
+	property,
+	value,
+	savedAttributes,
+	save
+) => {
+	const newValue = { ...savedAttributes[attribute] };
+	newValue[property] = value;
+
+	save({
+		[attribute]: newValue,
+	});
+};
 
 export const Save = () => {
 	return (
@@ -39,207 +113,19 @@ export const SaveWithInnerBlocks = () => {
 	);
 };
 
-export const setScreenSizeStyles = (
-	setAttributes,
-	existingStyles,
-	screenSize,
+// @TODO: Can be cleaned up to be more DRY
+export const generateStyles = (
 	attribute,
-	value
+	clientId,
+	specificitySelector = undefined
 ) => {
-	const newVal = { ...existingStyles };
-	newVal[screenSize][attribute] = value;
+	const { styles, visibility } = attribute;
+	let selector = `.gutenberg-ant-design--${clientId}`;
 
-	setAttributes({
-		styles: newVal,
-	});
-};
-
-export const BlockStyles = ({
-	styles,
-	onChange,
-	enabledScreenSizes = ["xs", "sm", "md", "lg", "xl", "xxl"],
-}) => {
-	const defaultStyleOptions = {
-		backgroundColor: null,
-		backgroundImage: null,
-		backgroundRepeat: true,
-		backgroundPosition: null,
-		backgroundSize: null,
-		paddingLeft: null,
-		paddingTop: null,
-		paddingRight: null,
-		paddingBottom: null,
-	};
-	const defaultStyles = {};
-	for (const [key] of Object.entries(screenSizes)) {
-		defaultStyles[key] = { ...defaultStyleOptions };
+	if (specificitySelector) {
+		selector = `${specificitySelector}${selector}`;
 	}
 
-	const mergedStyles = { ...defaultStyles, ...styles };
-
-	const { useToken } = theme;
-	const { token } = useToken();
-
-	const colors = [
-		{ name: "Primary", color: token.colorPrimary },
-		{ name: "Error", color: token.colorError },
-		{ name: "Info", color: token.colorInfo },
-		{ name: "Success", color: token.colorSuccess },
-		{ name: "Warning", color: token.colorWarning },
-		{ name: "Text", color: token.colorTextBase },
-		{ name: "Background", color: token.colorBgBase },
-	];
-
-	return (
-		<PanelBody title={__("Styles")} initialOpen={false}>
-			{Object.keys(screenSizes).map((screenSize) => {
-				if (enabledScreenSizes.includes(screenSize)) {
-					return (
-						<PanelBody
-							title={screenSizes[screenSize].title}
-							key={`${screenSize}`}
-							initialOpen={false}
-						>
-							<BaseControl
-								label={wp.i18n.__("Padding", "gutenberg-ant-design")}
-							>
-								<div className={`wp-inspector-option-grid`}>
-									<TextControl
-										placeholder="1rem"
-										label="Left"
-										value={mergedStyles[screenSize]["paddingLeft"]}
-										onChange={(value) =>
-											onChange(screenSize, "paddingLeft", value)
-										}
-									/>
-									<TextControl
-										placeholder="1rem"
-										label="Top"
-										value={mergedStyles[screenSize]["paddingTop"]}
-										onChange={(value) =>
-											onChange(screenSize, "paddingTop", value)
-										}
-									/>
-									<TextControl
-										placeholder="1rem"
-										label="Right"
-										value={mergedStyles[screenSize]["paddingRight"]}
-										onChange={(value) =>
-											onChange(screenSize, "paddingRight", value)
-										}
-									/>
-									<TextControl
-										placeholder="1rem"
-										label="Bottom"
-										value={mergedStyles[screenSize]["paddingBottom"]}
-										onChange={(value) =>
-											onChange(screenSize, "paddingBottom", value)
-										}
-									/>
-								</div>
-							</BaseControl>
-							<BaseControl
-								label={wp.i18n.__("Background Color", "gutenberg-ant-design")}
-							>
-								<ColorPalette
-									colors={colors}
-									value={mergedStyles[screenSize]["backgroundColor"]}
-									onChange={(color) =>
-										onChange(screenSize, "backgroundColor", color)
-									}
-								/>
-							</BaseControl>
-							<BaseControl
-								label={wp.i18n.__("Background Image", "gutenberg-ant-design")}
-							>
-								{mergedStyles[screenSize]?.backgroundImage
-									?.originalImageURL && (
-									<img
-										src={
-											mergedStyles[screenSize].backgroundImage.originalImageURL
-										}
-										alt={mergedStyles[screenSize]?.backgroundImage?.title}
-										width={mergedStyles[screenSize]?.backgroundImage?.width}
-										height={mergedStyles[screenSize]?.backgroundImage?.height}
-									/>
-								)}
-								<MediaUploadCheck>
-									<MediaUpload
-										value={mergedStyles[screenSize]?.backgroundImage?.id}
-										onSelect={(media) =>
-											onChange(screenSize, "backgroundImage", media)
-										}
-										allowedTypes={["image"]}
-										render={({ open }) => (
-											<div className="wp-inspector-option-grid">
-												<div>
-													<Button onClick={open} variant="secondary">
-														{mergedStyles[screenSize]?.backgroundImage
-															?.originalImageURL
-															? "Replace"
-															: "Choose"}
-													</Button>
-												</div>
-												<div>
-													<Button
-														variant="tertiary"
-														onClick={() => {
-															onChange(
-																screenSize,
-																"backgroundImage",
-																undefined
-															);
-														}}
-													>
-														Remove Image
-													</Button>
-												</div>
-											</div>
-										)}
-									/>
-								</MediaUploadCheck>
-							</BaseControl>
-
-							{mergedStyles[screenSize]?.backgroundImage?.originalImageURL && (
-								<>
-									<ToggleControl
-										label="Repeat Background"
-										checked={mergedStyles[screenSize]?.backgroundRepeat}
-										onChange={(value) => {
-											onChange(screenSize, "backgroundRepeat", value);
-										}}
-									/>
-
-									<div className="wp-inspector-option-grid">
-										<TextControl
-											placeholder="e.g. center"
-											label="Background Position"
-											value={mergedStyles[screenSize]["backgroundPosition"]}
-											onChange={(value) =>
-												onChange(screenSize, "backgroundPosition", value)
-											}
-										/>
-										<TextControl
-											placeholder="e.g. cover"
-											label="Background Size"
-											value={mergedStyles[screenSize]["backgroundSize"]}
-											onChange={(value) =>
-												onChange(screenSize, "backgroundSize", value)
-											}
-										/>
-									</div>
-								</>
-							)}
-						</PanelBody>
-					);
-				}
-			})}
-		</PanelBody>
-	);
-};
-
-// @TODO: Can be cleaned up to be more DRY
-export const generateStyles = (styles, selector) => {
 	if (typeof styles === "undefined") {
 		return;
 	}
@@ -257,6 +143,7 @@ export const generateStyles = (styles, selector) => {
 		paddingTop: "padding-top",
 		paddingRight: "padding-right",
 		paddingBottom: "padding-bottom",
+		color: "color",
 	};
 
 	const definitionOutput = (property, value) => {
@@ -275,26 +162,43 @@ export const generateStyles = (styles, selector) => {
 			if ("xs" === screenSize) {
 				inlineStyles += `${selector} {\n`;
 				for (const [style] of Object.entries(availableStyles)) {
-					if (typeof styles[screenSize][style] !== "undefined") {
+					if (
+						typeof styles[screenSize][style] !== "undefined" &&
+						styles[screenSize][style]
+					) {
 						inlineStyles += definitionOutput(
 							availableStyles[style],
 							styles[screenSize][style]
 						);
 					}
 				}
+				if (!visibility.includes(screenSize)) {
+					inlineStyles += `opacity: 0.5;\n`;
+				}
 				inlineStyles += `}\n\n`;
 			} else {
-				inlineStyles += `@media (min-width: ${token.screenSM}px) {\n`;
+				inlineStyles += `@media (min-width: ${
+					token[screenSizes[screenSize].antdToken]
+				}px) {\n`;
 				inlineStyles += `${selector} {\n`;
 				for (const [style] of Object.entries(availableStyles)) {
 					if (styles[screenSize][style]) {
-						if (typeof styles[screenSize][style] !== "undefined") {
+						if (
+							typeof styles[screenSize][style] !== "undefined" &&
+							styles[screenSize][style]
+						) {
 							inlineStyles += definitionOutput(
 								availableStyles[style],
 								styles[screenSize][style]
 							);
 						}
 					}
+				}
+
+				if (!visibility.includes(screenSize)) {
+					inlineStyles += `opacity: 0.5;\n`;
+				} else {
+					inlineStyles += `opacity: 1;\n`;
 				}
 				inlineStyles += `}\n\n`;
 				inlineStyles += `}\n\n`;
