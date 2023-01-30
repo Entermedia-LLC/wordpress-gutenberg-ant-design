@@ -39,6 +39,7 @@
   cursor: pointer;
   min-height: 24px;
   min-width: 24px;
+  padding: 10px;
 }
 .wp-block-gutenberg-ant-design-col:hover::before {
   outline: 2px solid var(--wp-admin-theme-color, #fff);

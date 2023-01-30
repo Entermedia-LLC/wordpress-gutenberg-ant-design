@@ -24,5 +24,17 @@
 	},
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css"
+	"style": "file:./style-index.css",
+	"variations": [
+		{
+			"name": "one-column-full",
+			"description": "One Column",
+			"title": "100",
+			"innerBlocks": [["gutenberg-ant-design/col"]],
+			"scope": ["block"]
+		}
+	],
+	"supports": {
+		"customClassName": false
+	}
 }

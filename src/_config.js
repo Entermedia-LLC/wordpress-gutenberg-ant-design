@@ -11,6 +11,7 @@ export const availableInnerBlocks = [
 	"gutenberg-ant-design/title",
 	"gutenberg-ant-design/text",
 	"gutenberg-ant-design/paragraph",
+	"gutenberg-ant-design/row",
 ];
 
 export const screenSizes = {

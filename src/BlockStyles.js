@@ -1,9 +1,18 @@
 /**
+ * Import React.js dependencies
+ */
+import { useState } from "react";
+
+/**
  * Import @wordpress dependencies
  */
 import { __ } from "@wordpress/i18n";
 import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
-import { Icon } from "@wordpress/components";
+import {
+	Icon,
+	__experimentalToggleGroupControl as ToggleGroupControl,
+	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
+} from "@wordpress/components";
 
 import {
 	PanelBody,
@@ -34,6 +43,9 @@ export const BlockStyles = ({
 	const { useToken } = theme;
 	const { token } = useToken();
 
+	// Component states
+	const [activeScreenSize, setActiveScreenSize] = useState("xs");
+
 	const colorPalette = [
 		{ name: "Primary", color: token.colorPrimary },
 		{ name: "Error", color: token.colorError },
@@ -46,47 +58,30 @@ export const BlockStyles = ({
 
 	return (
 		<PanelBody title={__("Styles")} initialOpen={false}>
-			{Object.keys(screenSizes).map((screenSize) => {
-				if (enabledScreenSizes.includes(screenSize)) {
+			<ToggleGroupControl
+				label={__("Screen Size")}
+				value={activeScreenSize}
+				isBlock
+				onChange={(value) => {
+					setActiveScreenSize(value);
+				}}
+			>
+				{Object.keys(screenSizes).map((screenSize) => {
 					return (
-						<PanelBody
-							title={screenSizes[screenSize].title}
-							key={`${screenSize}`}
-							initialOpen={false}
-						>
-							{allowedProperties.includes("text") && (
-								<BaseControl
-									label={wp.i18n.__("Font Color", "gutenberg-ant-design")}
-								>
-									<ColorPalette
-										colors={colorPalette}
-										value={styles[screenSize]["color"]}
-										onChange={(color) => onChange(screenSize, "color", color)}
-									/>
-								</BaseControl>
-							)}
+						<ToggleGroupControlOption value={screenSize} label={screenSize} />
+					);
+				})}
+			</ToggleGroupControl>
 
-							{allowedProperties.includes("padding") && (
-								<BaseControl label={__("Padding")}>
-									<div className={`wp-inspector-option-grid`}>
-										{["Left", "Top", "Right", "Bottom"].map((side, index) => {
-											return (
-												<TextControl
-													placeholder="1rem"
-													key={index}
-													label={side}
-													value={styles[screenSize][`padding${side}`]}
-													onChange={(value) =>
-														onChange(screenSize, `padding${side}`, value)
-													}
-												/>
-											);
-										})}
-									</div>
-								</BaseControl>
-							)}
+			{Object.keys(screenSizes).map((screenSize) => {
+				if (
+					enabledScreenSizes.includes(screenSize) &&
+					activeScreenSize === screenSize
+				) {
+					return (
+						<>
 							{allowedProperties.includes("background") && (
-								<>
+								<PanelBody title={__("Background")} initialOpen={false}>
 									<BlockOptionButtonGroup
 										label={__("Background Type")}
 										buttons={[
@@ -213,7 +208,7 @@ export const BlockStyles = ({
 													<div className="wp-inspector-option-grid">
 														<TextControl
 															placeholder="e.g. center"
-															label={__("Background Position")}
+															label={__("Image Position")}
 															value={styles[screenSize]["backgroundPosition"]}
 															onChange={(value) =>
 																onChange(
@@ -225,7 +220,7 @@ export const BlockStyles = ({
 														/>
 														<TextControl
 															placeholder="e.g. cover"
-															label={__("Background Size")}
+															label={__("Image Size")}
 															value={styles[screenSize]["backgroundSize"]}
 															onChange={(value) =>
 																onChange(screenSize, "backgroundSize", value)
@@ -236,9 +231,44 @@ export const BlockStyles = ({
 											)}
 										</>
 									)}
-								</>
+								</PanelBody>
 							)}
-						</PanelBody>
+							{allowedProperties.includes("text") && (
+								<PanelBody title={__("Typography")} initialOpen={false}>
+									<BaseControl
+										label={wp.i18n.__("Font Color", "gutenberg-ant-design")}
+									>
+										<ColorPalette
+											colors={colorPalette}
+											value={styles[screenSize]["color"]}
+											onChange={(color) => onChange(screenSize, "color", color)}
+										/>
+									</BaseControl>
+								</PanelBody>
+							)}
+
+							<PanelBody title={__("Container")} initialOpen={false}>
+								{allowedProperties.includes("padding") && (
+									<BaseControl label={__("Padding")}>
+										<div className={`wp-inspector-option-grid`}>
+											{["Left", "Top", "Right", "Bottom"].map((side, index) => {
+												return (
+													<TextControl
+														placeholder="1rem"
+														key={index}
+														label={side}
+														value={styles[screenSize][`padding${side}`]}
+														onChange={(value) =>
+															onChange(screenSize, `padding${side}`, value)
+														}
+													/>
+												);
+											})}
+										</div>
+									</BaseControl>
+								)}
+							</PanelBody>
+						</>
 					);
 				}
 			})}
