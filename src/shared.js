@@ -138,6 +138,7 @@ export const generateStyles = (
 		backgroundImage: "background-image",
 		backgroundRepeat: "background-repeat",
 		backgroundSize: "background-size",
+		backgroundGradient: "background",
 		backgroundPosition: "background-position",
 		paddingLeft: "padding-left",
 		paddingTop: "padding-top",
@@ -159,15 +160,38 @@ export const generateStyles = (
 	let inlineStyles = "";
 	for (const [screenSize] of Object.entries(screenSizes)) {
 		if (typeof styles[screenSize] !== "undefined") {
+			// Handle background types
+			const backgroundType = styles[screenSize].backgroundType;
+			const filteredStyles = [];
+			switch (backgroundType) {
+				case "gradient":
+					filteredStyles.push("backgroundImage");
+					filteredStyles.push("backgroundRepeat");
+					filteredStyles.push("backgroundSize");
+					filteredStyles.push("backgroundPosition");
+					filteredStyles.push("backgroundColor");
+					break;
+				case "classic":
+					filteredStyles.push("backgroundGradient");
+					break;
+			}
+
+			const filteredAvailableStyles = { ...availableStyles };
+			for (const [key] of Object.entries(filteredAvailableStyles)) {
+				if (filteredStyles.includes(key)) {
+					delete filteredAvailableStyles[key];
+				}
+			}
+
 			if ("xs" === screenSize) {
 				inlineStyles += `${selector} {\n`;
-				for (const [style] of Object.entries(availableStyles)) {
+				for (const [style] of Object.entries(filteredAvailableStyles)) {
 					if (
 						typeof styles[screenSize][style] !== "undefined" &&
 						styles[screenSize][style]
 					) {
 						inlineStyles += definitionOutput(
-							availableStyles[style],
+							filteredAvailableStyles[style],
 							styles[screenSize][style]
 						);
 					}
@@ -181,14 +205,14 @@ export const generateStyles = (
 					token[screenSizes[screenSize].antdToken]
 				}px) {\n`;
 				inlineStyles += `${selector} {\n`;
-				for (const [style] of Object.entries(availableStyles)) {
+				for (const [style] of Object.entries(filteredAvailableStyles)) {
 					if (styles[screenSize][style]) {
 						if (
 							typeof styles[screenSize][style] !== "undefined" &&
 							styles[screenSize][style]
 						) {
 							inlineStyles += definitionOutput(
-								availableStyles[style],
+								filteredAvailableStyles[style],
 								styles[screenSize][style]
 							);
 						}
