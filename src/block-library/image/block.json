@@ -1,0 +1,28 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/image",
+	"version": "0.1.0",
+	"title": "Image",
+	"description": "Insert an image to make a visual statement.",
+	"textdomain": "gutenberg-ant-design",
+	"icon": "format-image",
+	"category": "ant-design",
+	"attributes": {
+		"api": {
+			"type": "object"
+		},
+		"settings": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "array"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

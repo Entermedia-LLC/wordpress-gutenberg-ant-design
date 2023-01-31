@@ -1,0 +1,40 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/row",
+	"version": "0.1.0",
+	"title": "Grid",
+	"description": "Display content in a 24-column grid, with blocks added to each column.",
+	"textdomain": "gutenberg-ant-design",
+	"icon": "columns",
+	"category": "ant-design",
+	"attributes": {
+		"api": {
+			"type": "object"
+		},
+		"settings": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "array"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"variations": [
+		{
+			"name": "one-column-full",
+			"description": "One Column",
+			"title": "100",
+			"innerBlocks": [["gutenberg-ant-design/col"]],
+			"scope": ["block"]
+		}
+	],
+	"supports": {
+		"customClassName": false
+	}
+}

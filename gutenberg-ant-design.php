@@ -21,7 +21,13 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function gutenberg_ant_design_register_blocks() {
-	register_block_type( __DIR__ . '/build/button' );
+	register_block_type( __DIR__ . '/build/block-library/button' );
+	register_block_type( __DIR__ . '/build/block-library/image' );
+	register_block_type( __DIR__ . '/build/block-library/grid/row' );
+	register_block_type( __DIR__ . '/build/block-library/grid/col' );
+	register_block_type( __DIR__ . '/build/block-library/typography/title' );
+	register_block_type( __DIR__ . '/build/block-library/typography/text' );
+	register_block_type( __DIR__ . '/build/block-library/typography/paragraph' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 
@@ -36,3 +42,17 @@ add_filter(
 		return $categories;
 	}
 );
+
+/*add_filter(
+	'allowed_block_types_all',
+	function( $allowed_blocks, $editor_context ) {
+		return array(
+			'gutenberg-ant-design/button',
+			'gutenberg-ant-design/col',
+			'gutenberg-ant-design/row',
+			'gutenberg-ant-design/image'
+		);
+	},
+	25,
+	2
+);*/

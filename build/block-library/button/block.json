@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "gutenberg-ant-design/button",
+  "version": "0.1.0",
+  "title": "Button",
+  "description": "Prompt visitors to take action with a button-style link.",
+  "textdomain": "gutenberg-ant-design",
+  "icon": "button",
+  "category": "ant-design",
+  "attributes": {
+    "api": {
+      "type": "object"
+    },
+    "settings": {
+      "type": "object"
+    },
+    "visibility": {
+      "type": "array"
+    },
+    "styles": {
+      "type": "object"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "example": {
+    "attributes": {
+      "api": {
+        "text": "Call to Action"
+      }
+    }
+  }
+}
