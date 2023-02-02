@@ -20,7 +20,9 @@ import {
 	generateStyles,
 } from "../../../shared";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
-import { BlockVisibility, BlockStyles } from "../../../BlockStyles";
+import { BlockVisibility } from "../../../block-editor/block-visibility";
+import { BlockStyles } from "../../../block-editor/block-styles";
+
 const { Paragraph } = Typography;
 
 /**

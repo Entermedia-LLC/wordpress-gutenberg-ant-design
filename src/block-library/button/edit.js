@@ -26,12 +26,14 @@ import {
 	generateStyles,
 } from "../../shared";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
-import { BlockVisibility } from "../../BlockStyles";
+import { BlockVisibility } from "../../block-editor/block-visibility";
+
 
 /**
  * Import editor styles
  */
 import "./editor.scss";
+
 
 // Define the component's default attributes
 const defaultAttributes = createDefaultAttributes({

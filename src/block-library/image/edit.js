@@ -27,7 +27,9 @@ import {
 	createDefaultAttributes,
 	generateStyles,
 } from "../../shared";
-import { BlockStyles, BlockVisibility } from "../../BlockStyles";
+import { BlockVisibility } from "../../block-editor/block-visibility";
+import { BlockStyles } from "../../block-editor/block-styles";
+
 
 /**
  * Import editor styles

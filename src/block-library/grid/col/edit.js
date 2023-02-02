@@ -20,8 +20,9 @@ import {
 	updateAttributes,
 } from "../../../shared";
 import { Col, ConfigProvider } from "antd";
-import { BlockStyles, BlockVisibility } from "../../../BlockStyles";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
+import { BlockVisibility } from "../../../block-editor/block-visibility";
+import { BlockStyles } from "../../../block-editor/block-styles";
 
 /**
  * Import editor styles
