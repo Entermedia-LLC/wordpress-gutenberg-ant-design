@@ -1,10 +1,16 @@
-// Import @wordpress dependencies
+/**
+ * Import @wordpress dependencies
+ */
 import { Button, ButtonGroup } from "@wordpress/components";
 
-// Import component styles
+/**
+ * Import component styles
+ */
 import "./style.scss";
 
-// Component export
+/**
+ * Component export
+ */
 export const BlockOptionButtonGroup = ({ label, buttons }) => {
 	return (
 		<div className="gutenberg-ant-design-block-option-button-group">

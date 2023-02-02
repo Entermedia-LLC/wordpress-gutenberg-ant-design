@@ -31,5 +31,8 @@
 				"text": "Call to Action"
 			}
 		}
+	},
+	"supports": {
+		"customClassName": false
 	}
 }

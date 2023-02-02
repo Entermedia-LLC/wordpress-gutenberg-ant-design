@@ -5,21 +5,7 @@ import { merge } from "lodash";
  * Import @wordpress dependencies
  */
 import { __ } from "@wordpress/i18n";
-import {
-	useBlockProps,
-	InnerBlocks,
-	MediaUpload,
-	MediaUploadCheck,
-} from "@wordpress/block-editor";
-
-import {
-	PanelBody,
-	ColorPalette,
-	BaseControl,
-	Button,
-	TextControl,
-	ToggleControl,
-} from "@wordpress/components";
+import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
 
 /**
  * Import andt components, dependencies & configuration
@@ -28,21 +14,25 @@ import { screenSizes } from "./_config";
 import { theme } from "antd";
 
 // Shared constants
-export const availableStyleProperties = [
-	"backgroundColor",
-	"backgroundImage",
-	"backgroundRepeat",
-	"backgroundSize",
-	"backgroundPosition",
-	"borderLeft",
-	"borderTop",
-	"borderRight",
-	"borderBottom",
-	"paddingLeft",
-	"paddingTop",
-	"paddingRight",
-	"paddingBottom",
-];
+export const availableStyleProperties = {
+	backgroundColor: "background-color",
+	backgroundImage: "background-image",
+	backgroundRepeat: "background-repeat",
+	backgroundSize: "background-size",
+	backgroundPosition: "background-position",
+	borderLeft: "border-left",
+	borderTop: "border-top",
+	borderRight: "border-right",
+	borderBottom: "border-bottom",
+	paddingLeft: "padding-left",
+	paddingTop: "padding-top",
+	paddingRight: "padding-right",
+	paddingBottom: "padding-bottom",
+	color: "color",
+	fontFamily: "font-family",
+	fontSize: "font-size",
+	contentWidth: "max-width",
+};
 
 /**
  * Creates the standarized default attributes for components
@@ -58,10 +48,9 @@ export const createDefaultAttributes = (defaultAttributes) => {
 	};
 
 	for (const [screenSize] of Object.entries(screenSizes)) {
-		globalDefaults.styles[screenSize] = availableStyleProperties.reduce(
-			(acc, curr) => ((acc[curr] = ""), acc),
-			{}
-		);
+		globalDefaults.styles[screenSize] = Object.keys(
+			availableStyleProperties
+		).reduce((previous, key) => ((previous[key] = ""), previous), {});
 		globalDefaults.visibility.push(screenSize);
 	}
 
@@ -133,25 +122,13 @@ export const generateStyles = (
 	const { useToken } = theme;
 	const { token } = useToken();
 
-	const availableStyles = {
-		backgroundColor: "background-color",
-		backgroundImage: "background-image",
-		backgroundRepeat: "background-repeat",
-		backgroundSize: "background-size",
-		backgroundGradient: "background",
-		backgroundPosition: "background-position",
-		paddingLeft: "padding-left",
-		paddingTop: "padding-top",
-		paddingRight: "padding-right",
-		paddingBottom: "padding-bottom",
-		color: "color",
-	};
-
 	const definitionOutput = (property, value) => {
 		if (property === "background-image") {
 			return `background-image: url('${value.originalImageURL}');\n`;
 		} else if (property === "background-repeat") {
 			return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
+		} else if (property === "max-width" && value !== "full-width") {
+			return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
 		} else {
 			return `${property}: ${value};\n`;
 		}
@@ -176,7 +153,7 @@ export const generateStyles = (
 					break;
 			}
 
-			const filteredAvailableStyles = { ...availableStyles };
+			const filteredAvailableStyles = { ...availableStyleProperties };
 			for (const [key] of Object.entries(filteredAvailableStyles)) {
 				if (filteredStyles.includes(key)) {
 					delete filteredAvailableStyles[key];
@@ -226,6 +203,25 @@ export const generateStyles = (
 				}
 				inlineStyles += `}\n\n`;
 				inlineStyles += `}\n\n`;
+			}
+
+			// Handle custom CSS
+			if (styles[screenSize].custom) {
+				if ("xs" === screenSize) {
+					inlineStyles += `${styles[screenSize].custom.replace(
+						"selector",
+						selector
+					)}`;
+				} else {
+					inlineStyles += `@media (min-width: ${
+						token[screenSizes[screenSize].antdToken]
+					}px) {\n`;
+					inlineStyles += `${styles[screenSize].custom.replace(
+						"selector",
+						selector
+					)}`;
+					inlineStyles += `}\n`;
+				}
 			}
 		}
 	}

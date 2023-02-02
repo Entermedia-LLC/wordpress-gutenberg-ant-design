@@ -100,11 +100,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								setAttributes
 							)
 						}
-						withoutInteractiveFormatting
 						tagName="span"
 					/>
 				</Paragraph>
-				<style>{generateStyles(savedAttributes, clientId)}</style>
+				<style>
+					{generateStyles(savedAttributes, clientId, ".ant-typography")}
+				</style>
 
 				<InspectorControls>
 					<BlockVisibility

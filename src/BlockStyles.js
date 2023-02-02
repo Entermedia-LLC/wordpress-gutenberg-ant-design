@@ -7,14 +7,15 @@ import { useState } from "react";
  * Import @wordpress dependencies
  */
 import { __ } from "@wordpress/i18n";
-import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
+import {
+	MediaUpload,
+	MediaUploadCheck,
+	FontSizePicker,
+} from "@wordpress/block-editor";
 import {
 	Icon,
 	__experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from "@wordpress/components";
-
-import {
 	PanelBody,
 	ColorPalette,
 	BaseControl,
@@ -22,6 +23,9 @@ import {
 	TextControl,
 	ToggleControl,
 	GradientPicker,
+	SelectControl,
+	TextareaControl,
+	RangeControl,
 } from "@wordpress/components";
 
 /**
@@ -29,6 +33,11 @@ import {
  */
 import { screenSizes } from "./_config";
 import { theme } from "antd";
+
+/**
+ * Import theme-specific dependencies
+ */
+import wpTheme from "../../../themes/headless/theme.json";
 
 // Import internal block editor component dependencies
 import { BlockOptionButtonGroup } from "./block-editor/block-option-button-group";
@@ -56,6 +65,17 @@ export const BlockStyles = ({
 		{ name: "Background", color: token.colorBgBase },
 	];
 
+	const themeFonts = [...wpTheme.settings.typography.fontFamilies];
+	const fontFamilyOptions = [
+		{ value: "", label: __("Default") },
+		...themeFonts.map(({ fontFamily, name }) => {
+			return {
+				value: fontFamily,
+				label: name || fontFamily,
+			};
+		}),
+	];
+
 	return (
 		<PanelBody title={__("Styles")} initialOpen={false}>
 			<ToggleGroupControl
@@ -68,7 +88,11 @@ export const BlockStyles = ({
 			>
 				{Object.keys(screenSizes).map((screenSize) => {
 					return (
-						<ToggleGroupControlOption value={screenSize} label={screenSize} />
+						<ToggleGroupControlOption
+							value={screenSize}
+							label={screenSize}
+							key={screenSize}
+						/>
 					);
 				})}
 			</ToggleGroupControl>
@@ -79,7 +103,7 @@ export const BlockStyles = ({
 					activeScreenSize === screenSize
 				) {
 					return (
-						<>
+						<div key={screenSize}>
 							{allowedProperties.includes("background") && (
 								<PanelBody title={__("Background")} initialOpen={false}>
 									<BlockOptionButtonGroup
@@ -235,12 +259,30 @@ export const BlockStyles = ({
 							)}
 							{allowedProperties.includes("text") && (
 								<PanelBody title={__("Typography")} initialOpen={false}>
+									<SelectControl
+										label={__("Font Family")}
+										options={fontFamilyOptions}
+										value={styles[screenSize]["fontFamily"]}
+										onChange={(value) =>
+											onChange(screenSize, "fontFamily", value)
+										}
+										labelPosition="top"
+									/>
+
+									<FontSizePicker
+										value={styles[screenSize]["fontSize"]}
+										fallbackFontSize={16}
+										onChange={(value) =>
+											onChange(screenSize, "fontSize", value)
+										}
+									/>
+
 									<BaseControl
 										label={wp.i18n.__("Font Color", "gutenberg-ant-design")}
 									>
 										<ColorPalette
 											colors={colorPalette}
-											value={styles[screenSize]["color"]}
+											value={styles[screenSize].color}
 											onChange={(color) => onChange(screenSize, "color", color)}
 										/>
 									</BaseControl>
@@ -248,6 +290,45 @@ export const BlockStyles = ({
 							)}
 
 							<PanelBody title={__("Container")} initialOpen={false}>
+								<SelectControl
+									label={__("Content Width")}
+									options={[
+										{
+											value: "boxed",
+											label: __("Boxed"),
+										},
+										{
+											value: "full-width",
+											label: __("Full Width"),
+										},
+									]}
+									value={
+										styles[screenSize].contentWidth !== "full-width"
+											? "boxed"
+											: "full-width"
+									}
+									onChange={(value) =>
+										onChange(
+											screenSize,
+											"contentWidth",
+											// @TODO: Make the default dynamic
+											value === "boxed" ? 1600 : "full-width"
+										)
+									}
+									labelPosition="top"
+								/>
+								{styles[screenSize].contentWidth !== "full-width" && (
+									<RangeControl
+										label={__("Width")}
+										value={styles[screenSize].contentWidth}
+										onChange={(value) =>
+											onChange(screenSize, "contentWidth", value)
+										}
+										min={1}
+										max={2200}
+									/>
+								)}
+
 								{allowedProperties.includes("padding") && (
 									<BaseControl label={__("Padding")}>
 										<div className={`wp-inspector-option-grid`}>
@@ -268,7 +349,18 @@ export const BlockStyles = ({
 									</BaseControl>
 								)}
 							</PanelBody>
-						</>
+
+							<PanelBody title={__("Custom CSS")} initialOpen={false}>
+								<TextareaControl
+									label={__("Add your own custom CSS here")}
+									help={__(
+										"Use 'selector' to target the wrapper element. Examples: selector { color: red; }"
+									)}
+									value={styles[screenSize].custom}
+									onChange={(value) => onChange(screenSize, `custom`, value)}
+								/>
+							</PanelBody>
+						</div>
 					);
 				}
 			})}

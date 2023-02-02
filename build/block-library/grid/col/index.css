@@ -25,9 +25,6 @@
   max-width: 100%;
 }
 
-.ant-typography {
-  color: inherit;
-}
 .ant-typography del .rich-text,
 .ant-typography u .rich-text {
   text-decoration: inherit;

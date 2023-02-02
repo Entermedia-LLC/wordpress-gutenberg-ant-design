@@ -13,6 +13,7 @@ import {
 	PanelBody,
 	ExternalLink,
 	TextareaControl,
+	ToggleControl,
 } from "@wordpress/components";
 import { image as icon } from "@wordpress/icons";
 
@@ -43,6 +44,7 @@ const defaultAttributes = createDefaultAttributes({
 			height: undefined,
 		},
 		alt: undefined,
+		preview: false,
 	},
 });
 
@@ -125,6 +127,21 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						/>
 
 						<PanelBody title={__("Settings")}>
+							<ToggleControl
+								label={__("Lightbox")}
+								help={__("Displays the image in a lightbox when clicked.")}
+								checked={savedAttributes.api.preview}
+								onChange={(value) => {
+									updateAttributes(
+										"api",
+										"preview",
+										value,
+										savedAttributes,
+										setAttributes
+									);
+								}}
+							/>
+
 							<TextareaControl
 								label={__("Alt Text (Alternative Text)")}
 								help={
