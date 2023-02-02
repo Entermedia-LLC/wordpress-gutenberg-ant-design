@@ -31,16 +31,16 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
-import { screenSizes } from "./_config";
 import { theme } from "antd";
+import { screenSizes } from "../../_config";
 
 /**
  * Import theme-specific dependencies
  */
-import wpTheme from "../../../themes/headless/theme.json";
+import wpTheme from "../../../../../themes/headless/theme.json";
 
 // Import internal block editor component dependencies
-import { BlockOptionButtonGroup } from "./block-editor/block-option-button-group";
+import { BlockOptionButtonGroup } from "../block-option-button-group";
 
 // Block styles component
 export const BlockStyles = ({
@@ -363,55 +363,6 @@ export const BlockStyles = ({
 						</div>
 					);
 				}
-			})}
-		</PanelBody>
-	);
-};
-
-// Hidden toggle component
-export const HiddenToggle = ({
-	attributes,
-	screenSize,
-	setAttributes,
-	label,
-}) => {
-	return (
-		<ToggleControl
-			label={label || __("Hidden")}
-			checked={attributes.visibility.includes(screenSize)}
-			onChange={(val) => {
-				let newVisibility = [...attributes.visibility];
-				if (!val) {
-					newVisibility = newVisibility.filter(
-						(screen) => screen !== screenSize
-					);
-				} else if (val && !newVisibility.includes(screenSize)) {
-					newVisibility.push(screenSize);
-				}
-
-				setAttributes({
-					visibility: newVisibility,
-				});
-			}}
-		/>
-	);
-};
-
-// Visibility controls component
-export const BlockVisibility = ({ attributes, setAttributes }) => {
-	return (
-		<PanelBody title={__("Visibility")} initialOpen={false}>
-			<p>{__("Toggle visibility per screen size below:")}</p>
-			{Object.keys(screenSizes).map((screenSize, index) => {
-				return (
-					<HiddenToggle
-						key={index}
-						label={screenSizes[screenSize].title}
-						attributes={attributes}
-						screenSize={screenSize}
-						setAttributes={setAttributes}
-					/>
-				);
 			})}
 		</PanelBody>
 	);
