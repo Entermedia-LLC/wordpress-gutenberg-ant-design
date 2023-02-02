@@ -37,10 +37,10 @@ import { screenSizes } from "../../_config";
 /**
  * Import theme-specific dependencies
  */
-import wpTheme from "../../../themes/headless/theme.json";
+import wpTheme from "../../../../../themes/headless/theme.json";
 
 // Import internal block editor component dependencies
-import { BlockOptionButtonGroup } from "../block-editor/block-option-button-group";
+import { BlockOptionButtonGroup } from "../block-option-button-group";
 
 // Block styles component
 export const BlockStyles = ({
