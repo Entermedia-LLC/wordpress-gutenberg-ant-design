@@ -1,3 +1,5 @@
+// @TODO: SO... sooo much clean-up can be done here
+
 /**
  * Import React.js dependencies
  */
@@ -11,6 +13,7 @@ import {
 	MediaUpload,
 	MediaUploadCheck,
 	FontSizePicker,
+	BlockIcon,
 } from "@wordpress/block-editor";
 import {
 	Icon,
@@ -47,13 +50,17 @@ export const BlockStyles = ({
 	styles,
 	onChange,
 	enabledScreenSizes = [Object.keys(screenSizes)],
-	allowedProperties = ["padding", "background", "text"],
+	allowedProperties = ["padding", "background", "text", "margin"],
 }) => {
 	const { useToken } = theme;
 	const { token } = useToken();
 
 	// Component states
 	const [activeScreenSize, setActiveScreenSize] = useState("xs");
+	const [activeDimension, setActiveDimension] = useState();
+	const [activePadding, setActivePadding] = useState();
+	const [activeMargin, setActiveMargin] = useState();
+	const [activeSpacing, setActiveSpacing] = useState();
 
 	const colorPalette = [
 		{ name: "Primary", color: token.colorPrimary },
@@ -284,64 +291,305 @@ export const BlockStyles = ({
 							)}
 
 							<PanelBody title={__("Container")} initialOpen={false}>
-								<SelectControl
-									label={__("Content Width")}
-									options={[
-										{
-											value: "boxed",
-											label: __("Boxed"),
-										},
-										{
-											value: "full-width",
-											label: __("Full Width"),
-										},
-									]}
-									value={
-										styles[screenSize].contentWidth !== "full-width"
-											? "boxed"
-											: "full-width"
-									}
-									onChange={(value) =>
-										onChange(
-											screenSize,
-											"contentWidth",
-											// @TODO: Make the default dynamic
-											value === "boxed" ? 1600 : "full-width"
-										)
-									}
-									labelPosition="top"
-								/>
-								{styles[screenSize].contentWidth !== "full-width" && (
-									<RangeControl
-										label={__("Width")}
-										value={styles[screenSize].contentWidth}
-										onChange={(value) =>
-											onChange(screenSize, "contentWidth", value)
-										}
-										min={1}
-										max={2200}
+								<ToggleGroupControl
+									label={__("Dimensions")}
+									value={activeDimension}
+									isBlock
+									onChange={(value) => {
+										setActiveDimension(value);
+									}}
+								>
+									<ToggleGroupControlOption value="width" label={__("Width")} />
+									<ToggleGroupControlOption
+										value="height"
+										label={__("Height")}
 									/>
+								</ToggleGroupControl>
+
+								{activeDimension === "width" && (
+									<>
+										<SelectControl
+											label={__("Width")}
+											options={[
+												{
+													value: "boxed",
+													label: __("Boxed"),
+												},
+												{
+													value: "full-width",
+													label: __("Full Width"),
+												},
+											]}
+											value={
+												styles[screenSize].containerWidth !== "full-width"
+													? "boxed"
+													: "full-width"
+											}
+											onChange={(value) =>
+												onChange(
+													screenSize,
+													"containerWidth",
+													// @TODO: Make the default dynamic
+													value === "boxed" ? 1600 : "full-width"
+												)
+											}
+											labelPosition="left"
+										/>
+										{styles[screenSize].containerWidth !== "full-width" && (
+											<TextControl
+												label={__("Width")}
+												value={styles[screenSize].containerWidth}
+												onChange={(value) =>
+													onChange(screenSize, "containerWidth", value)
+												}
+											/>
+										)}
+									</>
 								)}
 
-								{allowedProperties.includes("padding") && (
-									<BaseControl label={__("Padding")}>
-										<div className={`wp-inspector-option-grid`}>
-											{["Left", "Top", "Right", "Bottom"].map((side, index) => {
-												return (
-													<TextControl
-														placeholder="1rem"
-														key={index}
-														label={side}
-														value={styles[screenSize][`padding${side}`]}
-														onChange={(value) =>
-															onChange(screenSize, `padding${side}`, value)
-														}
-													/>
-												);
-											})}
-										</div>
-									</BaseControl>
+								{activeDimension === "height" && (
+									<>
+										<SelectControl
+											label={__("Height")}
+											options={[
+												{
+													value: "fixed",
+													label: __("Fixed"),
+												},
+												{
+													value: "auto",
+													label: __("Auto"),
+												},
+											]}
+											value={
+												styles[screenSize].containerHeight !== "auto"
+													? "fixed"
+													: "auto"
+											}
+											onChange={(value) =>
+												onChange(
+													screenSize,
+													"containerHeight",
+													value === "fixed" ? undefined : "auto"
+												)
+											}
+											labelPosition="left"
+										/>
+										{styles[screenSize].containerHeight !== "auto" && (
+											<TextControl
+												label={__("Height")}
+												value={styles[screenSize].containerHeight}
+												onChange={(value) =>
+													onChange(screenSize, "containerHeight", value)
+												}
+											/>
+										)}
+									</>
 								)}
+
+								<ToggleGroupControl
+									value={activeSpacing}
+									isBlock
+									label={__("Spacing")}
+									onChange={(value) => setActiveSpacing(value)}
+								>
+									{allowedProperties.includes("margin") && (
+										<ToggleGroupControlOption value="margin" label="Margin" />
+									)}
+									{allowedProperties.includes("padding") && (
+										<ToggleGroupControlOption value="padding" label="Padding" />
+									)}
+								</ToggleGroupControl>
+
+								{allowedProperties.includes("padding") &&
+									activeSpacing === "padding" && (
+										<>
+											<ToggleGroupControl
+												label={__("Side")}
+												value={activePadding}
+												isBlock
+												onChange={(value) => {
+													setActivePadding(value);
+												}}
+												__nextHasNoMargin
+											>
+												<ToggleGroupControlOption
+													value="Left"
+													label={<BlockIcon icon="arrow-left-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="Right"
+													label={<BlockIcon icon="arrow-right-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="top"
+													label={<BlockIcon icon="arrow-up-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="Bottom"
+													label={<BlockIcon icon="arrow-down-alt" />}
+												/>
+											</ToggleGroupControl>
+
+											{activePadding && (
+												<>
+													<ToggleGroupControl
+														label={activePadding}
+														value={() =>
+															styles[screenSize][`padding${activePadding}`]
+														}
+														isBlock
+														onChange={(value) => {
+															if (value && token[value]) {
+																onChange(
+																	screenSize,
+																	`padding${activePadding}`,
+																	value
+																);
+															}
+														}}
+													>
+														<ToggleGroupControlOption
+															value="sizeXS"
+															label="xs"
+														/>
+														<ToggleGroupControlOption
+															value="sizeSM"
+															label="xm"
+														/>
+														<ToggleGroupControlOption
+															value="sizeMD"
+															label="md"
+														/>
+														<ToggleGroupControlOption
+															value="sizeLG"
+															label="lg"
+														/>
+														<ToggleGroupControlOption
+															value="sizeXL"
+															label="xl"
+														/>
+														<ToggleGroupControlOption
+															value="sizeXXL"
+															label="xxl"
+														/>
+													</ToggleGroupControl>
+
+													<TextControl
+														label={__("Custom")}
+														placeholder="1rem"
+														value={
+															styles[screenSize][`padding${activePadding}`]
+														}
+														onChange={(value) => {
+															onChange(
+																screenSize,
+																`padding${activePadding}`,
+																value
+															);
+														}}
+														help={__(
+															"Accepts a valid CSS length, percentage or Ant Design token (e.g. sizeXS, sizeMD, etc.)."
+														)}
+													/>
+												</>
+											)}
+										</>
+									)}
+
+								{allowedProperties.includes("margin") &&
+									activeSpacing === "margin" && (
+										<>
+											<ToggleGroupControl
+												label={__("Side")}
+												value={activeMargin}
+												isBlock
+												onChange={(value) => {
+													setActiveMargin(value);
+												}}
+												__nextHasNoMargin
+											>
+												<ToggleGroupControlOption
+													value="Left"
+													label={<BlockIcon icon="arrow-left-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="Right"
+													label={<BlockIcon icon="arrow-right-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="Top"
+													label={<BlockIcon icon="arrow-up-alt" />}
+												/>
+												<ToggleGroupControlOption
+													value="Bottom"
+													label={<BlockIcon icon="arrow-down-alt" />}
+												/>
+											</ToggleGroupControl>
+
+											{activeMargin && (
+												<>
+													<ToggleGroupControl
+														label={activeMargin}
+														value={() =>
+															styles[screenSize][`margin${activeMargin}`]
+														}
+														isBlock
+														onChange={(value) => {
+															if (value && token[value]) {
+																onChange(
+																	screenSize,
+																	`margin${activeMargin}`,
+																	value
+																);
+															}
+														}}
+													>
+														<ToggleGroupControlOption
+															value="sizeXS"
+															label="xs"
+														/>
+														<ToggleGroupControlOption
+															value="sizeSM"
+															label="xm"
+														/>
+														<ToggleGroupControlOption
+															value="sizeMD"
+															label="md"
+														/>
+														<ToggleGroupControlOption
+															value="sizeLG"
+															label="lg"
+														/>
+														<ToggleGroupControlOption
+															value="sizeXL"
+															label="xl"
+														/>
+														<ToggleGroupControlOption
+															value="sizeXXL"
+															label="xxl"
+														/>
+													</ToggleGroupControl>
+
+													<TextControl
+														label={__("Custom")}
+														placeholder="1rem"
+														value={styles[screenSize][`margin${activeMargin}`]}
+														onChange={(value) => {
+															onChange(
+																screenSize,
+																`margin${activeMargin}`,
+																value
+															);
+														}}
+														help={__(
+															"Accepts a valid CSS length, percentage or Ant Design token (e.g. sizeXS, sizeMD, etc.)."
+														)}
+													/>
+												</>
+											)}
+										</>
+									)}
 							</PanelBody>
 
 							<PanelBody title={__("Custom CSS")} initialOpen={false}>

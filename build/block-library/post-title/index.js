@@ -5184,10 +5184,15 @@ const availableStyleProperties = {
   paddingTop: "padding-top",
   paddingRight: "padding-right",
   paddingBottom: "padding-bottom",
+  marginLeft: "margin-left",
+  marginRight: "margin-right",
+  marginTop: "margin-top",
+  marginBottom: "margin-bottom",
   color: "color",
   fontFamily: "font-family",
   fontSize: "font-size",
-  contentWidth: "max-width"
+  containerWidth: "max-width",
+  containerHeight: "height"
 };
 
 /**
@@ -5255,14 +5260,25 @@ const generateStyles = function (attribute, clientId) {
   const {
     token
   } = useToken();
+
+  // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {
-    if (property === "background-image") {
+    if (property === "margin-top") {
+      console.log(value);
+    }
+    if (property.startsWith("padding-") || property.startsWith("margin-")) {
+      if (typeof token[value] !== "undefined") {
+        return `${property}: ${token[value]}px;\n`;
+      } else {
+        return `${property}: ${value};\n`;
+      }
+    } else if (property === "background-image" && typeof value.url !== "undefined") {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
-    } else {
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
+    } else if (property !== "max-width" && value !== "full-width") {
       return `${property}: ${value};\n`;
     }
   };
@@ -5271,7 +5287,6 @@ const generateStyles = function (attribute, clientId) {
     if (typeof styles[screenSize] !== "undefined") {
       // Handle background types
       const backgroundType = styles[screenSize].backgroundType;
-      console.log(backgroundType);
       const filteredStyles = [];
       switch (backgroundType) {
         case "gradient":
@@ -5296,7 +5311,8 @@ const generateStyles = function (attribute, clientId) {
       if ("xs" === screenSize) {
         inlineStyles += `${selector} {\n`;
         for (const [style] of Object.entries(filteredAvailableStyles)) {
-          if (typeof styles[screenSize][style] !== "undefined" && styles[screenSize][style]) {
+          // Handle false values for background-repeat
+          if (typeof styles[screenSize][style] !== "undefined") {
             inlineStyles += definitionOutput(filteredAvailableStyles[style], styles[screenSize][style]);
           }
         }

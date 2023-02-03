@@ -12395,6 +12395,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _themes_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../themes/headless/theme.json */ "../../themes/headless/theme.json");
 /* harmony import */ var _block_option_button_group__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-option-button-group */ "./src/block-editor/block-option-button-group/index.js");
 
+// @TODO: SO... sooo much clean-up can be done here
+
 /**
  * Import React.js dependencies
  */
@@ -12427,7 +12429,7 @@ const BlockStyles = _ref => {
     styles,
     onChange,
     enabledScreenSizes = [Object.keys(_config__WEBPACK_IMPORTED_MODULE_5__.screenSizes)],
-    allowedProperties = ["padding", "background", "text"]
+    allowedProperties = ["padding", "background", "text", "margin"]
   } = _ref;
   const {
     useToken
@@ -12438,6 +12440,10 @@ const BlockStyles = _ref => {
 
   // Component states
   const [activeScreenSize, setActiveScreenSize] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("xs");
+  const [activeDimension, setActiveDimension] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+  const [activePadding, setActivePadding] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+  const [activeMargin, setActiveMargin] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
+  const [activeSpacing, setActiveSpacing] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
   const colorPalette = [{
     name: "Primary",
     color: token.colorPrimary
@@ -12597,8 +12603,21 @@ const BlockStyles = _ref => {
       }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container"),
         initialOpen: false
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Content Width"),
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Dimensions"),
+        value: activeDimension,
+        isBlock: true,
+        onChange: value => {
+          setActiveDimension(value);
+        }
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "width",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width")
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "height",
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height")
+      })), activeDimension === "width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
         options: [{
           value: "boxed",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Boxed")
@@ -12606,29 +12625,168 @@ const BlockStyles = _ref => {
           value: "full-width",
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Full Width")
         }],
-        value: styles[screenSize].contentWidth !== "full-width" ? "boxed" : "full-width",
-        onChange: value => onChange(screenSize, "contentWidth",
+        value: styles[screenSize].containerWidth !== "full-width" ? "boxed" : "full-width",
+        onChange: value => onChange(screenSize, "containerWidth",
         // @TODO: Make the default dynamic
         value === "boxed" ? 1600 : "full-width"),
-        labelPosition: "top"
-      }), styles[screenSize].contentWidth !== "full-width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RangeControl, {
+        labelPosition: "left"
+      }), styles[screenSize].containerWidth !== "full-width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
-        value: styles[screenSize].contentWidth,
-        onChange: value => onChange(screenSize, "contentWidth", value),
-        min: 1,
-        max: 2200
-      }), allowedProperties.includes("padding") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Padding")
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: `wp-inspector-option-grid`
-      }, ["Left", "Top", "Right", "Bottom"].map((side, index) => {
-        return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-          placeholder: "1rem",
-          key: index,
-          label: side,
-          value: styles[screenSize][`padding${side}`],
-          onChange: value => onChange(screenSize, `padding${side}`, value)
-        });
+        value: styles[screenSize].containerWidth,
+        onChange: value => onChange(screenSize, "containerWidth", value)
+      })), activeDimension === "height" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height"),
+        options: [{
+          value: "fixed",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Fixed")
+        }, {
+          value: "auto",
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Auto")
+        }],
+        value: styles[screenSize].containerHeight !== "auto" ? "fixed" : "auto",
+        onChange: value => onChange(screenSize, "containerHeight", value === "fixed" ? undefined : "auto"),
+        labelPosition: "left"
+      }), styles[screenSize].containerHeight !== "auto" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height"),
+        value: styles[screenSize].containerHeight,
+        onChange: value => onChange(screenSize, "containerHeight", value)
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        value: activeSpacing,
+        isBlock: true,
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Spacing"),
+        onChange: value => setActiveSpacing(value)
+      }, allowedProperties.includes("margin") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "margin",
+        label: "Margin"
+      }), allowedProperties.includes("padding") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "padding",
+        label: "Padding"
+      })), allowedProperties.includes("padding") && activeSpacing === "padding" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Side"),
+        value: activePadding,
+        isBlock: true,
+        onChange: value => {
+          setActivePadding(value);
+        },
+        __nextHasNoMargin: true
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Left",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-left-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Right",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-right-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "top",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-up-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Bottom",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-down-alt"
+        })
+      })), activePadding && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: activePadding,
+        value: () => styles[screenSize][`padding${activePadding}`],
+        isBlock: true,
+        onChange: value => {
+          if (value && token[value]) {
+            onChange(screenSize, `padding${activePadding}`, value);
+          }
+        }
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXS",
+        label: "xs"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeSM",
+        label: "xm"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeMD",
+        label: "md"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeLG",
+        label: "lg"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXL",
+        label: "xl"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXXL",
+        label: "xxl"
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Custom"),
+        placeholder: "1rem",
+        value: styles[screenSize][`padding${activePadding}`],
+        onChange: value => {
+          onChange(screenSize, `padding${activePadding}`, value);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Accepts a valid CSS length, percentage or Ant Design token (e.g. sizeXS, sizeMD, etc.).")
+      }))), allowedProperties.includes("margin") && activeSpacing === "margin" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Side"),
+        value: activeMargin,
+        isBlock: true,
+        onChange: value => {
+          setActiveMargin(value);
+        },
+        __nextHasNoMargin: true
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Left",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-left-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Right",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-right-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Top",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-up-alt"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "Bottom",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "arrow-down-alt"
+        })
+      })), activeMargin && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: activeMargin,
+        value: () => styles[screenSize][`margin${activeMargin}`],
+        isBlock: true,
+        onChange: value => {
+          if (value && token[value]) {
+            onChange(screenSize, `margin${activeMargin}`, value);
+          }
+        }
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXS",
+        label: "xs"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeSM",
+        label: "xm"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeMD",
+        label: "md"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeLG",
+        label: "lg"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXL",
+        label: "xl"
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "sizeXXL",
+        label: "xxl"
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Custom"),
+        placeholder: "1rem",
+        value: styles[screenSize][`margin${activeMargin}`],
+        onChange: value => {
+          onChange(screenSize, `margin${activeMargin}`, value);
+        },
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Accepts a valid CSS length, percentage or Ant Design token (e.g. sizeXS, sizeMD, etc.).")
       })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Custom CSS"),
         initialOpen: false
@@ -13058,10 +13216,15 @@ const availableStyleProperties = {
   paddingTop: "padding-top",
   paddingRight: "padding-right",
   paddingBottom: "padding-bottom",
+  marginLeft: "margin-left",
+  marginRight: "margin-right",
+  marginTop: "margin-top",
+  marginBottom: "margin-bottom",
   color: "color",
   fontFamily: "font-family",
   fontSize: "font-size",
-  contentWidth: "max-width"
+  containerWidth: "max-width",
+  containerHeight: "height"
 };
 
 /**
@@ -13129,14 +13292,25 @@ const generateStyles = function (attribute, clientId) {
   const {
     token
   } = useToken();
+
+  // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {
-    if (property === "background-image") {
+    if (property === "margin-top") {
+      console.log(value);
+    }
+    if (property.startsWith("padding-") || property.startsWith("margin-")) {
+      if (typeof token[value] !== "undefined") {
+        return `${property}: ${token[value]}px;\n`;
+      } else {
+        return `${property}: ${value};\n`;
+      }
+    } else if (property === "background-image" && typeof value.url !== "undefined") {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value}px;\n`;
-    } else {
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
+    } else if (property !== "max-width" && value !== "full-width") {
       return `${property}: ${value};\n`;
     }
   };
@@ -13145,7 +13319,6 @@ const generateStyles = function (attribute, clientId) {
     if (typeof styles[screenSize] !== "undefined") {
       // Handle background types
       const backgroundType = styles[screenSize].backgroundType;
-      console.log(backgroundType);
       const filteredStyles = [];
       switch (backgroundType) {
         case "gradient":
@@ -13170,7 +13343,8 @@ const generateStyles = function (attribute, clientId) {
       if ("xs" === screenSize) {
         inlineStyles += `${selector} {\n`;
         for (const [style] of Object.entries(filteredAvailableStyles)) {
-          if (typeof styles[screenSize][style] !== "undefined" && styles[screenSize][style]) {
+          // Handle false values for background-repeat
+          if (typeof styles[screenSize][style] !== "undefined") {
             inlineStyles += definitionOutput(filteredAvailableStyles[style], styles[screenSize][style]);
           }
         }

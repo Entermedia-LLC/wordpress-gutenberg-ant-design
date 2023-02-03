@@ -114,7 +114,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					/>
 				</Title>
 				<style>
-					{generateStyles(savedAttributes, clientId, "h1.ant-typography")}
+					{generateStyles(
+						savedAttributes,
+						clientId,
+						`h${savedAttributes.api.level}.ant-typography`
+					)}
 				</style>
 
 				<InspectorControls>
