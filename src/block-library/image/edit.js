@@ -75,6 +75,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// Component helpers
 	const onSelectImage = (media) => {
+		console.log(media);
 		if (!media || !media.url) {
 			updateAttributes(
 				"api",

@@ -12532,8 +12532,8 @@ const BlockStyles = _ref => {
         onChange: color => onChange(screenSize, "backgroundColor", color)
       })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.BaseControl, {
         label: wp.i18n.__("Image", "gutenberg-ant-design")
-      }, styles[screenSize]?.backgroundImage?.originalImageURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-        src: styles[screenSize].backgroundImage.originalImageURL,
+      }, styles[screenSize]?.backgroundImage?.url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: styles[screenSize].backgroundImage.url,
         alt: styles[screenSize]?.backgroundImage?.title,
         width: styles[screenSize]?.backgroundImage?.width,
         height: styles[screenSize]?.backgroundImage?.height
@@ -12550,14 +12550,14 @@ const BlockStyles = _ref => {
           }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
             onClick: open,
             variant: "secondary"
-          }, styles[screenSize]?.backgroundImage?.originalImageURL ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Replace") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Choose"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+          }, styles[screenSize]?.backgroundImage?.url ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Replace") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Choose"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
             variant: "tertiary",
             onClick: () => {
               onChange(screenSize, "backgroundImage", undefined);
             }
           }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Remove Image"))));
         }
-      }))), styles[screenSize]?.backgroundImage?.originalImageURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+      }))), styles[screenSize]?.backgroundImage?.url && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Repeat Background"),
         checked: styles[screenSize]?.backgroundRepeat,
         onChange: value => {
@@ -13048,6 +13048,7 @@ const availableStyleProperties = {
   backgroundImage: "background-image",
   backgroundRepeat: "background-repeat",
   backgroundSize: "background-size",
+  backgroundGradient: "background",
   backgroundPosition: "background-position",
   borderLeft: "border-left",
   borderTop: "border-top",
@@ -13130,7 +13131,7 @@ const generateStyles = function (attribute, clientId) {
   } = useToken();
   const definitionOutput = (property, value) => {
     if (property === "background-image") {
-      return `background-image: url('${value.originalImageURL}');\n`;
+      return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
@@ -13144,6 +13145,7 @@ const generateStyles = function (attribute, clientId) {
     if (typeof styles[screenSize] !== "undefined") {
       // Handle background types
       const backgroundType = styles[screenSize].backgroundType;
+      console.log(backgroundType);
       const filteredStyles = [];
       switch (backgroundType) {
         case "gradient":

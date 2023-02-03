@@ -5174,6 +5174,7 @@ const availableStyleProperties = {
   backgroundImage: "background-image",
   backgroundRepeat: "background-repeat",
   backgroundSize: "background-size",
+  backgroundGradient: "background",
   backgroundPosition: "background-position",
   borderLeft: "border-left",
   borderTop: "border-top",
@@ -5256,7 +5257,7 @@ const generateStyles = function (attribute, clientId) {
   } = useToken();
   const definitionOutput = (property, value) => {
     if (property === "background-image") {
-      return `background-image: url('${value.originalImageURL}');\n`;
+      return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
     } else if (property === "max-width" && value !== "full-width") {
@@ -5270,6 +5271,7 @@ const generateStyles = function (attribute, clientId) {
     if (typeof styles[screenSize] !== "undefined") {
       // Handle background types
       const backgroundType = styles[screenSize].backgroundType;
+      console.log(backgroundType);
       const filteredStyles = [];
       switch (backgroundType) {
         case "gradient":

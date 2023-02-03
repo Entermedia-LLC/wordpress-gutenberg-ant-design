@@ -170,13 +170,9 @@ export const BlockStyles = ({
 											<BaseControl
 												label={wp.i18n.__("Image", "gutenberg-ant-design")}
 											>
-												{styles[screenSize]?.backgroundImage
-													?.originalImageURL && (
+												{styles[screenSize]?.backgroundImage?.url && (
 													<img
-														src={
-															styles[screenSize].backgroundImage
-																.originalImageURL
-														}
+														src={styles[screenSize].backgroundImage.url}
 														alt={styles[screenSize]?.backgroundImage?.title}
 														width={styles[screenSize]?.backgroundImage?.width}
 														height={styles[screenSize]?.backgroundImage?.height}
@@ -193,8 +189,7 @@ export const BlockStyles = ({
 															<div className="wp-inspector-option-grid">
 																<div>
 																	<Button onClick={open} variant="secondary">
-																		{styles[screenSize]?.backgroundImage
-																			?.originalImageURL
+																		{styles[screenSize]?.backgroundImage?.url
 																			? __("Replace")
 																			: __("Choose")}
 																	</Button>
@@ -218,8 +213,7 @@ export const BlockStyles = ({
 													/>
 												</MediaUploadCheck>
 											</BaseControl>
-											{styles[screenSize]?.backgroundImage
-												?.originalImageURL && (
+											{styles[screenSize]?.backgroundImage?.url && (
 												<>
 													<ToggleControl
 														label={__("Repeat Background")}
