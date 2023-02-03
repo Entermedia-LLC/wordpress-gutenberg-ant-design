@@ -30,7 +30,6 @@ import {
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
 
-
 /**
  * Import editor styles
  */
