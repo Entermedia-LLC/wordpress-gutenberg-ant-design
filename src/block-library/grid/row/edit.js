@@ -22,7 +22,8 @@ import {
 import { Row, ConfigProvider } from "antd";
 import { screenSizes } from "../../../_config";
 import { generateStyles } from "../../../shared";
-import { BlockStyles, BlockVisibility } from "../../../BlockStyles";
+import { BlockVisibility } from "../../../block-editor/block-visibility";
+import { BlockStyles } from "../../../block-editor/block-styles";
 import { createDefaultAttributes, updateAttributes } from "../../../shared";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 

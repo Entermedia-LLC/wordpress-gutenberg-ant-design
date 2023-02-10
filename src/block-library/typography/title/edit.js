@@ -27,7 +27,9 @@ import {
 	generateStyles,
 } from "../../../shared";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
-import { BlockVisibility, BlockStyles } from "../../../BlockStyles";
+import { BlockVisibility } from "../../../block-editor/block-visibility";
+import { BlockStyles } from "../../../block-editor/block-styles";
+
 const { Title } = Typography;
 
 /**
@@ -112,7 +114,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					/>
 				</Title>
 				<style>
-					{generateStyles(savedAttributes, clientId, "h1.ant-typography")}
+					{generateStyles(
+						savedAttributes,
+						clientId,
+						`h${savedAttributes.api.level}.ant-typography`
+					)}
 				</style>
 
 				<InspectorControls>

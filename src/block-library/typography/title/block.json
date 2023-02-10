@@ -31,5 +31,8 @@
 				"text": "Code is Poetry"
 			}
 		}
+	},
+	"supports": {
+		"customClassName": false
 	}
 }

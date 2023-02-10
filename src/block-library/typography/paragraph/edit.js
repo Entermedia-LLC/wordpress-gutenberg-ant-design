@@ -20,7 +20,9 @@ import {
 	generateStyles,
 } from "../../../shared";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
-import { BlockVisibility, BlockStyles } from "../../../BlockStyles";
+import { BlockVisibility } from "../../../block-editor/block-visibility";
+import { BlockStyles } from "../../../block-editor/block-styles";
+
 const { Paragraph } = Typography;
 
 /**
@@ -100,11 +102,12 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 								setAttributes
 							)
 						}
-						withoutInteractiveFormatting
 						tagName="span"
 					/>
 				</Paragraph>
-				<style>{generateStyles(savedAttributes, clientId)}</style>
+				<style>
+					{generateStyles(savedAttributes, clientId, ".ant-typography")}
+				</style>
 
 				<InspectorControls>
 					<BlockVisibility

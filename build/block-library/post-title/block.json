@@ -1,12 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/block.json",
   "apiVersion": 2,
-  "name": "gutenberg-ant-design/button",
+  "name": "gutenberg-ant-design/post-title",
   "version": "0.1.0",
-  "title": "Button",
-  "description": "Prompt visitors to take action with a button-style link.",
+  "title": "Post Title",
+  "description": "Insert an image to make a visual statement.",
   "textdomain": "gutenberg-ant-design",
-  "icon": "button",
+  "usesContext": [
+    "postId",
+    "postType",
+    "queryId"
+  ],
   "category": "ant-design",
   "attributes": {
     "api": {
@@ -25,13 +29,6 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "example": {
-    "attributes": {
-      "api": {
-        "text": "Call to Action"
-      }
-    }
-  },
   "supports": {
     "customClassName": false
   }

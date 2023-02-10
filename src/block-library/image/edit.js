@@ -13,6 +13,7 @@ import {
 	PanelBody,
 	ExternalLink,
 	TextareaControl,
+	ToggleControl,
 } from "@wordpress/components";
 import { image as icon } from "@wordpress/icons";
 
@@ -26,7 +27,8 @@ import {
 	createDefaultAttributes,
 	generateStyles,
 } from "../../shared";
-import { BlockStyles, BlockVisibility } from "../../BlockStyles";
+import { BlockVisibility } from "../../block-editor/block-visibility";
+import { BlockStyles } from "../../block-editor/block-styles";
 
 /**
  * Import editor styles
@@ -43,6 +45,7 @@ const defaultAttributes = createDefaultAttributes({
 			height: undefined,
 		},
 		alt: undefined,
+		preview: false,
 	},
 });
 
@@ -72,6 +75,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// Component helpers
 	const onSelectImage = (media) => {
+		console.log(media);
 		if (!media || !media.url) {
 			updateAttributes(
 				"api",
@@ -125,6 +129,21 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						/>
 
 						<PanelBody title={__("Settings")}>
+							<ToggleControl
+								label={__("Lightbox")}
+								help={__("Displays the image in a lightbox when clicked.")}
+								checked={savedAttributes.api.preview}
+								onChange={(value) => {
+									updateAttributes(
+										"api",
+										"preview",
+										value,
+										savedAttributes,
+										setAttributes
+									);
+								}}
+							/>
+
 							<TextareaControl
 								label={__("Alt Text (Alternative Text)")}
 								help={
