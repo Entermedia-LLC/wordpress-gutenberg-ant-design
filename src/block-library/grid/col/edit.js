@@ -22,7 +22,10 @@ import {
 import { Col, ConfigProvider } from "antd";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
-import { BlockStyles } from "../../../block-editor/block-styles";
+import {
+	BlockStyles,
+	availableProperties,
+} from "../../../block-editor/block-styles";
 
 /**
  * Import editor styles
@@ -261,6 +264,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							);
 						}}
 						enabledScreenSizes={savedAttributes.visibility}
+						allowedProperties={availableProperties.filter(
+							(prop) => prop !== "container-width"
+						)}
 					/>
 				</InspectorControls>
 			</ConfigProvider>

@@ -115,6 +115,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						}
 						withoutInteractiveFormatting
 						tagName="span"
+						allowedFormats={["core/bold", "core/italic"]}
 					/>
 				</Text>
 				<style>{generateStyles(savedAttributes, clientId)}</style>

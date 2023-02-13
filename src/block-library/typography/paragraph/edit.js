@@ -103,6 +103,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							)
 						}
 						tagName="span"
+						allowedFormats={["core/bold", "core/italic"]}
 					/>
 				</Paragraph>
 				<style>

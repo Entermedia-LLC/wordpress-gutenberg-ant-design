@@ -28,7 +28,6 @@ import {
 	GradientPicker,
 	SelectControl,
 	TextareaControl,
-	RangeControl,
 } from "@wordpress/components";
 
 /**
@@ -45,12 +44,21 @@ import wpTheme from "../../../../../themes/headless/theme.json";
 // Import internal block editor component dependencies
 import { BlockOptionButtonGroup } from "../block-option-button-group";
 
+// Available properties
+export const availableProperties = [
+	"padding",
+	"background",
+	"text",
+	"margin",
+	"container-width",
+];
+
 // Block styles component
 export const BlockStyles = ({
 	styles,
 	onChange,
 	enabledScreenSizes = [Object.keys(screenSizes)],
-	allowedProperties = ["padding", "background", "text", "margin"],
+	allowedProperties = availableProperties,
 }) => {
 	const { useToken } = theme;
 	const { token } = useToken();
@@ -287,6 +295,28 @@ export const BlockStyles = ({
 											onChange={(color) => onChange(screenSize, "color", color)}
 										/>
 									</BaseControl>
+
+									<ToggleGroupControl
+										label={__("Text Alignment")}
+										value={styles[screenSize].textAlignment}
+										isBlock
+										onChange={(value) => {
+											onChange(screenSize, "textAlignment", value);
+										}}
+									>
+										<ToggleGroupControlOption
+											value="left"
+											label={<BlockIcon icon="editor-alignleft" />}
+										/>
+										<ToggleGroupControlOption
+											value="right"
+											label={<BlockIcon icon="editor-alignright" />}
+										/>
+										<ToggleGroupControlOption
+											value="center"
+											label={<BlockIcon icon="editor-aligncenter" />}
+										/>
+									</ToggleGroupControl>
 								</PanelBody>
 							)}
 
@@ -299,53 +329,59 @@ export const BlockStyles = ({
 										setActiveDimension(value);
 									}}
 								>
-									<ToggleGroupControlOption value="width" label={__("Width")} />
+									{allowedProperties.includes("container-width") && (
+										<ToggleGroupControlOption
+											value="width"
+											label={__("Width")}
+										/>
+									)}
 									<ToggleGroupControlOption
 										value="height"
 										label={__("Height")}
 									/>
 								</ToggleGroupControl>
 
-								{activeDimension === "width" && (
-									<>
-										<SelectControl
-											label={__("Width")}
-											options={[
-												{
-													value: "boxed",
-													label: __("Boxed"),
-												},
-												{
-													value: "full-width",
-													label: __("Full Width"),
-												},
-											]}
-											value={
-												styles[screenSize].containerWidth !== "full-width"
-													? "boxed"
-													: "full-width"
-											}
-											onChange={(value) =>
-												onChange(
-													screenSize,
-													"containerWidth",
-													// @TODO: Make the default dynamic
-													value === "boxed" ? 1600 : "full-width"
-												)
-											}
-											labelPosition="left"
-										/>
-										{styles[screenSize].containerWidth !== "full-width" && (
-											<TextControl
+								{allowedProperties.includes("container-width") &&
+									activeDimension === "width" && (
+										<>
+											<SelectControl
 												label={__("Width")}
-												value={styles[screenSize].containerWidth}
-												onChange={(value) =>
-													onChange(screenSize, "containerWidth", value)
+												options={[
+													{
+														value: "boxed",
+														label: __("Boxed"),
+													},
+													{
+														value: "full-width",
+														label: __("Full Width"),
+													},
+												]}
+												value={
+													styles[screenSize].containerWidth !== "full-width"
+														? "boxed"
+														: "full-width"
 												}
+												onChange={(value) =>
+													onChange(
+														screenSize,
+														"containerWidth",
+														// @TODO: Make the default dynamic
+														value === "boxed" ? 1600 : "full-width"
+													)
+												}
+												labelPosition="left"
 											/>
-										)}
-									</>
-								)}
+											{styles[screenSize].containerWidth !== "full-width" && (
+												<TextControl
+													label={__("Width")}
+													value={styles[screenSize].containerWidth}
+													onChange={(value) =>
+														onChange(screenSize, "containerWidth", value)
+													}
+												/>
+											)}
+										</>
+									)}
 
 								{activeDimension === "height" && (
 									<>
