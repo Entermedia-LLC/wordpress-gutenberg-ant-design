@@ -29,6 +29,11 @@
 .ant-typography u .rich-text {
   text-decoration: inherit;
 }
+
+.editor-styles-wrapper .is-layout-flow > * + *:not(.antd-gutenberg-block) {
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+}
 /*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/block-library/grid/row/editor.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
