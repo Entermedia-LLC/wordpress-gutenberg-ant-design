@@ -38,6 +38,7 @@ export const availableStyleProperties = {
 	fontSize: "font-size",
 	containerWidth: "max-width",
 	containerHeight: "height",
+	textAlignment: "text-align",
 };
 
 /**
@@ -130,26 +131,29 @@ export const generateStyles = (
 
 	// @TODO: This needs to be cleaned up
 	const definitionOutput = (property, value) => {
-		if (property === "margin-top") {
-			console.log(value);
-		}
-
 		if (property.startsWith("padding-") || property.startsWith("margin-")) {
-			if (typeof token[value] !== "undefined") {
+			if (
+				typeof value !== "undefined" &&
+				typeof value === "string" &&
+				typeof token[value] !== "undefined"
+			) {
 				return `${property}: ${token[value]}px;\n`;
 			} else {
 				return `${property}: ${value};\n`;
 			}
-		} else if (
-			property === "background-image" &&
-			typeof value.url !== "undefined"
-		) {
+		} else if (property === "background-image" && typeof value === "object") {
 			return `background-image: url('${value.url}');\n`;
 		} else if (property === "background-repeat") {
 			return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-		} else if (property === "max-width" && value !== "full-width") {
-			return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
-		} else if (property !== "max-width" && value !== "full-width") {
+		} else if (
+			typeof value !== "undefined" &&
+			typeof value === "string" &&
+			property === "max-width" &&
+			value !== "full-width" &&
+			value
+		) {
+			return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};width: 100%;\n`;
+		} else if (property !== "max-width") {
 			return `${property}: ${value};\n`;
 		}
 	};

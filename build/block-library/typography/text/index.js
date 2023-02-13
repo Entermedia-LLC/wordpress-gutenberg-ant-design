@@ -12378,7 +12378,8 @@ const BlockOptionButtonGroup = _ref => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BlockStyles": () => (/* binding */ BlockStyles)
+/* harmony export */   "BlockStyles": () => (/* binding */ BlockStyles),
+/* harmony export */   "availableProperties": () => (/* binding */ availableProperties)
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
@@ -12423,13 +12424,16 @@ __webpack_require__.r(__webpack_exports__);
 // Import internal block editor component dependencies
 
 
+// Available properties
+const availableProperties = ["padding", "background", "text", "margin", "container-width"];
+
 // Block styles component
 const BlockStyles = _ref => {
   let {
     styles,
     onChange,
     enabledScreenSizes = [Object.keys(_config__WEBPACK_IMPORTED_MODULE_5__.screenSizes)],
-    allowedProperties = ["padding", "background", "text", "margin"]
+    allowedProperties = availableProperties
   } = _ref;
   const {
     useToken
@@ -12600,6 +12604,28 @@ const BlockStyles = _ref => {
         colors: colorPalette,
         value: styles[screenSize].color,
         onChange: color => onChange(screenSize, "color", color)
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Text Alignment"),
+        value: styles[screenSize].textAlignment,
+        isBlock: true,
+        onChange: value => {
+          onChange(screenSize, "textAlignment", value);
+        }
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "left",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "editor-alignleft"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "right",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "editor-alignright"
+        })
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+        value: "center",
+        label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
+          icon: "editor-aligncenter"
+        })
       }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container"),
         initialOpen: false
@@ -12610,13 +12636,13 @@ const BlockStyles = _ref => {
         onChange: value => {
           setActiveDimension(value);
         }
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+      }, allowedProperties.includes("container-width") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "width",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width")
       }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "height",
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height")
-      })), activeDimension === "width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+      })), allowedProperties.includes("container-width") && activeDimension === "width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
         options: [{
           value: "boxed",
@@ -13010,7 +13036,8 @@ function Edit(_ref) {
     value: savedAttributes.api.text,
     onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes)("api", "text", value, savedAttributes, setAttributes),
     withoutInteractiveFormatting: true,
-    tagName: "span"
+    tagName: "span",
+    allowedFormats: ["core/bold", "core/italic"]
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_5__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_7__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
@@ -13236,7 +13263,8 @@ const availableStyleProperties = {
   fontFamily: "font-family",
   fontSize: "font-size",
   containerWidth: "max-width",
-  containerHeight: "height"
+  containerHeight: "height",
+  textAlignment: "text-align"
 };
 
 /**
@@ -13307,22 +13335,19 @@ const generateStyles = function (attribute, clientId) {
 
   // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {
-    if (property === "margin-top") {
-      console.log(value);
-    }
     if (property.startsWith("padding-") || property.startsWith("margin-")) {
-      if (typeof token[value] !== "undefined") {
+      if (typeof value !== "undefined" && typeof value === "string" && typeof token[value] !== "undefined") {
         return `${property}: ${token[value]}px;\n`;
       } else {
         return `${property}: ${value};\n`;
       }
-    } else if (property === "background-image" && typeof value.url !== "undefined") {
+    } else if (property === "background-image" && typeof value === "object") {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-    } else if (property === "max-width" && value !== "full-width") {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};\n`;
-    } else if (property !== "max-width" && value !== "full-width") {
+    } else if (typeof value !== "undefined" && typeof value === "string" && property === "max-width" && value !== "full-width" && value) {
+      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};width: 100%;\n`;
+    } else if (property !== "max-width") {
       return `${property}: ${value};\n`;
     }
   };
