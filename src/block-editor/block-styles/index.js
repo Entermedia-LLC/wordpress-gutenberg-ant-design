@@ -422,7 +422,7 @@ export const BlockStyles = ({
 													label={<BlockIcon icon="arrow-right-alt" />}
 												/>
 												<ToggleGroupControlOption
-													value="top"
+													value="Top"
 													label={<BlockIcon icon="arrow-up-alt" />}
 												/>
 												<ToggleGroupControlOption

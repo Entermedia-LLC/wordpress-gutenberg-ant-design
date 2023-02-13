@@ -61001,7 +61001,7 @@ module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"token":{"colorPrimary":"#dd0092"}}');
+module.exports = JSON.parse('{"token":{"fontFamily":"\\"Quicksand\\""}}');
 
 /***/ })
 
