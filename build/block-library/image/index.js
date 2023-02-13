@@ -9907,7 +9907,7 @@ const BlockStyles = _ref => {
           icon: "arrow-right-alt"
         })
       }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
-        value: "top",
+        value: "Top",
         label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
           icon: "arrow-up-alt"
         })
@@ -20268,7 +20268,7 @@ module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"token":{"colorPrimary":"#dd0092"}}');
+module.exports = JSON.parse('{"token":{"fontFamily":"\\"Quicksand\\""}}');
 
 /***/ }),
 
@@ -20279,7 +20279,7 @@ module.exports = JSON.parse('{"token":{"colorPrimary":"#dd0092"}}');
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"}]}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"},{"fontFamily":"\\"Quicksand\\"","slug":"quicksand","name":"Quicksand","fontFace":[{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/Quicksand-VariableFont_wght.ttf"]}]}]}}}');
 
 /***/ })
 
