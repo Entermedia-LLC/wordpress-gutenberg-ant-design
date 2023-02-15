@@ -34,3 +34,8 @@
 		}
 	}
 }
+
+// Fix for margin in Gutenberg blocks
+.editor-styles-wrapper .is-layout-flow > * + *:not(.antd-gutenberg-block) {
+	margin-block-start: 0;
+}

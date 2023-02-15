@@ -126,7 +126,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	return (
 		<>
 			<ConfigProvider theme={antdTheme}>
-				<Row {...innerBlocksProps} {...antdComponentProps} />
+				<Row
+					className={`antd-gutenberg-block`}
+					{...innerBlocksProps}
+					{...antdComponentProps}
+				/>
 				<style>{generateStyles(savedAttributes, clientId)}</style>
 
 				<InspectorControls>

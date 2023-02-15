@@ -1,139 +1,196 @@
 /**
- * External dependencies
+ * Import @wordpress dependencies
  */
-import classnames from "classnames";
-
-/**
- * WordPress dependencies
- */
-import {
-	AlignmentControl,
-	BlockControls,
-	InspectorControls,
-	useBlockProps,
-	PlainText,
-} from "@wordpress/block-editor";
-import { ToggleControl, TextControl, PanelBody } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
+import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
+
+import { PanelBody, ToggleControl, TextControl } from "@wordpress/components";
 import { useEntityProp } from "@wordpress/core-data";
 
 /**
- * Internal dependencies
+ * Import andt components, dependencies & configuration
  */
-import { useCanEditEntity } from "../utils/hooks";
+import { Typography, ConfigProvider } from "antd";
+import { updateAttributes, generateStyles } from "../../shared";
+import { titleAttributes } from "../../shared/attributes";
+import { TitleControls } from "../../shared/controls";
+import antdTheme from "../../../../../themes/headless/antd-theme.json";
+import { BlockVisibility } from "../../block-editor/block-visibility";
+import { BlockStyles } from "../../block-editor/block-styles";
+const { Title, Link } = Typography;
 
+/**
+ * Import editor styles
+ */
+import "./editor.scss";
+
+/**
+ * Gutenberg Edit component
+ */
 export default function Edit({
 	attributes,
 	setAttributes,
-	context: { postType, postId, queryId },
 	clientId,
+	context: { postType, postId, queryId },
 }) {
-	const TagName = 0 === level ? "p" : "h" + level;
-	const isDescendentOfQueryLoop = Number.isFinite(queryId);
-	const userCanEdit = useCanEditEntity("postType", postType, postId);
+	// Dyncamic data for Post title
 	const [rawTitle = "", setTitle, fullTitle] = useEntityProp(
 		"postType",
 		postType,
 		"title",
 		postId
 	);
-	const [link] = useEntityProp("postType", postType, "link", postId);
+
+	// Used by the Gutenberg editor to save & output blocks properly
 	const blockProps = useBlockProps({
-		className: classnames({
-			[`has-text-align-${textAlign}`]: textAlign,
-		}),
+		className: `gutenberg-ant-design--${clientId}`,
 	});
 
-	let titleElement = <TagName {...blockProps}>{__("Post Title")}</TagName>;
+	// Merge the default attributes with the saved ones
+	const savedAttributes = { ...titleAttributes, ...attributes };
+
+	// Component processing
+	const { code, copyable, disabled, mark, level, italic, type, underline } =
+		savedAttributes.api;
+
+	/**
+	 * Ant Design component props
+	 *
+	 * These should match the available API properties and their default for the
+	 * corresponding Ant Design component. Note: Some props like that accept
+	 * functions or more dynamic values like functions of ReactNodes may need to
+	 * be omitted or parsed.
+	 */
+	const antdComponentProps = {
+		code,
+		copyable,
+		delete: savedAttributes.api.delete,
+		disabled,
+		mark,
+		level,
+		italic,
+		type,
+		underline,
+	};
+
+	// Default state for title component
+	let titleElement = (
+		<Title {...blockProps} {...antdComponentProps}>
+			{__("Post Title")}
+		</Title>
+	);
 
 	if (postType && postId) {
-		titleElement =
-			userCanEdit && !isDescendentOfQueryLoop ? (
-				<PlainText
-					tagName={TagName}
-					placeholder={__("No Title")}
-					value={rawTitle}
-					onChange={setTitle}
-					__experimentalVersion={2}
-					{...blockProps}
-				/>
-			) : (
-				<TagName
-					{...blockProps}
-					dangerouslySetInnerHTML={{ __html: fullTitle?.rendered }}
-				/>
-			);
+		titleElement = (
+			<Title {...blockProps} {...antdComponentProps}>
+				{fullTitle?.rendered}
+			</Title>
+		);
 	}
 
-	if (isLink && postType && postId) {
-		titleElement =
-			userCanEdit && !isDescendentOfQueryLoop ? (
-				<TagName {...blockProps}>
-					<PlainText
-						tagName="a"
-						href={link}
-						target={linkTarget}
-						rel={rel}
-						placeholder={!rawTitle.length ? __("No Title") : null}
-						value={rawTitle}
-						onChange={setTitle}
-						__experimentalVersion={2}
-					/>
-				</TagName>
-			) : (
-				<TagName {...blockProps}>
-					<a
-						href={link}
-						target={linkTarget}
-						rel={rel}
-						onClick={(event) => event.preventDefault()}
-						dangerouslySetInnerHTML={{
-							__html: fullTitle?.rendered,
-						}}
-					/>
-				</TagName>
-			);
+	// Render component as Link.
+	const [link] = useEntityProp("postType", postType, "link", postId);
+
+	if (savedAttributes?.api?.isLink && postType && postId) {
+		titleElement = (
+			<Title {...blockProps} {...antdComponentProps}>
+				<Link
+					href={link}
+					target={savedAttributes.api.linkTarget}
+					rel={savedAttributes.api.rel}
+					style={{ fontSize: "inherit" }}
+				>
+					{fullTitle?.rendered}
+				</Link>
+			</Title>
+		);
 	}
 
 	return (
-		<>
-			<BlockControls group="block">
-				<AlignmentControl
-					value={textAlign}
-					onChange={(nextAlign) => {
-						setAttributes({ textAlign: nextAlign });
-					}}
-				/>
-			</BlockControls>
+		<ConfigProvider theme={antdTheme}>
+			{titleElement}
+			<style>
+				{generateStyles(
+					savedAttributes,
+					clientId,
+					`h${savedAttributes.api.level}.ant-typography`
+				)}
+			</style>
+
 			<InspectorControls>
-				<PanelBody title={__("Link settings")}>
+				<BlockVisibility
+					attributes={savedAttributes}
+					setAttributes={setAttributes}
+				/>
+				<PanelBody title={__("Options")} initialOpen={false}>
 					<ToggleControl
 						label={__("Make title a link")}
-						onChange={() => setAttributes({ isLink: !isLink })}
-						checked={isLink}
+						onChange={(value) => {
+							updateAttributes(
+								"api",
+								"isLink",
+								value,
+								savedAttributes,
+								setAttributes
+							);
+						}}
+						checked={savedAttributes.api.isLink}
 					/>
-					{isLink && (
+					{savedAttributes.api.isLink && (
 						<>
 							<ToggleControl
 								label={__("Open in new tab")}
-								onChange={(value) =>
-									setAttributes({
-										linkTarget: value ? "_blank" : "_self",
-									})
-								}
-								checked={linkTarget === "_blank"}
+								onChange={(value) => {
+									updateAttributes(
+										"api",
+										"linkTarget",
+										value ? "_blank" : "_self",
+										savedAttributes,
+										setAttributes
+									);
+								}}
+								checked={savedAttributes.api.linkTarget === "_blank"}
 							/>
 							<TextControl
 								__nextHasNoMarginBottom
 								label={__("Link rel")}
-								value={rel}
-								onChange={(newRel) => setAttributes({ rel: newRel })}
+								value={savedAttributes.api.rel}
+								onChange={(value) => {
+									updateAttributes(
+										"api",
+										"rel",
+										value,
+										savedAttributes,
+										setAttributes
+									);
+								}}
 							/>
 						</>
 					)}
 				</PanelBody>
+				<TitleControls
+					updateAttributes={updateAttributes}
+					savedAttributes={savedAttributes}
+					setAttributes={setAttributes}
+				/>
+
+				<BlockStyles
+					styles={savedAttributes.styles}
+					onChange={(screenSize, attribute, value) => {
+						updateAttributes(
+							"styles",
+							screenSize,
+							{
+								...savedAttributes.styles[screenSize],
+								[attribute]: value,
+							},
+							savedAttributes,
+							setAttributes
+						);
+					}}
+					enabledScreenSizes={savedAttributes.visibility}
+				/>
 			</InspectorControls>
-			{titleElement}
-		</>
+		</ConfigProvider>
 	);
 }

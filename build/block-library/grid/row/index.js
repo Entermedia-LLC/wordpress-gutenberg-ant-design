@@ -8458,7 +8458,9 @@ function Edit(_ref) {
   }
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_11__["default"], {
     theme: _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_9__
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, innerBlocksProps, antdComponentProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_6__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_7__.BlockVisibility, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    className: `antd-gutenberg-block`
+  }, innerBlocksProps, antdComponentProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_6__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_7__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {

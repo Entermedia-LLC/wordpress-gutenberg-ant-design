@@ -1,16 +1,17 @@
 {
   "$schema": "https://json.schemastore.org/block.json",
   "apiVersion": 2,
-  "name": "gutenberg-ant-design/post-title",
+  "name": "gutenberg-ant-design/breadcrumb",
   "version": "0.1.0",
-  "title": "Post Title",
-  "description": "Displays the title of a post, page, or any other content-type inside query loop",
+  "title": "Post Breadcrumb",
+  "description": "A breadcrumb displays the current location within a hierarchy. It allows going back to states higher up in the hierarchy.",
   "textdomain": "gutenberg-ant-design",
   "usesContext": [
     "postId",
     "postType",
     "queryId"
   ],
+  "icon": "ellipsis",
   "category": "ant-design",
   "attributes": {
     "api": {
