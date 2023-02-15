@@ -1,17 +1,21 @@
 <?php
 /**
- * Plugin Name:       Gutenberg - Ant Design
- * Description:       Adds Gutenberg blocks for <a href="https://ant.design/components/overview/" target="_blank">Ant Design</a> components.
+ * Plugin Name:       Headless Gutenberg - Ant Design
+ * Description:       Adds support for <a href="https://ant.design/components/overview/" target="_blank">Ant Design</a> components in Gutenberg to consume in a headless website.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            Entermedia LLC
+ * Author:            Activated Studio
+ * Author URI:        https://www.activated.studio
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       gutenberg-ant-design
  *
  * @package           create-block
  */
+
+// Security Note: Blocks direct access to the plugin PHP files.
+defined( 'ABSPATH' ) || die();
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
