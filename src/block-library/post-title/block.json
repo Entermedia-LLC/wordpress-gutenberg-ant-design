@@ -4,7 +4,7 @@
 	"name": "gutenberg-ant-design/post-title",
 	"version": "0.1.0",
 	"title": "Post Title",
-	"description": "Insert an image to make a visual statement.",
+	"description": "Displays the title of a post, page, or any other content-type inside query loop",
 	"textdomain": "gutenberg-ant-design",
 	"usesContext": ["postId", "postType", "queryId"],
 	"category": "ant-design",

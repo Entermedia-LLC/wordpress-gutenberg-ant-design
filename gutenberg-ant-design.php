@@ -33,7 +33,7 @@ function gutenberg_ant_design_register_blocks() {
 	register_block_type( __DIR__ . '/build/block-library/typography/text' );
 	register_block_type( __DIR__ . '/build/block-library/typography/paragraph' );
 	register_block_type( __DIR__ . '/build/block-library/post-breadcrumb' );
-	//register_block_type( __DIR__ . '/build/block-library/post-title' );
+	register_block_type( __DIR__ . '/build/block-library/post-title' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 
