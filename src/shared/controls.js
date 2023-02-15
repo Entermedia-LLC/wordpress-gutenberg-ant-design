@@ -13,7 +13,7 @@ import {
 } from "@wordpress/components";
 
 // Shared controls for components
-export const Controls = ({updateAttributes, savedAttributes, setAttributes}) => {
+export const TitleControls = ({updateAttributes, savedAttributes, setAttributes}) => {
   return(
     <PanelBody title={__("Settings")} initialOpen={false}>
     <BaseControl label={__("Level")}>

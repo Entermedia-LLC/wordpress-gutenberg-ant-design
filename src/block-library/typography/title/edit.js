@@ -16,7 +16,7 @@ import {
 	updateAttributes,
 	generateStyles,
 } from "../../../shared";
-import { Controls } from "../../../shared/controls";
+import { TitleControls } from "../../../shared/controls";
 import { titleAttributes } from "../../../shared/attributes";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
@@ -104,7 +104,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						attributes={savedAttributes}
 						setAttributes={setAttributes}
 					/>
-					<Controls
+					<TitleControls
 						updateAttributes={updateAttributes}
 						savedAttributes={savedAttributes}
 						setAttributes={setAttributes}

@@ -16,7 +16,7 @@ import {
 	generateStyles,
 } from "../../shared";
 import { titleAttributes } from "../../shared/attributes";
-import { Controls } from "../../shared/controls";
+import { TitleControls } from "../../shared/controls";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
@@ -171,7 +171,7 @@ export default function Edit({
 						</>
 					)}
 				</PanelBody>
-				<Controls
+				<TitleControls
 					updateAttributes={updateAttributes}
 					savedAttributes={savedAttributes}
 					setAttributes={setAttributes}
