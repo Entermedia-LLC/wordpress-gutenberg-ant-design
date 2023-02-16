@@ -1,0 +1,32 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/post-excerpt",
+	"version": "0.1.0",
+	"title": "Post Excerpt",
+	"description": "Display a post's excerpt inside a Query loop.",
+	"textdomain": "gutenberg-ant-design",
+	"usesContext": [ "postId", "postType", "queryId" ],
+	"category": "ant-design",
+	"attributes": {
+		"api": {
+			"type": "object"
+		},
+		"settings": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "array"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"supports": {
+		"customClassName": false
+	}
+}
+
