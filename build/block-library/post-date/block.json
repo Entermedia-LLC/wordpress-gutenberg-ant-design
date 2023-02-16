@@ -4,7 +4,7 @@
   "name": "gutenberg-ant-design/post-date",
   "version": "0.1.0",
   "title": "Post Date",
-  "description": "Add the date of this post inside a Query loop.",
+  "description": "Add the date of this post.",
   "textdomain": "gutenberg-ant-design",
   "usesContext": [
     "postId",
@@ -12,6 +12,7 @@
     "queryId"
   ],
   "category": "ant-design",
+  "icon": "calendar",
   "attributes": {
     "api": {
       "type": "object"
