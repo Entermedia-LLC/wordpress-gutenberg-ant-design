@@ -11,10 +11,7 @@ import { useEntityProp } from "@wordpress/core-data";
  * Import andt components, dependencies & configuration
  */
 import { Typography, ConfigProvider } from "antd";
-import {
-	updateAttributes,
-	generateStyles,
-} from "../../shared";
+import { updateAttributes, generateStyles } from "../../shared";
 import { titleAttributes } from "../../shared/attributes";
 import { TitleControls } from "../../shared/controls";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
