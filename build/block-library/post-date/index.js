@@ -3383,6 +3383,38 @@ var unitlessKeys = {
 
 /***/ }),
 
+/***/ "./node_modules/@wordpress/icons/build-module/library/title.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/title.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * WordPress dependencies
+ */
+
+const title = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  xmlns: "https://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+  d: "M4 5.417h2.267V12h1.466V5.417H10V4H4v1.417ZM20 16H4v-1.5h16V16Zm-7 4H4v-1.5h9V20Z"
+}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (title);
+//# sourceMappingURL=title.js.map
+
+/***/ }),
+
 /***/ "./node_modules/antd/es/_util/colors.js":
 /*!**********************************************!*\
   !*** ./node_modules/antd/es/_util/colors.js ***!
@@ -12902,10 +12934,10 @@ const HiddenToggle = _ref2 => {
 
 /***/ }),
 
-/***/ "./src/block-library/typography/text/edit.js":
-/*!***************************************************!*\
-  !*** ./src/block-library/typography/text/edit.js ***!
-  \***************************************************/
+/***/ "./src/block-library/post-date/edit.js":
+/*!*********************************************!*\
+  !*** ./src/block-library/post-date/edit.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12922,20 +12954,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/config-provider/index.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared */ "./src/shared.js");
-/* harmony import */ var _shared_attributes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../shared/attributes */ "./src/shared/attributes.js");
-/* harmony import */ var _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../../themes/headless/antd-theme.json */ "../../themes/headless/antd-theme.json");
-/* harmony import */ var _block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../block-editor/block-visibility */ "./src/block-editor/block-visibility/index.js");
-/* harmony import */ var _block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../block-editor/block-styles */ "./src/block-editor/block-styles/index.js");
-/* harmony import */ var _shared_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../shared/controls */ "./src/shared/controls.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor.scss */ "./src/block-library/typography/text/editor.scss");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/date */ "@wordpress/date");
+/* harmony import */ var _wordpress_date__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_date__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/config-provider/index.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../shared */ "./src/shared.js");
+/* harmony import */ var _shared_attributes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../shared/attributes */ "./src/shared/attributes.js");
+/* harmony import */ var _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../themes/headless/antd-theme.json */ "../../themes/headless/antd-theme.json");
+/* harmony import */ var _block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../block-editor/block-visibility */ "./src/block-editor/block-visibility/index.js");
+/* harmony import */ var _block_editor_block_styles__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../block-editor/block-styles */ "./src/block-editor/block-styles/index.js");
+/* harmony import */ var _shared_controls__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../shared/controls */ "./src/shared/controls.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./editor.scss */ "./src/block-library/post-date/editor.scss");
 
 
 /**
  * Import @wordpress dependencies
  */
+
+
+
 
 
 
@@ -12952,7 +12991,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const {
   Text
-} = antd__WEBPACK_IMPORTED_MODULE_11__["default"];
+} = antd__WEBPACK_IMPORTED_MODULE_13__["default"];
 
 /**
  * Import editor styles
@@ -12966,7 +13005,12 @@ function Edit(_ref) {
   let {
     attributes,
     setAttributes,
-    clientId
+    clientId,
+    context: {
+      postId,
+      postType: postTypeSlug,
+      queryId
+    }
   } = _ref;
   // Used by the Gutenberg editor to save & output blocks properly
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
@@ -12975,11 +13019,20 @@ function Edit(_ref) {
 
   // Merge the default attributes with the saved ones
   const savedAttributes = {
-    ..._shared_attributes__WEBPACK_IMPORTED_MODULE_6__.textAttributes,
+    ..._shared_attributes__WEBPACK_IMPORTED_MODULE_8__.textAttributes,
     ...attributes
   };
 
   // Component states
+  const [popoverAnchor, setPopoverAnchor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(null);
+  const dateSettings = (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_6__.getSettings)();
+  const [siteFormat = dateSettings.formats.date] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)("root", "site", "date_format");
+  const [siteTimeFormat = dateSettings.formats.time] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)("root", "site", "time_format");
+  const [date, setDate] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)("postType", postTypeSlug, savedAttributes.api.displayType ? savedAttributes.api.displayType : "date", postId);
+  let postDate = date ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("time", {
+    dateTime: (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_6__.dateI18n)("c", date),
+    ref: setPopoverAnchor
+  }, (0,_wordpress_date__WEBPACK_IMPORTED_MODULE_6__.dateI18n)(savedAttributes.api.format || siteFormat, date)) : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Post Date");
 
   // Component processing
   const {
@@ -13016,27 +13069,30 @@ function Edit(_ref) {
     underline,
     delete: savedAttributes.api.delete
   };
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    theme: _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_7__
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Text, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, antdComponentProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
-    "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Text"),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Add text…"),
-    value: savedAttributes.api.text,
-    onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes)("api", "text", value, savedAttributes, setAttributes),
-    withoutInteractiveFormatting: true,
-    tagName: "span",
-    allowedFormats: ["core/bold", "core/italic"]
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_5__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__.BlockVisibility, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    theme: _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_9__
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Text, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, antdComponentProps), postDate), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_7__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_10__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_controls__WEBPACK_IMPORTED_MODULE_10__.TextControls, {
-    updateAttributes: _shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes,
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Options"),
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.__experimentalDateFormatPicker, {
+    format: savedAttributes.api.format,
+    defaultFormat: siteFormat,
+    onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_7__.updateAttributes)("api", "format", value, savedAttributes, setAttributes)
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Display last modified date"),
+    onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_7__.updateAttributes)("api", "displayType", value ? "modified" : "date", savedAttributes, setAttributes),
+    checked: savedAttributes.api.displayType === "modified"
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_controls__WEBPACK_IMPORTED_MODULE_12__.TextControls, {
+    updateAttributes: _shared__WEBPACK_IMPORTED_MODULE_7__.updateAttributes,
     savedAttributes: savedAttributes,
     setAttributes: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__.BlockStyles, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_styles__WEBPACK_IMPORTED_MODULE_11__.BlockStyles, {
     styles: savedAttributes.styles,
     onChange: (screenSize, attribute, value) => {
-      (0,_shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes)("styles", screenSize, {
+      (0,_shared__WEBPACK_IMPORTED_MODULE_7__.updateAttributes)("styles", screenSize, {
         ...savedAttributes.styles[screenSize],
         [attribute]: value
       }, savedAttributes, setAttributes);
@@ -13047,34 +13103,26 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/block-library/typography/text/index.js":
-/*!****************************************************!*\
-  !*** ./src/block-library/typography/text/index.js ***!
-  \****************************************************/
+/***/ "./src/block-library/post-date/index.js":
+/*!**********************************************!*\
+  !*** ./src/block-library/post-date/index.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/block-library/typography/text/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/block-library/typography/text/edit.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared */ "./src/shared.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block-library/typography/text/block.json");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/title.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/block-library/post-date/edit.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared */ "./src/shared.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/block-library/post-date/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 
 
 /**
@@ -13089,15 +13137,16 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
   /**
    * @see ./save.js
    */
-  save: _shared__WEBPACK_IMPORTED_MODULE_3__.Save
+  save: _shared__WEBPACK_IMPORTED_MODULE_2__.Save,
+  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 
 /***/ }),
@@ -15008,23 +15057,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/block-library/typography/text/editor.scss":
-/*!*******************************************************!*\
-  !*** ./src/block-library/typography/text/editor.scss ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./src/block-library/typography/text/style.scss":
-/*!******************************************************!*\
-  !*** ./src/block-library/typography/text/style.scss ***!
-  \******************************************************/
+/***/ "./src/block-library/post-date/editor.scss":
+/*!*************************************************!*\
+  !*** ./src/block-library/post-date/editor.scss ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -25289,6 +25325,28 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
+/***/ "@wordpress/core-data":
+/*!**********************************!*\
+  !*** external ["wp","coreData"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["coreData"];
+
+/***/ }),
+
+/***/ "@wordpress/date":
+/*!******************************!*\
+  !*** external ["wp","date"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["date"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -25308,6 +25366,17 @@ module.exports = window["wp"]["element"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/primitives":
+/*!************************************!*\
+  !*** external ["wp","primitives"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["primitives"];
 
 /***/ }),
 
@@ -27119,14 +27188,14 @@ function combine (array, callback) {
 
 /***/ }),
 
-/***/ "./src/block-library/typography/text/block.json":
-/*!******************************************************!*\
-  !*** ./src/block-library/typography/text/block.json ***!
-  \******************************************************/
+/***/ "./src/block-library/post-date/block.json":
+/*!************************************************!*\
+  !*** ./src/block-library/post-date/block.json ***!
+  \************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json","apiVersion":2,"name":"gutenberg-ant-design/text","version":"0.1.0","title":"Text","description":"Start with the basic building block of all narrative.","icon":"editor-textcolor","category":"ant-design","attributes":{"api":{"type":"object"},"settings":{"type":"object"},"visibility":{"type":"array"},"styles":{"type":"object"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","supports":{"customClassName":false}}');
+module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json","apiVersion":2,"name":"gutenberg-ant-design/post-date","version":"0.1.0","title":"Post Date","description":"Add the date of this post inside a Query loop.","textdomain":"gutenberg-ant-design","usesContext":["postId","postType","queryId"],"category":"ant-design","attributes":{"api":{"type":"object"},"settings":{"type":"object"},"visibility":{"type":"array"},"styles":{"type":"object"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","supports":{"customClassName":false}}');
 
 /***/ }),
 
@@ -27292,9 +27361,8 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"block-library/typography/text/index": 0,
-/******/ 			"block-library/image/style-index": 0,
-/******/ 			"block-library/typography/text/style-index": 0
+/******/ 			"block-library/post-date/index": 0,
+/******/ 			"block-library/image/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -27344,7 +27412,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/image/style-index","block-library/typography/text/style-index"], () => (__webpack_require__("./src/block-library/typography/text/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/image/style-index"], () => (__webpack_require__("./src/block-library/post-date/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

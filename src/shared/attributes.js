@@ -14,3 +14,18 @@ export const titleAttributes = createDefaultAttributes({
 		underline: false,
 	},
 });
+
+export const textAttributes = createDefaultAttributes({
+	api: {
+		code: false,
+		copyable: false,
+		delete: false,
+		disabled: false,
+		keyboard: false,
+		mark: false,
+		italic: false,
+		strong: false,
+		type: "",
+		underline: false,
+	},
+});
