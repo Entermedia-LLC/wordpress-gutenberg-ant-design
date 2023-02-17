@@ -4,7 +4,7 @@
   "name": "gutenberg-ant-design/post-excerpt",
   "version": "0.1.0",
   "title": "Post Excerpt",
-  "description": "Display a post's excerpt inside a Query loop.",
+  "description": "Display a post's excerpt",
   "textdomain": "gutenberg-ant-design",
   "usesContext": [
     "postId",
@@ -12,6 +12,7 @@
     "queryId"
   ],
   "category": "ant-design",
+  "icon": "quote",
   "attributes": {
     "api": {
       "type": "object"
