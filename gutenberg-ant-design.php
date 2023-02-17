@@ -35,6 +35,7 @@ function gutenberg_ant_design_register_blocks() {
 	register_block_type( __DIR__ . '/build/block-library/post-breadcrumb' );
 	register_block_type( __DIR__ . '/build/block-library/post-title' );
 	register_block_type( __DIR__ . '/build/block-library/post-date' );
+	register_block_type( __DIR__ . '/build/block-library/post-excerpt' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 
