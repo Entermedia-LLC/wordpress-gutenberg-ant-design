@@ -1,0 +1,21 @@
+.gutenberg-ant-design-block-antd-token-options {
+	margin-bottom: 24px;
+
+	&__label {
+		font-size: 12px;
+		font-style: normal;
+		color: rgb(117, 117, 117);
+		margin-bottom: 5px;
+		margin-top: -12px;
+	}
+
+	.components-button-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 2px;
+	}
+
+	.components-button {
+		margin: 0 !important;
+	}
+}
