@@ -1,4 +1,9 @@
 /**
+ * Import react dependencies
+ */
+import { useState } from "react";
+
+/**
  * Import @wordpress dependencies
  */
 import { __ } from "@wordpress/i18n";
@@ -14,6 +19,7 @@ import {
 	ExternalLink,
 	TextareaControl,
 	ToggleControl,
+	TextControl,
 } from "@wordpress/components";
 import { image as icon } from "@wordpress/icons";
 
@@ -22,6 +28,7 @@ import { image as icon } from "@wordpress/icons";
  */
 import { Image, ConfigProvider } from "antd";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
+import { screenSizes } from "../../_config";
 import {
 	updateAttributes,
 	createDefaultAttributes,
@@ -29,6 +36,7 @@ import {
 } from "../../shared";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
+import { BlockScreenSizeButtonGroup } from "../../block-editor/block-screen-size-button-group";
 
 /**
  * Import editor styles
@@ -62,6 +70,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const savedAttributes = { ...defaultAttributes, ...attributes };
 
 	// Component states
+	const [activeScreenSize, setActiveScreenSize] = useState("xs");
 
 	// Component processing
 	const { url, id } = savedAttributes.api.src;
@@ -75,7 +84,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// Component helpers
 	const onSelectImage = (media) => {
-		console.log(media);
 		if (!media || !media.url) {
 			updateAttributes(
 				"api",
@@ -127,6 +135,15 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							attributes={savedAttributes}
 							setAttributes={setAttributes}
 						/>
+
+						<PanelBody title={__("Options")} initialOpen={false}>
+							<BlockScreenSizeButtonGroup
+								onChange={(value) => {
+									setActiveScreenSize(value);
+								}}
+								selected={activeScreenSize}
+							/>
+						</PanelBody>
 
 						<PanelBody title={__("Settings")}>
 							<ToggleControl
@@ -184,7 +201,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						</PanelBody>
 						<BlockStyles
 							styles={savedAttributes.styles}
-							allowedProperties={[]}
 							onChange={(screenSize, attribute, value) => {
 								updateAttributes(
 									"styles",

@@ -7780,6 +7780,62 @@ const BlockOptionButtonGroup = _ref => {
 
 /***/ }),
 
+/***/ "./src/block-editor/block-screen-size-button-group/index.js":
+/*!******************************************************************!*\
+  !*** ./src/block-editor/block-screen-size-button-group/index.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BlockScreenSizeButtonGroup": () => (/* binding */ BlockScreenSizeButtonGroup)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_config */ "./src/_config.js");
+
+/**
+ * Import @wordpress dependencies
+ */
+
+
+
+/**
+ * Import andt components, dependencies & configuration
+ */
+
+
+/**
+ * Component export
+ */
+const BlockScreenSizeButtonGroup = _ref => {
+  let {
+    onChange,
+    selected
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Screen Size"),
+    value: selected,
+    isBlock: true,
+    onChange: value => {
+      onChange(value);
+    }
+  }, Object.keys(_config__WEBPACK_IMPORTED_MODULE_3__.screenSizes).map(screenSize => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.__experimentalToggleGroupControlOption, {
+      value: screenSize,
+      label: screenSize,
+      key: screenSize
+    });
+  }));
+};
+
+/***/ }),
+
 /***/ "./src/block-editor/block-styles/index.js":
 /*!************************************************!*\
   !*** ./src/block-editor/block-styles/index.js ***!
@@ -7802,10 +7858,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_config */ "./src/_config.js");
 /* harmony import */ var _themes_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../themes/headless/theme.json */ "../../themes/headless/theme.json");
 /* harmony import */ var _block_option_button_group__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-option-button-group */ "./src/block-editor/block-option-button-group/index.js");
+/* harmony import */ var _block_screen_size_button_group__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-screen-size-button-group */ "./src/block-editor/block-screen-size-button-group/index.js");
 
 // @TODO: SO... sooo much clean-up can be done here
 
@@ -7835,6 +7892,7 @@ __webpack_require__.r(__webpack_exports__);
 // Import internal block editor component dependencies
 
 
+
 // Available properties
 const availableProperties = ["padding", "background", "text", "margin", "container-width"];
 
@@ -7848,7 +7906,7 @@ const BlockStyles = _ref => {
   } = _ref;
   const {
     useToken
-  } = antd__WEBPACK_IMPORTED_MODULE_8__["default"];
+  } = antd__WEBPACK_IMPORTED_MODULE_9__["default"];
   const {
     token
   } = useToken();
@@ -7898,20 +7956,12 @@ const BlockStyles = _ref => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Styles"),
     initialOpen: false
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Screen Size"),
-    value: activeScreenSize,
-    isBlock: true,
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_block_screen_size_button_group__WEBPACK_IMPORTED_MODULE_8__.BlockScreenSizeButtonGroup, {
     onChange: value => {
       setActiveScreenSize(value);
-    }
-  }, Object.keys(_config__WEBPACK_IMPORTED_MODULE_5__.screenSizes).map(screenSize => {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
-      value: screenSize,
-      label: screenSize,
-      key: screenSize
-    });
-  })), Object.keys(_config__WEBPACK_IMPORTED_MODULE_5__.screenSizes).map(screenSize => {
+    },
+    selected: activeScreenSize
+  }), Object.keys(_config__WEBPACK_IMPORTED_MODULE_5__.screenSizes).map(screenSize => {
     if (enabledScreenSizes.includes(screenSize) && activeScreenSize === screenSize) {
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
         key: screenSize
