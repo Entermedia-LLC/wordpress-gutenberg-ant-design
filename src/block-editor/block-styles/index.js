@@ -51,7 +51,8 @@ export const availableProperties = [
 	"background",
 	"text",
 	"margin",
-	"container-width",
+	"width",
+	"height",
 ];
 
 // Block styles component
@@ -66,7 +67,6 @@ export const BlockStyles = ({
 
 	// Component states
 	const [activeScreenSize, setActiveScreenSize] = useState("xs");
-	const [activeDimension, setActiveDimension] = useState();
 	const [activePadding, setActivePadding] = useState();
 	const [activeMargin, setActiveMargin] = useState();
 	const [activeSpacing, setActiveSpacing] = useState();
@@ -310,107 +310,25 @@ export const BlockStyles = ({
 							)}
 
 							<PanelBody title={__("Container")} initialOpen={false}>
-								<ToggleGroupControl
-									label={__("Dimensions")}
-									value={activeDimension}
-									isBlock
-									onChange={(value) => {
-										setActiveDimension(value);
-									}}
-								>
-									{allowedProperties.includes("container-width") && (
-										<ToggleGroupControlOption
-											value="width"
+								<div className="wp-inspector-option-grid">
+									{allowedProperties.includes("width") && (
+										<TextControl
 											label={__("Width")}
+											value={styles[screenSize].width}
+											onChange={(value) => onChange(screenSize, "width", value)}
 										/>
 									)}
-									<ToggleGroupControlOption
-										value="height"
-										label={__("Height")}
-									/>
-								</ToggleGroupControl>
 
-								{allowedProperties.includes("container-width") &&
-									activeDimension === "width" && (
-										<>
-											<SelectControl
-												label={__("Width")}
-												options={[
-													{
-														value: "boxed",
-														label: __("Boxed"),
-													},
-													{
-														value: "full-width",
-														label: __("Full Width"),
-													},
-												]}
-												value={
-													styles[screenSize].containerWidth !== "full-width"
-														? "boxed"
-														: "full-width"
-												}
-												onChange={(value) =>
-													onChange(
-														screenSize,
-														"containerWidth",
-														// @TODO: Make the default dynamic
-														value === "boxed" ? 1600 : "full-width"
-													)
-												}
-												labelPosition="left"
-											/>
-											{styles[screenSize].containerWidth !== "full-width" && (
-												<TextControl
-													label={__("Width")}
-													value={styles[screenSize].containerWidth}
-													onChange={(value) =>
-														onChange(screenSize, "containerWidth", value)
-													}
-												/>
-											)}
-										</>
-									)}
-
-								{activeDimension === "height" && (
-									<>
-										<SelectControl
+									{allowedProperties.includes("height") && (
+										<TextControl
 											label={__("Height")}
-											options={[
-												{
-													value: "fixed",
-													label: __("Fixed"),
-												},
-												{
-													value: "auto",
-													label: __("Auto"),
-												},
-											]}
-											value={
-												styles[screenSize].containerHeight !== "auto"
-													? "fixed"
-													: "auto"
-											}
+											value={styles[screenSize].height}
 											onChange={(value) =>
-												onChange(
-													screenSize,
-													"containerHeight",
-													value === "fixed" ? undefined : "auto"
-												)
+												onChange(screenSize, "height", value)
 											}
-											labelPosition="left"
 										/>
-										{styles[screenSize].containerHeight !== "auto" && (
-											<TextControl
-												label={__("Height")}
-												value={styles[screenSize].containerHeight}
-												onChange={(value) =>
-													onChange(screenSize, "containerHeight", value)
-												}
-											/>
-										)}
-									</>
-								)}
+									)}
+								</div>
 
 								<ToggleGroupControl
 									value={activeSpacing}

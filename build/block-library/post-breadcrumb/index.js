@@ -14725,7 +14725,6 @@ function Edit(_ref) {
     record,
     isResolving
   } = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityRecord)("postType", postType, postId);
-  console.log(record);
   // Used by the Gutenberg editor to save & output blocks properly
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
     className: `gutenberg-ant-design--${clientId}`
@@ -14892,8 +14891,8 @@ const availableStyleProperties = {
   color: "color",
   fontFamily: "font-family",
   fontSize: "font-size",
-  containerWidth: "max-width",
-  containerHeight: "height",
+  width: "width",
+  height: "height",
   textAlignment: "text-align"
 };
 
@@ -14945,6 +14944,7 @@ const SaveWithInnerBlocks = () => {
 // @TODO: Can be cleaned up to be more DRY
 const generateStyles = function (attribute, clientId) {
   let specificitySelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+  let childSelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
   const {
     styles,
     visibility
@@ -14952,6 +14952,9 @@ const generateStyles = function (attribute, clientId) {
   let selector = `.gutenberg-ant-design--${clientId}`;
   if (specificitySelector) {
     selector = `${specificitySelector}${selector}`;
+  }
+  if (childSelector) {
+    selector += ` ${childSelector}`;
   }
   if (typeof styles === "undefined") {
     return;
@@ -14975,9 +14978,7 @@ const generateStyles = function (attribute, clientId) {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-    } else if (typeof value !== "undefined" && typeof value === "string" && property === "max-width" && value !== "full-width" && value) {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};width: 100%;\n`;
-    } else if (property !== "max-width") {
+    } else {
       return `${property}: ${value};\n`;
     }
   };

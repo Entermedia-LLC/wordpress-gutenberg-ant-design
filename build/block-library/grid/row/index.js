@@ -7894,7 +7894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "container-width"];
+const availableProperties = ["padding", "background", "text", "margin", "width", "height"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -7913,7 +7913,6 @@ const BlockStyles = _ref => {
 
   // Component states
   const [activeScreenSize, setActiveScreenSize] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("xs");
-  const [activeDimension, setActiveDimension] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
   const [activePadding, setActivePadding] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
   const [activeMargin, setActiveMargin] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
   const [activeSpacing, setActiveSpacing] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)();
@@ -8090,53 +8089,16 @@ const BlockStyles = _ref => {
       }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container"),
         initialOpen: false
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Dimensions"),
-        value: activeDimension,
-        isBlock: true,
-        onChange: value => {
-          setActiveDimension(value);
-        }
-      }, allowedProperties.includes("container-width") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
-        value: "width",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width")
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
-        value: "height",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height")
-      })), allowedProperties.includes("container-width") && activeDimension === "width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        className: "wp-inspector-option-grid"
+      }, allowedProperties.includes("width") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
-        options: [{
-          value: "boxed",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Boxed")
-        }, {
-          value: "full-width",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Full Width")
-        }],
-        value: styles[screenSize].containerWidth !== "full-width" ? "boxed" : "full-width",
-        onChange: value => onChange(screenSize, "containerWidth",
-        // @TODO: Make the default dynamic
-        value === "boxed" ? 1600 : "full-width"),
-        labelPosition: "left"
-      }), styles[screenSize].containerWidth !== "full-width" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
-        value: styles[screenSize].containerWidth,
-        onChange: value => onChange(screenSize, "containerWidth", value)
-      })), activeDimension === "height" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        value: styles[screenSize].width,
+        onChange: value => onChange(screenSize, "width", value)
+      }), allowedProperties.includes("height") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height"),
-        options: [{
-          value: "fixed",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Fixed")
-        }, {
-          value: "auto",
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Auto")
-        }],
-        value: styles[screenSize].containerHeight !== "auto" ? "fixed" : "auto",
-        onChange: value => onChange(screenSize, "containerHeight", value === "fixed" ? undefined : "auto"),
-        labelPosition: "left"
-      }), styles[screenSize].containerHeight !== "auto" && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height"),
-        value: styles[screenSize].containerHeight,
-        onChange: value => onChange(screenSize, "containerHeight", value)
+        value: styles[screenSize].height,
+        onChange: value => onChange(screenSize, "height", value)
       })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
         value: activeSpacing,
         isBlock: true,
@@ -8766,8 +8728,8 @@ const availableStyleProperties = {
   color: "color",
   fontFamily: "font-family",
   fontSize: "font-size",
-  containerWidth: "max-width",
-  containerHeight: "height",
+  width: "width",
+  height: "height",
   textAlignment: "text-align"
 };
 
@@ -8819,6 +8781,7 @@ const SaveWithInnerBlocks = () => {
 // @TODO: Can be cleaned up to be more DRY
 const generateStyles = function (attribute, clientId) {
   let specificitySelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
+  let childSelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
   const {
     styles,
     visibility
@@ -8826,6 +8789,9 @@ const generateStyles = function (attribute, clientId) {
   let selector = `.gutenberg-ant-design--${clientId}`;
   if (specificitySelector) {
     selector = `${specificitySelector}${selector}`;
+  }
+  if (childSelector) {
+    selector += ` ${childSelector}`;
   }
   if (typeof styles === "undefined") {
     return;
@@ -8849,9 +8815,7 @@ const generateStyles = function (attribute, clientId) {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-    } else if (typeof value !== "undefined" && typeof value === "string" && property === "max-width" && value !== "full-width" && value) {
-      return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};width: 100%;\n`;
-    } else if (property !== "max-width") {
+    } else {
       return `${property}: ${value};\n`;
     }
   };

@@ -46,17 +46,17 @@ import "./editor.scss";
 // Define the component's default attributes
 const defaultAttributes = createDefaultAttributes({
 	api: {
-		src: {
-			url: undefined,
-			id: undefined,
-			width: undefined,
-			height: undefined,
-		},
 		alt: undefined,
+		height: undefined,
+		placeholder: undefined,
 		preview: false,
+		src: undefined,
+		width: undefined,
+	},
+	settings: {
+		image: undefined,
 	},
 });
-
 /**
  * Gutenberg Edit component
  */
@@ -73,28 +73,27 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	const [activeScreenSize, setActiveScreenSize] = useState("xs");
 
 	// Component processing
-	const { url, id } = savedAttributes.api.src;
-	const width = savedAttributes.settings?.size?.width
-		? savedAttributes.settings.size.width
-		: savedAttributes.api.src.width;
-	const height = savedAttributes.settings?.size?.height
-		? savedAttributes.settings.size.height
-		: savedAttributes.api.src.height;
-	const { alt } = savedAttributes.api;
+	const { placeholder } = savedAttributes.api;
+	const width = savedAttributes.api.width
+		? savedAttributes.api.width
+		: savedAttributes.settings.image?.width;
+	const height = savedAttributes.api.height
+		? savedAttributes.api.height
+		: savedAttributes.settings.image?.height;
+	const alt = savedAttributes.api.alt
+		? savedAttributes.api.alt
+		: savedAttributes.settings.image?.alt;
+	const src = savedAttributes.settings.image?.url;
 
 	// Component helpers
 	const onSelectImage = (media) => {
-		if (!media || !media.url) {
-			updateAttributes(
-				"api",
-				"src",
-				defaultAttributes.api.src,
-				savedAttributes,
-				setAttributes
-			);
-			return;
-		}
-		updateAttributes("api", "src", media, savedAttributes, setAttributes);
+		updateAttributes(
+			"settings",
+			"image",
+			media,
+			savedAttributes,
+			setAttributes
+		);
 	};
 
 	/**
@@ -107,28 +106,30 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 */
 	const antdComponentProps = {
 		alt,
-		fallback: savedAttributes.api?.fallback,
-		height,
-		placeholder: savedAttributes.api?.placeholder,
+		placeholder,
 		// Prevent preview in editor to allow for editing on click
 		preview: false,
-		src: url,
-		width,
+		src,
 	};
+
 	return (
 		<>
 			<ConfigProvider theme={antdTheme}>
 				<div {...blockProps}>
-					{url && <Image {...antdComponentProps} />}
-					<style>{generateStyles(savedAttributes, clientId)}</style>
-					<MediaPlaceholder
-						allowedTypes={["image"]}
-						accept="image/*"
-						icon={<BlockIcon icon={icon} />}
-						onSelect={onSelectImage}
-						value={{ id }}
-						disableMediaButtons={url}
-					/>
+					{src && <Image {...antdComponentProps} />}
+					<style>
+						{generateStyles(savedAttributes, clientId, undefined, ".ant-image")}
+					</style>
+
+					{!src && (
+						<MediaPlaceholder
+							allowedTypes={["image"]}
+							accept="image/*"
+							icon={<BlockIcon icon={icon} />}
+							onSelect={onSelectImage}
+							value={savedAttributes.settings.image}
+						/>
+					)}
 
 					<InspectorControls>
 						<BlockVisibility
@@ -177,22 +178,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 										"api",
 										"alt",
 										value,
-										savedAttributes,
-										setAttributes
-									)
-								}
-							/>
-
-							<ImageSizeControl
-								width={width}
-								height={height}
-								imageWidth={savedAttributes.api.src.width}
-								imageHeight={savedAttributes.api.src.height}
-								onChange={(value) =>
-									updateAttributes(
-										"settings",
-										"size",
-										{ width: value.width, height: value.height },
 										savedAttributes,
 										setAttributes
 									)

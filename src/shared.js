@@ -36,8 +36,8 @@ export const availableStyleProperties = {
 	color: "color",
 	fontFamily: "font-family",
 	fontSize: "font-size",
-	containerWidth: "max-width",
-	containerHeight: "height",
+	width: "width",
+	height: "height",
 	textAlignment: "text-align",
 };
 
@@ -113,13 +113,18 @@ export const SaveWithInnerBlocks = () => {
 export const generateStyles = (
 	attribute,
 	clientId,
-	specificitySelector = undefined
+	specificitySelector = undefined,
+	childSelector = undefined
 ) => {
 	const { styles, visibility } = attribute;
 	let selector = `.gutenberg-ant-design--${clientId}`;
 
 	if (specificitySelector) {
 		selector = `${specificitySelector}${selector}`;
+	}
+
+	if (childSelector) {
+		selector += ` ${childSelector}`;
 	}
 
 	if (typeof styles === "undefined") {
@@ -145,15 +150,7 @@ export const generateStyles = (
 			return `background-image: url('${value.url}');\n`;
 		} else if (property === "background-repeat") {
 			return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
-		} else if (
-			typeof value !== "undefined" &&
-			typeof value === "string" &&
-			property === "max-width" &&
-			value !== "full-width" &&
-			value
-		) {
-			return `margin-left: auto;\nmargin-right: auto;\nmax-width: ${value};width: 100%;\n`;
-		} else if (property !== "max-width") {
+		} else {
 			return `${property}: ${value};\n`;
 		}
 	};

@@ -18,11 +18,12 @@
 
 .ant-image {
   max-width: 100%;
-  height: auto !important;
 }
 .ant-image img {
-  height: auto !important;
-  max-width: 100%;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100% !important;
 }
 
 .ant-typography del .rich-text,

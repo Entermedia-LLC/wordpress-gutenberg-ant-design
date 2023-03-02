@@ -24,10 +24,16 @@ export const BlockAntdTokenOptions = ({ onClick, group, selectedValue }) => {
 	const { useToken } = theme;
 	const { token } = useToken();
 
-	console.log(token);
-
 	const groups = {
-		size: ["size", "sizeXXS", "sizeSM", "sizeMD", "sizeLG", "sizeXL", "sizeXXL", ]
+		size: [
+			"size",
+			"sizeXXS",
+			"sizeSM",
+			"sizeMD",
+			"sizeLG",
+			"sizeXL",
+			"sizeXXL",
+		],
 	};
 
 	return (
@@ -38,9 +44,20 @@ export const BlockAntdTokenOptions = ({ onClick, group, selectedValue }) => {
 				</div>
 				<ButtonGroup>
 					{groups[group]?.map((key, index) => {
-						return <Button variant={selectedValue == token[key] ? "primary" : "secondary"} key={index} showTooltip={true} label={token[key]} isSmall={true} onClick={() => {
-							onClick(key, token[key]);
-						}}>{key}</Button>;
+						return (
+							<Button
+								variant={selectedValue == token[key] ? "primary" : "secondary"}
+								key={index}
+								showTooltip={true}
+								label={token[key]}
+								isSmall={true}
+								onClick={() => {
+									onClick(key, token[key]);
+								}}
+							>
+								{key}
+							</Button>
+						);
 					})}
 				</ButtonGroup>
 			</div>

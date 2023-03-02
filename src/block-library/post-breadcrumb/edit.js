@@ -42,7 +42,6 @@ export default function Edit({
 	context: { postType, postId, queryId },
 }) {
 	const { record, isResolving } = useEntityRecord("postType", postType, postId);
-	console.log(record);
 	// Used by the Gutenberg editor to save & output blocks properly
 	const blockProps = useBlockProps({
 		className: `gutenberg-ant-design--${clientId}`,
