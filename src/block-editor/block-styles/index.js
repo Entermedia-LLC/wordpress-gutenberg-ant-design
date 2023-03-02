@@ -43,6 +43,7 @@ import wpTheme from "../../../../../themes/headless/theme.json";
 
 // Import internal block editor component dependencies
 import { BlockOptionButtonGroup } from "../block-option-button-group";
+import { BlockScreenSizeButtonGroup } from "../block-screen-size-button-group";
 
 // Available properties
 export const availableProperties = [
@@ -93,24 +94,12 @@ export const BlockStyles = ({
 
 	return (
 		<PanelBody title={__("Styles")} initialOpen={false}>
-			<ToggleGroupControl
-				label={__("Screen Size")}
-				value={activeScreenSize}
-				isBlock
+			<BlockScreenSizeButtonGroup
 				onChange={(value) => {
 					setActiveScreenSize(value);
 				}}
-			>
-				{Object.keys(screenSizes).map((screenSize) => {
-					return (
-						<ToggleGroupControlOption
-							value={screenSize}
-							label={screenSize}
-							key={screenSize}
-						/>
-					);
-				})}
-			</ToggleGroupControl>
+				selected={activeScreenSize}
+			/>
 
 			{Object.keys(screenSizes).map((screenSize) => {
 				if (
