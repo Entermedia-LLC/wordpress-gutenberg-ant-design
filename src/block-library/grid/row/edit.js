@@ -19,7 +19,7 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
-import { Row, ConfigProvider } from "antd";
+import { Row, ConfigProvider, theme } from "antd";
 import { screenSizes } from "../../../_config";
 import { generateStyles } from "../../../shared";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
@@ -46,6 +46,9 @@ const defaultAttributes = createDefaultAttributes({
  * Gutenberg Edit component
  */
 export default function Edit({ attributes, setAttributes, clientId }) {
+	const { useToken } = theme;
+	const { token } = useToken();
+
 	// Used by the Gutenberg editor to save & output blocks properly
 	const blockProps = useBlockProps({
 		className: `gutenberg-ant-design--${clientId}`,
@@ -87,9 +90,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 	 */
 	const antdComponentProps = {
 		align,
-		gutter,
 		wrap,
 		justify,
+		gutter: [{}, {}],
 	};
 
 	// Clean-up the component properties (e.g. "Inherit" or blank values)
@@ -107,19 +110,35 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 		}
 	}
 
-	for (const [screenSize, value] of Object.entries(
-		antdComponentProps.gutter[0]
-	)) {
-		if (!value) {
-			delete antdComponentProps.gutter[0][screenSize];
+	for (const [screenSize, value] of Object.entries(gutter[0])) {
+		if (value) {
+			if (isNaN(value) && typeof token[value] !== undefined) {
+				antdComponentProps.gutter[0] = {
+					...antdComponentProps.gutter[0],
+					[screenSize]: token[value],
+				};
+			} else if (!isNaN(value)) {
+				antdComponentProps.gutter[0] = {
+					...antdComponentProps.gutter[0],
+					[screenSize]: parseInt(value),
+				};
+			}
 		}
 	}
 
-	for (const [screenSize, value] of Object.entries(
-		antdComponentProps.gutter[1]
-	)) {
-		if (!value) {
-			delete antdComponentProps.gutter[1][screenSize];
+	for (const [screenSize, value] of Object.entries(gutter[1])) {
+		if (value) {
+			if (isNaN(value) && typeof token[value] !== undefined) {
+				antdComponentProps.gutter[1] = {
+					...antdComponentProps.gutter[1],
+					[screenSize]: token[value],
+				};
+			} else if (!isNaN(value)) {
+				antdComponentProps.gutter[1] = {
+					...antdComponentProps.gutter[1],
+					[screenSize]: parseInt(value),
+				};
+			}
 		}
 	}
 
@@ -184,14 +203,16 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 									>
 										{savedAttributes.visibility.includes(screenSize) && (
 											<>
-												<BaseControl label={__("Gutter")}>
-													<div className="wp-inspector-option-grid">
+												<BaseControl
+													label={__("Gutter")}
+													help={__(
+														"Enter an integer or Ant Design token (e.g. sizeXS, sizeMD, etc.)."
+													)}
+												>
+													<div className="wp-inspector-option-grid wp-inspector-option-grid--no-margin">
 														<TextControl
 															label={__("Horizontal")}
 															onChange={(val) => {
-																if (isNaN(val)) {
-																	return;
-																}
 																updateAttributes(
 																	"api",
 																	"gutter",
@@ -199,7 +220,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 																		{
 																			...savedAttributes.api.gutter[0],
 																			...{
-																				[screenSize]: val ? parseInt(val) : "",
+																				[screenSize]: val,
 																			},
 																		},
 																		savedAttributes.api.gutter[1],
@@ -222,9 +243,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 														<TextControl
 															label={__("Vertical")}
 															onChange={(val) => {
-																if (isNaN(val)) {
-																	return;
-																}
 																updateAttributes(
 																	"api",
 																	"gutter",
@@ -233,7 +251,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 																		{
 																			...savedAttributes.api.gutter[1],
 																			...{
-																				[screenSize]: val ? parseInt(val) : "",
+																				[screenSize]: val ? val : "",
 																			},
 																		},
 																	],

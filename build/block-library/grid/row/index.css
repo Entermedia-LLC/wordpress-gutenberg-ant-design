@@ -15,6 +15,9 @@
 .wp-inspector-option-grid .components-base-control:last-child {
   margin-bottom: 0;
 }
+.wp-inspector-option-grid--no-margin {
+  margin-bottom: 0;
+}
 
 .ant-image {
   max-width: 100%;
