@@ -36,6 +36,7 @@ function gutenberg_ant_design_register_blocks() {
 	register_block_type( __DIR__ . '/build/block-library/post-title' );
 	register_block_type( __DIR__ . '/build/block-library/post-date' );
 	register_block_type( __DIR__ . '/build/block-library/post-excerpt' );
+	register_block_type( __DIR__ . '/build/block-library/group' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 
@@ -50,17 +51,3 @@ add_filter(
 		return $categories;
 	}
 );
-
-/*add_filter(
-	'allowed_block_types_all',
-	function( $allowed_blocks, $editor_context ) {
-		return array(
-			'gutenberg-ant-design/button',
-			'gutenberg-ant-design/col',
-			'gutenberg-ant-design/row',
-			'gutenberg-ant-design/image'
-		);
-	},
-	25,
-	2
-);*/

@@ -51,6 +51,10 @@ export const availableProperties = [
 	"background",
 	"text",
 	"margin",
+	"margin-bottom",
+	"margin-top",
+	"margin-left",
+	"margin-right",
 	"width",
 	"height",
 	"max-width",
@@ -474,22 +478,30 @@ export const BlockStyles = ({
 												}}
 												__nextHasNoMargin
 											>
-												<ToggleGroupControlOption
-													value="Left"
-													label={<BlockIcon icon="arrow-left-alt" />}
-												/>
-												<ToggleGroupControlOption
-													value="Right"
-													label={<BlockIcon icon="arrow-right-alt" />}
-												/>
-												<ToggleGroupControlOption
-													value="Top"
-													label={<BlockIcon icon="arrow-up-alt" />}
-												/>
-												<ToggleGroupControlOption
-													value="Bottom"
-													label={<BlockIcon icon="arrow-down-alt" />}
-												/>
+												{allowedProperties.includes("margin-left") && (
+													<ToggleGroupControlOption
+														value="Left"
+														label={<BlockIcon icon="arrow-left-alt" />}
+													/>
+												)}
+												{allowedProperties.includes("margin-right") && (
+													<ToggleGroupControlOption
+														value="Right"
+														label={<BlockIcon icon="arrow-right-alt" />}
+													/>
+												)}
+												{allowedProperties.includes("margin-top") && (
+													<ToggleGroupControlOption
+														value="Top"
+														label={<BlockIcon icon="arrow-up-alt" />}
+													/>
+												)}
+												{allowedProperties.includes("margin-bottom") && (
+													<ToggleGroupControlOption
+														value="Bottom"
+														label={<BlockIcon icon="arrow-down-alt" />}
+													/>
+												)}
 											</ToggleGroupControl>
 
 											{activeMargin && (

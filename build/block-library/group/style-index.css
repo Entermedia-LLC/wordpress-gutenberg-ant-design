@@ -1,0 +1,21 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/block-library/group/style.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/block-editor/block-option-button-group/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+.gutenberg-ant-design-block-option-button-group {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 24px;
+}
+.gutenberg-ant-design-block-option-button-group__label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

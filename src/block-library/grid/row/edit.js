@@ -26,6 +26,7 @@ import { BlockVisibility } from "../../../block-editor/block-visibility";
 import { BlockStyles } from "../../../block-editor/block-styles";
 import { createDefaultAttributes, updateAttributes } from "../../../shared";
 import antdTheme from "../../../../../../themes/headless/antd-theme.json";
+import { availableProperties } from "../../../block-editor/block-styles";
 
 /**
  * Import editor styles
@@ -77,6 +78,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// Component processing
 	const { align, gutter, wrap, justify } = savedAttributes.api;
+	const allowedProperties = [...availableProperties].filter(
+		(property) => !["margin-left", "margin-right"].includes(property)
+	);
 
 	// Component helpers
 
@@ -318,6 +322,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 					<BlockStyles
 						styles={savedAttributes.styles}
+						allowedProperties={allowedProperties}
 						onChange={(screenSize, attribute, value) => {
 							updateAttributes(
 								"styles",

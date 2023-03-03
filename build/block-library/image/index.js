@@ -9710,7 +9710,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "width", "height", "max-width", "max-height"];
+const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -10005,22 +10005,22 @@ const BlockStyles = _ref => {
           setActiveMargin(value);
         },
         __nextHasNoMargin: true
-      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+      }, allowedProperties.includes("margin-left") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "Left",
         label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
           icon: "arrow-left-alt"
         })
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+      }), allowedProperties.includes("margin-right") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "Right",
         label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
           icon: "arrow-right-alt"
         })
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+      }), allowedProperties.includes("margin-top") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "Top",
         label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
           icon: "arrow-up-alt"
         })
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
+      }), allowedProperties.includes("margin-bottom") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControlOption, {
         value: "Bottom",
         label: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockIcon, {
           icon: "arrow-down-alt"
@@ -20457,6 +20457,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"block-library/image/index": 0,
+/******/ 			"block-library/group/style-index": 0,
 /******/ 			"block-library/image/style-index": 0
 /******/ 		};
 /******/ 		
@@ -20507,7 +20508,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/image/style-index"], () => (__webpack_require__("./src/block-library/image/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/group/style-index","block-library/image/style-index"], () => (__webpack_require__("./src/block-library/image/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -265,7 +265,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						}}
 						enabledScreenSizes={savedAttributes.visibility}
 						allowedProperties={availableProperties.filter(
-							(prop) => prop !== "container-width"
+							(prop) => prop !== "width"
 						)}
 					/>
 				</InspectorControls>
