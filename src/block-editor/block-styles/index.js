@@ -344,7 +344,7 @@ export const BlockStyles = ({
 									{allowedProperties.includes("max-height") && (
 										<TextControl
 											label={__("Max Height")}
-											value={styles[screenSize].maxWidth}
+											value={styles[screenSize].maxHeight}
 											onChange={(value) =>
 												onChange(screenSize, "maxHeight", value)
 											}

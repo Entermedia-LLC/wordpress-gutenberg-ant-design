@@ -9921,7 +9921,7 @@ const BlockStyles = _ref => {
         onChange: value => onChange(screenSize, "height", value)
       }), allowedProperties.includes("max-height") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Max Height"),
-        value: styles[screenSize].maxWidth,
+        value: styles[screenSize].maxHeight,
         onChange: value => onChange(screenSize, "maxHeight", value)
       })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
         value: activeSpacing,
