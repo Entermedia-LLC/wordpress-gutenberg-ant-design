@@ -39,6 +39,8 @@ export const availableStyleProperties = {
 	width: "width",
 	height: "height",
 	textAlignment: "text-align",
+	maxWidth: "max-width",
+	maxHeight: "max-height",
 };
 
 /**

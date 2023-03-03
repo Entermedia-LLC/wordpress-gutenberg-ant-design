@@ -16,6 +16,10 @@
 	&--no-margin {
 		margin-bottom: 0;
 	}
+
+	&--two-column {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 // Fix for large images that break layout.

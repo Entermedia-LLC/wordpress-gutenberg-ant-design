@@ -18,6 +18,9 @@
 .wp-inspector-option-grid--no-margin {
   margin-bottom: 0;
 }
+.wp-inspector-option-grid--two-column {
+  grid-template-columns: repeat(2, 1fr);
+}
 
 .ant-image {
   max-width: 100%;

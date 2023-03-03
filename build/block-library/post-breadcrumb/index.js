@@ -14893,7 +14893,9 @@ const availableStyleProperties = {
   fontSize: "font-size",
   width: "width",
   height: "height",
-  textAlignment: "text-align"
+  textAlignment: "text-align",
+  maxWidth: "max-width",
+  maxHeight: "max-height"
 };
 
 /**

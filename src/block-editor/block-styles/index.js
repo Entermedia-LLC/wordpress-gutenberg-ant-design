@@ -53,6 +53,8 @@ export const availableProperties = [
 	"margin",
 	"width",
 	"height",
+	"max-width",
+	"max-height",
 ];
 
 // Block styles component
@@ -310,12 +312,22 @@ export const BlockStyles = ({
 							)}
 
 							<PanelBody title={__("Container")} initialOpen={false}>
-								<div className="wp-inspector-option-grid">
+								<div className="wp-inspector-option-grid wp-inspector-option-grid--two-column">
 									{allowedProperties.includes("width") && (
 										<TextControl
 											label={__("Width")}
 											value={styles[screenSize].width}
 											onChange={(value) => onChange(screenSize, "width", value)}
+										/>
+									)}
+
+									{allowedProperties.includes("max-width") && (
+										<TextControl
+											label={__("Max Width")}
+											value={styles[screenSize].maxWidth}
+											onChange={(value) =>
+												onChange(screenSize, "maxWidth", value)
+											}
 										/>
 									)}
 
@@ -325,6 +337,16 @@ export const BlockStyles = ({
 											value={styles[screenSize].height}
 											onChange={(value) =>
 												onChange(screenSize, "height", value)
+											}
+										/>
+									)}
+
+									{allowedProperties.includes("max-height") && (
+										<TextControl
+											label={__("Max Height")}
+											value={styles[screenSize].maxWidth}
+											onChange={(value) =>
+												onChange(screenSize, "maxHeight", value)
 											}
 										/>
 									)}

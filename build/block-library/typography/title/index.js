@@ -12483,7 +12483,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "width", "height"];
+const availableProperties = ["padding", "background", "text", "margin", "width", "height", "max-width", "max-height"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -12679,15 +12679,23 @@ const BlockStyles = _ref => {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Container"),
         initialOpen: false
       }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-        className: "wp-inspector-option-grid"
+        className: "wp-inspector-option-grid wp-inspector-option-grid--two-column"
       }, allowedProperties.includes("width") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Width"),
         value: styles[screenSize].width,
         onChange: value => onChange(screenSize, "width", value)
+      }), allowedProperties.includes("max-width") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Max Width"),
+        value: styles[screenSize].maxWidth,
+        onChange: value => onChange(screenSize, "maxWidth", value)
       }), allowedProperties.includes("height") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Height"),
         value: styles[screenSize].height,
         onChange: value => onChange(screenSize, "height", value)
+      }), allowedProperties.includes("max-height") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Max Height"),
+        value: styles[screenSize].maxWidth,
+        onChange: value => onChange(screenSize, "maxHeight", value)
       })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
         value: activeSpacing,
         isBlock: true,
@@ -13175,7 +13183,9 @@ const availableStyleProperties = {
   fontSize: "font-size",
   width: "width",
   height: "height",
-  textAlignment: "text-align"
+  textAlignment: "text-align",
+  maxWidth: "max-width",
+  maxHeight: "max-height"
 };
 
 /**
