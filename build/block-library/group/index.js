@@ -4859,7 +4859,7 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 
-const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row"];
+const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group"];
 const screenSizes = {
   xs: {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XS Screens"),
