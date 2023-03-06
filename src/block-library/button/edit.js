@@ -18,22 +18,20 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
-import { Button, ConfigProvider } from "antd";
+import { Button } from "antd";
+import AntDProvider from "../../antd-provider";
 import * as Icons from "@ant-design/icons";
 import {
 	updateAttributes,
 	createDefaultAttributes,
 	generateStyles,
 } from "../../shared";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
-
 
 /**
  * Import editor styles
  */
 import "./editor.scss";
-
 
 // Define the component's default attributes
 const defaultAttributes = createDefaultAttributes({
@@ -144,7 +142,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Button {...blockProps} {...antdComponentProps}>
 					<RichText
 						aria-label={__("Button text")}
@@ -156,7 +154,6 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					/>
 				</Button>
 				<style>{generateStyles(savedAttributes, clientId)}</style>
-
 				<InspectorControls>
 					<BlockVisibility
 						attributes={savedAttributes}
@@ -347,7 +344,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						</div>
 					</PanelBody>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

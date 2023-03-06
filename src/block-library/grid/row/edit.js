@@ -19,13 +19,13 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
-import { Row, ConfigProvider, theme } from "antd";
+import { Row, theme } from "antd";
+import AntDProvider from "../../../antd-provider";
 import { screenSizes } from "../../../_config";
 import { generateStyles } from "../../../shared";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
 import { BlockStyles } from "../../../block-editor/block-styles";
 import { createDefaultAttributes, updateAttributes } from "../../../shared";
-import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { availableProperties } from "../../../block-editor/block-styles";
 
 /**
@@ -148,7 +148,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Row
 					className={`antd-gutenberg-block`}
 					{...innerBlocksProps}
@@ -338,7 +338,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						enabledScreenSizes={savedAttributes.visibility}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

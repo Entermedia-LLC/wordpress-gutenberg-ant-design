@@ -19,8 +19,8 @@ import {
 	createDefaultAttributes,
 	updateAttributes,
 } from "../../../shared";
-import { Col, ConfigProvider } from "antd";
-import antdTheme from "../../../../../../themes/headless/antd-theme.json";
+import { Col } from "antd";
+import AntDProvider from "../../../antd-provider";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
 import {
 	BlockStyles,
@@ -91,7 +91,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Col {...innerBlocksProps} {...antdComponentProps} />
 				<style>{generateStyles(savedAttributes, clientId)}</style>
 				<InspectorControls>
@@ -269,7 +269,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						)}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

@@ -10,11 +10,11 @@ import { useEntityProp } from "@wordpress/core-data";
 /**
  * Import andt components, dependencies & configuration
  */
-import { Typography, ConfigProvider } from "antd";
+import { Typography } from "antd";
+import AntDProvider from "../../antd-provider";
 import { updateAttributes, generateStyles } from "../../shared";
 import { titleAttributes } from "../../shared/attributes";
 import { TitleControls } from "../../shared/controls";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
 const { Title, Link } = Typography;
@@ -107,7 +107,7 @@ export default function Edit({
 	}
 
 	return (
-		<ConfigProvider theme={antdTheme}>
+		<AntDProvider>
 			{titleElement}
 			<style>
 				{generateStyles(
@@ -191,6 +191,6 @@ export default function Edit({
 					enabledScreenSizes={savedAttributes.visibility}
 				/>
 			</InspectorControls>
-		</ConfigProvider>
+		</AntDProvider>
 	);
 }

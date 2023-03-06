@@ -3874,422 +3874,6 @@ const {
 
 /***/ }),
 
-/***/ "./node_modules/antd/es/config-provider/cssVariables.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/antd/es/config-provider/cssVariables.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getStyle": () => (/* binding */ getStyle),
-/* harmony export */   "registerTheme": () => (/* binding */ registerTheme)
-/* harmony export */ });
-/* harmony import */ var _ant_design_colors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/colors */ "./node_modules/@ant-design/colors/dist/index.esm.js");
-/* harmony import */ var _ctrl_tinycolor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ctrl/tinycolor */ "./node_modules/@ctrl/tinycolor/dist/module/index.js");
-/* harmony import */ var rc_util_es_Dom_canUseDom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-util/es/Dom/canUseDom */ "./node_modules/rc-util/es/Dom/canUseDom.js");
-/* harmony import */ var rc_util_es_Dom_dynamicCSS__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-util/es/Dom/dynamicCSS */ "./node_modules/rc-util/es/Dom/dynamicCSS.js");
-/* harmony import */ var _util_warning__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_util/warning */ "./node_modules/antd/es/_util/warning.js");
-/* eslint-disable import/prefer-default-export, prefer-destructuring */
-
-
-
-
-
-const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`;
-function getStyle(globalPrefixCls, theme) {
-  const variables = {};
-  const formatColor = (color, updater) => {
-    let clone = color.clone();
-    clone = (updater === null || updater === void 0 ? void 0 : updater(clone)) || clone;
-    return clone.toRgbString();
-  };
-  const fillColor = (colorVal, type) => {
-    const baseColor = new _ctrl_tinycolor__WEBPACK_IMPORTED_MODULE_3__.TinyColor(colorVal);
-    const colorPalettes = (0,_ant_design_colors__WEBPACK_IMPORTED_MODULE_0__.generate)(baseColor.toRgbString());
-    variables[`${type}-color`] = formatColor(baseColor);
-    variables[`${type}-color-disabled`] = colorPalettes[1];
-    variables[`${type}-color-hover`] = colorPalettes[4];
-    variables[`${type}-color-active`] = colorPalettes[6];
-    variables[`${type}-color-outline`] = baseColor.clone().setAlpha(0.2).toRgbString();
-    variables[`${type}-color-deprecated-bg`] = colorPalettes[0];
-    variables[`${type}-color-deprecated-border`] = colorPalettes[2];
-  };
-  // ================ Primary Color ================
-  if (theme.primaryColor) {
-    fillColor(theme.primaryColor, 'primary');
-    const primaryColor = new _ctrl_tinycolor__WEBPACK_IMPORTED_MODULE_3__.TinyColor(theme.primaryColor);
-    const primaryColors = (0,_ant_design_colors__WEBPACK_IMPORTED_MODULE_0__.generate)(primaryColor.toRgbString());
-    // Legacy - We should use semantic naming standard
-    primaryColors.forEach((color, index) => {
-      variables[`primary-${index + 1}`] = color;
-    });
-    // Deprecated
-    variables['primary-color-deprecated-l-35'] = formatColor(primaryColor, c => c.lighten(35));
-    variables['primary-color-deprecated-l-20'] = formatColor(primaryColor, c => c.lighten(20));
-    variables['primary-color-deprecated-t-20'] = formatColor(primaryColor, c => c.tint(20));
-    variables['primary-color-deprecated-t-50'] = formatColor(primaryColor, c => c.tint(50));
-    variables['primary-color-deprecated-f-12'] = formatColor(primaryColor, c => c.setAlpha(c.getAlpha() * 0.12));
-    const primaryActiveColor = new _ctrl_tinycolor__WEBPACK_IMPORTED_MODULE_3__.TinyColor(primaryColors[0]);
-    variables['primary-color-active-deprecated-f-30'] = formatColor(primaryActiveColor, c => c.setAlpha(c.getAlpha() * 0.3));
-    variables['primary-color-active-deprecated-d-02'] = formatColor(primaryActiveColor, c => c.darken(2));
-  }
-  // ================ Success Color ================
-  if (theme.successColor) {
-    fillColor(theme.successColor, 'success');
-  }
-  // ================ Warning Color ================
-  if (theme.warningColor) {
-    fillColor(theme.warningColor, 'warning');
-  }
-  // ================= Error Color =================
-  if (theme.errorColor) {
-    fillColor(theme.errorColor, 'error');
-  }
-  // ================= Info Color ==================
-  if (theme.infoColor) {
-    fillColor(theme.infoColor, 'info');
-  }
-  // Convert to css variables
-  const cssList = Object.keys(variables).map(key => `--${globalPrefixCls}-${key}: ${variables[key]};`);
-  return `
-  :root {
-    ${cssList.join('\n')}
-  }
-  `.trim();
-}
-function registerTheme(globalPrefixCls, theme) {
-  const style = getStyle(globalPrefixCls, theme);
-  if ((0,rc_util_es_Dom_canUseDom__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
-    (0,rc_util_es_Dom_dynamicCSS__WEBPACK_IMPORTED_MODULE_2__.updateCSS)(style, `${dynamicStyleMark}-dynamic-theme`);
-  } else {
-     true ? (0,_util_warning__WEBPACK_IMPORTED_MODULE_4__["default"])(false, 'ConfigProvider', 'SSR do not support dynamic theme with css variables.') : 0;
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/config-provider/hooks/useTheme.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/antd/es/config-provider/hooks/useTheme.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useTheme)
-/* harmony export */ });
-/* harmony import */ var rc_util_es_hooks_useMemo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rc-util/es/hooks/useMemo */ "./node_modules/rc-util/es/hooks/useMemo.js");
-/* harmony import */ var rc_util_es_isEqual__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-util/es/isEqual */ "./node_modules/rc-util/es/isEqual.js");
-/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/internal.js");
-
-
-
-function useTheme(theme, parentTheme) {
-  const themeConfig = theme || {};
-  const parentThemeConfig = themeConfig.inherit === false || !parentTheme ? _theme_internal__WEBPACK_IMPORTED_MODULE_2__.defaultConfig : parentTheme;
-  const mergedTheme = (0,rc_util_es_hooks_useMemo__WEBPACK_IMPORTED_MODULE_0__["default"])(() => {
-    if (!theme) {
-      return parentTheme;
-    }
-    // Override
-    const mergedComponents = Object.assign({}, parentThemeConfig.components);
-    Object.keys(theme.components || {}).forEach(componentName => {
-      mergedComponents[componentName] = Object.assign(Object.assign({}, mergedComponents[componentName]), theme.components[componentName]);
-    });
-    // Base token
-    return Object.assign(Object.assign(Object.assign({}, parentThemeConfig), themeConfig), {
-      token: Object.assign(Object.assign({}, parentThemeConfig.token), themeConfig.token),
-      components: mergedComponents
-    });
-  }, [themeConfig, parentThemeConfig], (prev, next) => prev.some((prevTheme, index) => {
-    const nextTheme = next[index];
-    return !(0,rc_util_es_isEqual__WEBPACK_IMPORTED_MODULE_1__["default"])(prevTheme, nextTheme, true);
-  }));
-  return mergedTheme;
-}
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/config-provider/index.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/antd/es/config-provider/index.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ConfigConsumer": () => (/* reexport safe */ _context__WEBPACK_IMPORTED_MODULE_4__.ConfigConsumer),
-/* harmony export */   "ConfigContext": () => (/* reexport safe */ _context__WEBPACK_IMPORTED_MODULE_4__.ConfigContext),
-/* harmony export */   "configConsumerProps": () => (/* binding */ configConsumerProps),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "defaultIconPrefixCls": () => (/* reexport safe */ _context__WEBPACK_IMPORTED_MODULE_4__.defaultIconPrefixCls),
-/* harmony export */   "defaultPrefixCls": () => (/* binding */ defaultPrefixCls),
-/* harmony export */   "globalConfig": () => (/* binding */ globalConfig)
-/* harmony export */ });
-/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
-/* harmony import */ var _ant_design_icons_es_components_Context__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ant-design/icons/es/components/Context */ "./node_modules/antd/node_modules/@ant-design/icons/es/components/Context.js");
-/* harmony import */ var rc_field_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rc-field-form */ "./node_modules/rc-field-form/es/index.js");
-/* harmony import */ var rc_util_es_hooks_useMemo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rc-util/es/hooks/useMemo */ "./node_modules/rc-util/es/hooks/useMemo.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _locale__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../locale */ "./node_modules/antd/es/locale/index.js");
-/* harmony import */ var _locale_LocaleReceiver__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../locale/LocaleReceiver */ "./node_modules/antd/es/locale/LocaleReceiver.js");
-/* harmony import */ var _locale_en_US__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../locale/en_US */ "./node_modules/antd/es/locale/en_US.js");
-/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../theme/internal */ "./node_modules/antd/es/theme/internal.js");
-/* harmony import */ var _theme_themes_seed__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../theme/themes/seed */ "./node_modules/antd/es/theme/themes/seed.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./context */ "./node_modules/antd/es/config-provider/context.js");
-/* harmony import */ var _cssVariables__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cssVariables */ "./node_modules/antd/es/config-provider/cssVariables.js");
-/* harmony import */ var _DisabledContext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./DisabledContext */ "./node_modules/antd/es/config-provider/DisabledContext.js");
-/* harmony import */ var _hooks_useTheme__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./hooks/useTheme */ "./node_modules/antd/es/config-provider/hooks/useTheme.js");
-/* harmony import */ var _SizeContext__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./SizeContext */ "./node_modules/antd/es/config-provider/SizeContext.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./style */ "./node_modules/antd/es/config-provider/style/index.js");
-var __rest = undefined && undefined.__rest || function (s, e) {
-  var t = {};
-  for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-  }
-  return t;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const configConsumerProps = ['getTargetContainer', 'getPopupContainer', 'rootPrefixCls', 'getPrefixCls', 'renderEmpty', 'csp', 'autoInsertSpaceInButton', 'locale', 'pageHeader'];
-// These props is used by `useContext` directly in sub component
-const PASSED_PROPS = ['getTargetContainer', 'getPopupContainer', 'renderEmpty', 'pageHeader', 'input', 'pagination', 'form', 'select'];
-const defaultPrefixCls = 'ant';
-let globalPrefixCls;
-let globalIconPrefixCls;
-function getGlobalPrefixCls() {
-  return globalPrefixCls || defaultPrefixCls;
-}
-function getGlobalIconPrefixCls() {
-  return globalIconPrefixCls || _context__WEBPACK_IMPORTED_MODULE_4__.defaultIconPrefixCls;
-}
-const setGlobalConfig = _ref => {
-  let {
-    prefixCls,
-    iconPrefixCls,
-    theme
-  } = _ref;
-  if (prefixCls !== undefined) {
-    globalPrefixCls = prefixCls;
-  }
-  if (iconPrefixCls !== undefined) {
-    globalIconPrefixCls = iconPrefixCls;
-  }
-  if (theme) {
-    (0,_cssVariables__WEBPACK_IMPORTED_MODULE_5__.registerTheme)(getGlobalPrefixCls(), theme);
-  }
-};
-const globalConfig = () => ({
-  getPrefixCls: (suffixCls, customizePrefixCls) => {
-    if (customizePrefixCls) return customizePrefixCls;
-    return suffixCls ? `${getGlobalPrefixCls()}-${suffixCls}` : getGlobalPrefixCls();
-  },
-  getIconPrefixCls: getGlobalIconPrefixCls,
-  getRootPrefixCls: () => {
-    // If Global prefixCls provided, use this
-    if (globalPrefixCls) {
-      return globalPrefixCls;
-    }
-    // Fallback to default prefixCls
-    return getGlobalPrefixCls();
-  }
-});
-const ProviderChildren = props => {
-  var _a, _b;
-  const {
-    children,
-    csp: customCsp,
-    autoInsertSpaceInButton,
-    form,
-    locale,
-    componentSize,
-    direction,
-    space,
-    virtual,
-    dropdownMatchSelectWidth,
-    legacyLocale,
-    parentContext,
-    iconPrefixCls: customIconPrefixCls,
-    theme,
-    componentDisabled
-  } = props;
-  const getPrefixCls = react__WEBPACK_IMPORTED_MODULE_3__.useCallback((suffixCls, customizePrefixCls) => {
-    const {
-      prefixCls
-    } = props;
-    if (customizePrefixCls) return customizePrefixCls;
-    const mergedPrefixCls = prefixCls || parentContext.getPrefixCls('');
-    return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls;
-  }, [parentContext.getPrefixCls, props.prefixCls]);
-  const iconPrefixCls = customIconPrefixCls || parentContext.iconPrefixCls || _context__WEBPACK_IMPORTED_MODULE_4__.defaultIconPrefixCls;
-  const shouldWrapSSR = iconPrefixCls !== parentContext.iconPrefixCls;
-  const csp = customCsp || parentContext.csp;
-  const wrapSSR = (0,_style__WEBPACK_IMPORTED_MODULE_6__["default"])(iconPrefixCls);
-  const mergedTheme = (0,_hooks_useTheme__WEBPACK_IMPORTED_MODULE_7__["default"])(theme, parentContext.theme);
-  const baseConfig = {
-    csp,
-    autoInsertSpaceInButton,
-    locale: locale || legacyLocale,
-    direction,
-    space,
-    virtual,
-    dropdownMatchSelectWidth,
-    getPrefixCls,
-    iconPrefixCls,
-    theme: mergedTheme
-  };
-  const config = Object.assign({}, parentContext);
-  Object.keys(baseConfig).forEach(key => {
-    if (baseConfig[key] !== undefined) {
-      config[key] = baseConfig[key];
-    }
-  });
-  // Pass the props used by `useContext` directly with child component.
-  // These props should merged into `config`.
-  PASSED_PROPS.forEach(propName => {
-    const propValue = props[propName];
-    if (propValue) {
-      config[propName] = propValue;
-    }
-  });
-  // https://github.com/ant-design/ant-design/issues/27617
-  const memoedConfig = (0,rc_util_es_hooks_useMemo__WEBPACK_IMPORTED_MODULE_2__["default"])(() => config, config, (prevConfig, currentConfig) => {
-    const prevKeys = Object.keys(prevConfig);
-    const currentKeys = Object.keys(currentConfig);
-    return prevKeys.length !== currentKeys.length || prevKeys.some(key => prevConfig[key] !== currentConfig[key]);
-  });
-  const memoIconContextValue = react__WEBPACK_IMPORTED_MODULE_3__.useMemo(() => ({
-    prefixCls: iconPrefixCls,
-    csp
-  }), [iconPrefixCls, csp]);
-  let childNode = shouldWrapSSR ? wrapSSR(children) : children;
-  // Additional Form provider
-  let validateMessages = {};
-  if (locale) {
-    validateMessages = ((_a = locale.Form) === null || _a === void 0 ? void 0 : _a.defaultValidateMessages) || ((_b = _locale_en_US__WEBPACK_IMPORTED_MODULE_8__["default"].Form) === null || _b === void 0 ? void 0 : _b.defaultValidateMessages) || {};
-  }
-  if (form && form.validateMessages) {
-    validateMessages = Object.assign(Object.assign({}, validateMessages), form.validateMessages);
-  }
-  if (Object.keys(validateMessages).length > 0) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(rc_field_form__WEBPACK_IMPORTED_MODULE_1__.FormProvider, {
-      validateMessages: validateMessages
-    }, children);
-  }
-  if (locale) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_locale__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      locale: locale,
-      _ANT_MARK__: _locale__WEBPACK_IMPORTED_MODULE_9__.ANT_MARK
-    }, childNode);
-  }
-  if (iconPrefixCls || csp) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_ant_design_icons_es_components_Context__WEBPACK_IMPORTED_MODULE_10__["default"].Provider, {
-      value: memoIconContextValue
-    }, childNode);
-  }
-  if (componentSize) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_SizeContext__WEBPACK_IMPORTED_MODULE_11__.SizeContextProvider, {
-      size: componentSize
-    }, childNode);
-  }
-  // ================================ Dynamic theme ================================
-  const memoTheme = react__WEBPACK_IMPORTED_MODULE_3__.useMemo(() => {
-    const _a = mergedTheme || {},
-      {
-        algorithm,
-        token
-      } = _a,
-      rest = __rest(_a, ["algorithm", "token"]);
-    const themeObj = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0) ? (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.createTheme)(algorithm) : undefined;
-    return Object.assign(Object.assign({}, rest), {
-      theme: themeObj,
-      token: Object.assign(Object.assign({}, _theme_themes_seed__WEBPACK_IMPORTED_MODULE_12__["default"]), token)
-    });
-  }, [mergedTheme]);
-  if (theme) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_theme_internal__WEBPACK_IMPORTED_MODULE_13__.DesignTokenContext.Provider, {
-      value: memoTheme
-    }, childNode);
-  }
-  // =================================== Render ===================================
-  if (componentDisabled !== undefined) {
-    childNode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_DisabledContext__WEBPACK_IMPORTED_MODULE_14__.DisabledContextProvider, {
-      disabled: componentDisabled
-    }, childNode);
-  }
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_context__WEBPACK_IMPORTED_MODULE_4__.ConfigContext.Provider, {
-    value: memoedConfig
-  }, childNode);
-};
-const ConfigProvider = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_locale_LocaleReceiver__WEBPACK_IMPORTED_MODULE_15__["default"], null, (_, __, legacyLocale) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_context__WEBPACK_IMPORTED_MODULE_4__.ConfigConsumer, null, context => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(ProviderChildren, Object.assign({
-  parentContext: context,
-  legacyLocale: legacyLocale
-}, props))));
-ConfigProvider.ConfigContext = _context__WEBPACK_IMPORTED_MODULE_4__.ConfigContext;
-ConfigProvider.SizeContext = _SizeContext__WEBPACK_IMPORTED_MODULE_11__["default"];
-ConfigProvider.config = setGlobalConfig;
-if (true) {
-  ConfigProvider.displayName = 'ConfigProvider';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ConfigProvider);
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/config-provider/style/index.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/antd/es/config-provider/style/index.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ant-design/cssinjs */ "./node_modules/@ant-design/cssinjs/es/index.js");
-/* harmony import */ var _style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../style */ "./node_modules/antd/es/style/index.js");
-/* harmony import */ var _theme_internal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../theme/internal */ "./node_modules/antd/es/theme/internal.js");
-
-
-
-const useStyle = iconPrefixCls => {
-  const [theme, token] = (0,_theme_internal__WEBPACK_IMPORTED_MODULE_1__.useToken)();
-  // Generate style for icons
-  return (0,_ant_design_cssinjs__WEBPACK_IMPORTED_MODULE_0__.useStyleRegister)({
-    theme,
-    token,
-    hashId: '',
-    path: ['ant-design-icons', iconPrefixCls]
-  }, () => [{
-    [`.${iconPrefixCls}`]: (0,_style__WEBPACK_IMPORTED_MODULE_2__.resetIcon)()
-  }]);
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useStyle);
-
-/***/ }),
-
 /***/ "./node_modules/antd/es/date-picker/locale/en_US.js":
 /*!**********************************************************!*\
   !*** ./node_modules/antd/es/date-picker/locale/en_US.js ***!
@@ -6086,85 +5670,6 @@ const localeValues = {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (localeValues);
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/locale/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/antd/es/locale/index.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ANT_MARK": () => (/* binding */ ANT_MARK),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util_warning__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_util/warning */ "./node_modules/antd/es/_util/warning.js");
-/* harmony import */ var _modal_locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/locale */ "./node_modules/antd/es/modal/locale.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context */ "./node_modules/antd/es/locale/context.js");
-
-
-
-
-const ANT_MARK = 'internalMark';
-const LocaleProvider = props => {
-  const {
-    locale = {},
-    children,
-    _ANT_MARK__
-  } = props;
-  if (true) {
-     true ? (0,_util_warning__WEBPACK_IMPORTED_MODULE_1__["default"])(_ANT_MARK__ === ANT_MARK, 'LocaleProvider', '`LocaleProvider` is deprecated. Please use `locale` with `ConfigProvider` instead: http://u.ant.design/locale') : 0;
-  }
-  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
-    (0,_modal_locale__WEBPACK_IMPORTED_MODULE_2__.changeConfirmLocale)(locale && locale.Modal);
-    return () => {
-      (0,_modal_locale__WEBPACK_IMPORTED_MODULE_2__.changeConfirmLocale)();
-    };
-  }, [locale]);
-  const getMemoizedContextValue = react__WEBPACK_IMPORTED_MODULE_0__.useMemo(() => Object.assign(Object.assign({}, locale), {
-    exist: true
-  }), [locale]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_context__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
-    value: getMemoizedContextValue
-  }, children);
-};
-if (true) {
-  LocaleProvider.displayName = 'LocaleProvider';
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LocaleProvider);
-
-/***/ }),
-
-/***/ "./node_modules/antd/es/modal/locale.js":
-/*!**********************************************!*\
-  !*** ./node_modules/antd/es/modal/locale.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "changeConfirmLocale": () => (/* binding */ changeConfirmLocale),
-/* harmony export */   "getConfirmLocale": () => (/* binding */ getConfirmLocale)
-/* harmony export */ });
-/* harmony import */ var _locale_en_US__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../locale/en_US */ "./node_modules/antd/es/locale/en_US.js");
-
-let runtimeLocale = Object.assign({}, _locale_en_US__WEBPACK_IMPORTED_MODULE_0__["default"].Modal);
-function changeConfirmLocale(newLocale) {
-  if (newLocale) {
-    runtimeLocale = Object.assign(Object.assign({}, runtimeLocale), newLocale);
-  } else {
-    runtimeLocale = Object.assign({}, _locale_en_US__WEBPACK_IMPORTED_MODULE_0__["default"].Modal);
-  }
-}
-function getConfirmLocale() {
-  return runtimeLocale;
-}
 
 /***/ }),
 
@@ -12940,23 +12445,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/config-provider/index.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared */ "./src/shared.js");
-/* harmony import */ var _shared_attributes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../shared/attributes */ "./src/shared/attributes.js");
-/* harmony import */ var _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../../themes/headless/antd-theme.json */ "../../themes/headless/antd-theme.json");
-/* harmony import */ var _block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../block-editor/block-visibility */ "./src/block-editor/block-visibility/index.js");
-/* harmony import */ var _block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../block-editor/block-styles */ "./src/block-editor/block-styles/index.js");
-/* harmony import */ var _shared_controls__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../shared/controls */ "./src/shared/controls.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./editor.scss */ "./src/block-library/typography/text/editor.scss");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../shared */ "./src/shared.js");
+/* harmony import */ var _shared_attributes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared/attributes */ "./src/shared/attributes.js");
+/* harmony import */ var _block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../block-editor/block-visibility */ "./src/block-editor/block-visibility/index.js");
+/* harmony import */ var _block_editor_block_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../block-editor/block-styles */ "./src/block-editor/block-styles/index.js");
+/* harmony import */ var _shared_controls__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../shared/controls */ "./src/shared/controls.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/block-library/typography/text/editor.scss");
 
 
 /**
  * Import @wordpress dependencies
  */
-
 
 
 
@@ -12969,10 +12469,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 const {
   Text
-} = antd__WEBPACK_IMPORTED_MODULE_11__["default"];
+} = antd__WEBPACK_IMPORTED_MODULE_9__["default"];
 
 /**
  * Import editor styles
@@ -12995,7 +12494,7 @@ function Edit(_ref) {
 
   // Merge the default attributes with the saved ones
   const savedAttributes = {
-    ..._shared_attributes__WEBPACK_IMPORTED_MODULE_6__.textAttributes,
+    ..._shared_attributes__WEBPACK_IMPORTED_MODULE_5__.textAttributes,
     ...attributes
   };
 
@@ -13036,27 +12535,25 @@ function Edit(_ref) {
     underline,
     delete: savedAttributes.api.delete
   };
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    theme: _themes_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_7__
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Text, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, antdComponentProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(AntDProvider, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Text, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, blockProps, antdComponentProps), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
     "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Text"),
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Add text…"),
     value: savedAttributes.api.text,
-    onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes)("api", "text", value, savedAttributes, setAttributes),
+    onChange: value => (0,_shared__WEBPACK_IMPORTED_MODULE_4__.updateAttributes)("api", "text", value, savedAttributes, setAttributes),
     withoutInteractiveFormatting: true,
     tagName: "span",
     allowedFormats: ["core/bold", "core/italic"]
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_5__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__.BlockVisibility, {
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_4__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_6__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_controls__WEBPACK_IMPORTED_MODULE_10__.TextControls, {
-    updateAttributes: _shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes,
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_shared_controls__WEBPACK_IMPORTED_MODULE_8__.TextControls, {
+    updateAttributes: _shared__WEBPACK_IMPORTED_MODULE_4__.updateAttributes,
     savedAttributes: savedAttributes,
     setAttributes: setAttributes
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__.BlockStyles, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_styles__WEBPACK_IMPORTED_MODULE_7__.BlockStyles, {
     styles: savedAttributes.styles,
     onChange: (screenSize, attribute, value) => {
-      (0,_shared__WEBPACK_IMPORTED_MODULE_5__.updateAttributes)("styles", screenSize, {
+      (0,_shared__WEBPACK_IMPORTED_MODULE_4__.updateAttributes)("styles", screenSize, {
         ...savedAttributes.styles[screenSize],
         [attribute]: value
       }, savedAttributes, setAttributes);
@@ -27151,17 +26648,6 @@ function combine (array, callback) {
 
 "use strict";
 module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json","apiVersion":2,"name":"gutenberg-ant-design/text","version":"0.1.0","title":"Text","description":"Start with the basic building block of all narrative.","icon":"editor-textcolor","category":"ant-design","attributes":{"api":{"type":"object"},"settings":{"type":"object"},"visibility":{"type":"array"},"styles":{"type":"object"}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","supports":{"customClassName":false}}');
-
-/***/ }),
-
-/***/ "../../themes/headless/antd-theme.json":
-/*!*********************************************!*\
-  !*** ../../themes/headless/antd-theme.json ***!
-  \*********************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"token":{"fontFamily":"\\"Quicksand\\""}}');
 
 /***/ }),
 

@@ -13,13 +13,13 @@ import { PanelBody, ToggleControl, SelectControl } from "@wordpress/components";
 /**
  * Import andt components, dependencies & configuration
  */
-import { Typography, ConfigProvider } from "antd";
+import { Typography } from "antd";
+import AntDProvider from "../../../antd-provider";
 import {
 	updateAttributes,
 	createDefaultAttributes,
 	generateStyles,
 } from "../../../shared";
-import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
 import { BlockStyles } from "../../../block-editor/block-styles";
 
@@ -87,7 +87,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Paragraph {...blockProps} {...antdComponentProps}>
 					<RichText
 						aria-label={__("Paragraph text")}
@@ -276,7 +276,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						enabledScreenSizes={savedAttributes.visibility}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

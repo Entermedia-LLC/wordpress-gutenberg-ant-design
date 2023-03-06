@@ -7,13 +7,14 @@ import {
 	InspectorControls,
 	RichText,
 } from "@wordpress/block-editor";
-import { useMemo } from '@wordpress/element';
-import { useEntityProp } from '@wordpress/core-data';
+import { useMemo } from "@wordpress/element";
+import { useEntityProp } from "@wordpress/core-data";
 
 /**
  * Import andt components, dependencies & configuration
  */
-import { Typography, ConfigProvider } from "antd";
+import { Typography } from "antd";
+import AntDProvider from "../../antd-provider";
 import { updateAttributes, generateStyles } from "../../shared";
 import { textAttributes } from "../../shared/attributes";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
@@ -21,8 +22,6 @@ import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
 import { TextControls } from "../../shared/controls";
 import { useCanEditEntity } from "../utils/hooks";
-
-
 
 const { Text } = Typography;
 
@@ -92,7 +91,7 @@ export default function Edit({
 		delete: savedAttributes.api.delete,
 	};
 
-  /**
+	/**
 	 * When excerpt is editable, strip the html tags from
 	 * rendered excerpt. This will be used if the entity's
 	 * excerpt has been produced from the content.
@@ -123,24 +122,18 @@ export default function Edit({
 	}
 
 	const excerptContent = isEditable ? (
-    <Text {...blockProps} {...antdComponentProps}>
-		<RichText
-			aria-label={__("Post excerpt text")}
-			value={
-				rawExcerpt ||
-				strippedRenderedExcerpt
-			}
-			onChange={setExcerpt}
-		/>
-    </Text>
+		<Text {...blockProps} {...antdComponentProps}>
+			<RichText
+				aria-label={__("Post excerpt text")}
+				value={rawExcerpt || strippedRenderedExcerpt}
+				onChange={setExcerpt}
+			/>
+		</Text>
 	) : (
-		<>
-			{strippedRenderedExcerpt || __("No post excerpt found")}
-		</>
+		<>{strippedRenderedExcerpt || __("No post excerpt found")}</>
 	);
 
-
-	if (isProtected && ! userCanEdit) {
+	if (isProtected && !userCanEdit) {
 		return (
 			<div {...blockProps}>
 				<Warning>
@@ -152,9 +145,9 @@ export default function Edit({
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Text {...blockProps} {...antdComponentProps}>
-				  { excerptContent }
+					{excerptContent}
 				</Text>
 				<style>{generateStyles(savedAttributes, clientId)}</style>
 
@@ -185,7 +178,7 @@ export default function Edit({
 						enabledScreenSizes={savedAttributes.visibility}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

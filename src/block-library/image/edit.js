@@ -12,23 +12,20 @@ import {
 	InspectorControls,
 	MediaPlaceholder,
 	BlockIcon,
-	__experimentalImageSizeControl as ImageSizeControl,
 } from "@wordpress/block-editor";
 import {
 	PanelBody,
 	ExternalLink,
 	TextareaControl,
 	ToggleControl,
-	TextControl,
 } from "@wordpress/components";
 import { image as icon } from "@wordpress/icons";
 
 /**
  * Import andt components, dependencies & configuration
  */
-import { Image, ConfigProvider } from "antd";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
-import { screenSizes } from "../../_config";
+import { Image } from "antd";
+import AntDProvider from "../../antd-provider";
 import {
 	updateAttributes,
 	createDefaultAttributes,
@@ -114,7 +111,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<div {...blockProps}>
 					{src && <Image {...antdComponentProps} />}
 					<style>
@@ -130,79 +127,79 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							value={savedAttributes.settings.image}
 						/>
 					)}
+				</div>
 
-					<InspectorControls>
-						<BlockVisibility
-							attributes={savedAttributes}
-							setAttributes={setAttributes}
+				<InspectorControls>
+					<BlockVisibility
+						attributes={savedAttributes}
+						setAttributes={setAttributes}
+					/>
+
+					<PanelBody title={__("Options")} initialOpen={false}>
+						<BlockScreenSizeButtonGroup
+							onChange={(value) => {
+								setActiveScreenSize(value);
+							}}
+							selected={activeScreenSize}
 						/>
+					</PanelBody>
 
-						<PanelBody title={__("Options")} initialOpen={false}>
-							<BlockScreenSizeButtonGroup
-								onChange={(value) => {
-									setActiveScreenSize(value);
-								}}
-								selected={activeScreenSize}
-							/>
-						</PanelBody>
-
-						<PanelBody title={__("Settings")}>
-							<ToggleControl
-								label={__("Lightbox")}
-								help={__("Displays the image in a lightbox when clicked.")}
-								checked={savedAttributes.api.preview}
-								onChange={(value) => {
-									updateAttributes(
-										"api",
-										"preview",
-										value,
-										savedAttributes,
-										setAttributes
-									);
-								}}
-							/>
-
-							<TextareaControl
-								label={__("Alt Text (Alternative Text)")}
-								help={
-									<>
-										<ExternalLink href="https://www.w3.org/WAI/tutorials/images/decision-tree">
-											{__("Describe the purpose of the image")}
-										</ExternalLink>
-										{__("Leave empty if the image is purely decorative.")}
-									</>
-								}
-								value={savedAttributes.api.alt}
-								onChange={(value) =>
-									updateAttributes(
-										"api",
-										"alt",
-										value,
-										savedAttributes,
-										setAttributes
-									)
-								}
-							/>
-						</PanelBody>
-						<BlockStyles
-							styles={savedAttributes.styles}
-							onChange={(screenSize, attribute, value) => {
+					<PanelBody title={__("Settings")}>
+						<ToggleControl
+							label={__("Lightbox")}
+							help={__("Displays the image in a lightbox when clicked.")}
+							checked={savedAttributes.api.preview}
+							onChange={(value) => {
 								updateAttributes(
-									"styles",
-									screenSize,
-									{
-										...savedAttributes.styles[screenSize],
-										[attribute]: value,
-									},
+									"api",
+									"preview",
+									value,
 									savedAttributes,
 									setAttributes
 								);
 							}}
-							enabledScreenSizes={savedAttributes.visibility}
 						/>
-					</InspectorControls>
-				</div>
-			</ConfigProvider>
+
+						<TextareaControl
+							label={__("Alt Text (Alternative Text)")}
+							help={
+								<>
+									<ExternalLink href="https://www.w3.org/WAI/tutorials/images/decision-tree">
+										{__("Describe the purpose of the image")}
+									</ExternalLink>
+									{__("Leave empty if the image is purely decorative.")}
+								</>
+							}
+							value={savedAttributes.api.alt}
+							onChange={(value) =>
+								updateAttributes(
+									"api",
+									"alt",
+									value,
+									savedAttributes,
+									setAttributes
+								)
+							}
+						/>
+					</PanelBody>
+					<BlockStyles
+						styles={savedAttributes.styles}
+						onChange={(screenSize, attribute, value) => {
+							updateAttributes(
+								"styles",
+								screenSize,
+								{
+									...savedAttributes.styles[screenSize],
+									[attribute]: value,
+								},
+								savedAttributes,
+								setAttributes
+							);
+						}}
+						enabledScreenSizes={savedAttributes.visibility}
+					/>
+				</InspectorControls>
+			</AntDProvider>
 		</>
 	);
 }

@@ -11,14 +11,11 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
-import { Typography, ConfigProvider } from "antd";
-import {
-	updateAttributes,
-	generateStyles,
-} from "../../../shared";
+import AntDProvider from "../../../antd-provider";
+import { Typography } from "antd";
+import { updateAttributes, generateStyles } from "../../../shared";
 import { TitleControls } from "../../../shared/controls";
 import { titleAttributes } from "../../../shared/attributes";
-import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
 import { BlockStyles } from "../../../block-editor/block-styles";
 
@@ -28,7 +25,6 @@ const { Title } = Typography;
  * Import editor styles
  */
 import "./editor.scss";
-
 
 /**
  * Gutenberg Edit component
@@ -72,7 +68,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Title {...blockProps} {...antdComponentProps}>
 					<RichText
 						aria-label={__("Heading text")}
@@ -126,7 +122,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						enabledScreenSizes={savedAttributes.visibility}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

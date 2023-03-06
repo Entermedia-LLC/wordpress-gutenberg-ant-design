@@ -8,24 +8,17 @@ import {
 	InspectorControls,
 } from "@wordpress/block-editor";
 
-import { PanelBody, TextControl } from "@wordpress/components";
-
 /**
  * Import andt components, dependencies & configuration
  */
-import { availableInnerBlocks, screenSizes } from "../../_config";
+import { availableInnerBlocks } from "../../_config";
 import {
 	generateStyles,
 	createDefaultAttributes,
 	updateAttributes,
 } from "../../shared";
-import { Col, ConfigProvider } from "antd";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
-import {
-	BlockStyles,
-	availableProperties,
-} from "../../block-editor/block-styles";
+import { BlockStyles } from "../../block-editor/block-styles";
 
 /**
  * Import editor styles

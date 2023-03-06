@@ -10,13 +10,13 @@ import { useEntityRecord } from "@wordpress/core-data";
 /**
  * Import andt components, dependencies & configuration
  */
-import { Breadcrumb, ConfigProvider } from "antd";
+import { Breadcrumb } from "antd";
+import AntDProvider from "../../antd-provider";
 import {
 	updateAttributes,
 	createDefaultAttributes,
 	generateStyles,
 } from "../../shared";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 
 /**
@@ -69,7 +69,7 @@ export default function Edit({
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Breadcrumb {...blockProps} {...antdComponentProps}>
 					<Breadcrumb.Item>
 						<a href="#">Home</a>
@@ -79,6 +79,7 @@ export default function Edit({
 					</Breadcrumb.Item>
 				</Breadcrumb>
 				<style>{generateStyles(savedAttributes, clientId)}</style>
+
 				<InspectorControls>
 					<BlockVisibility
 						attributes={savedAttributes}
@@ -87,7 +88,7 @@ export default function Edit({
 
 					<PanelBody title={__("Settings")} initialOpen={false}></PanelBody>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }

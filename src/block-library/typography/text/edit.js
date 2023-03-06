@@ -8,18 +8,12 @@ import {
 	RichText,
 } from "@wordpress/block-editor";
 
-import { PanelBody, ToggleControl, SelectControl } from "@wordpress/components";
-
 /**
  * Import andt components, dependencies & configuration
  */
-import { Typography, ConfigProvider } from "antd";
-import {
-	updateAttributes,
-	generateStyles,
-} from "../../../shared";
+import { Typography } from "antd";
+import { updateAttributes, generateStyles } from "../../../shared";
 import { textAttributes } from "../../../shared/attributes";
-import antdTheme from "../../../../../../themes/headless/antd-theme.json";
 import { BlockVisibility } from "../../../block-editor/block-visibility";
 import { BlockStyles } from "../../../block-editor/block-styles";
 import { TextControls } from "../../../shared/controls";
@@ -30,7 +24,6 @@ const { Text } = Typography;
  * Import editor styles
  */
 import "./editor.scss";
-
 
 /**
  * Gutenberg Edit component
@@ -84,7 +77,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider>
 				<Text {...blockProps} {...antdComponentProps}>
 					<RichText
 						aria-label={__("Text")}
@@ -133,7 +126,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						enabledScreenSizes={savedAttributes.visibility}
 					/>
 				</InspectorControls>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }
