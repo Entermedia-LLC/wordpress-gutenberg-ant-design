@@ -32,6 +32,7 @@ import { availableProperties } from "../../../block-editor/block-styles";
  * Import editor styles
  */
 import "./editor.scss";
+import { generateRowStyles } from "./generateRowStyles";
 
 // Define the component's default attributes
 const defaultAttributes = createDefaultAttributes({
@@ -154,8 +155,13 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 					{...innerBlocksProps}
 					{...antdComponentProps}
 				/>
-				<style>{generateStyles(savedAttributes, clientId)}</style>
-
+				<style>
+					{generateStyles(savedAttributes, clientId)}
+					{/** @TODO: Need to generate dynamic styles for child components that get generated based on value on parent component
+					 * this issue will be resolved if there was a way to force a render of inner blocks but currently gutenberg doesn't
+					 * seem to support that check this issue for more details: https://github.com/wordpress-mobile/gutenberg-mobile/issues/4442*/}
+					{generateRowStyles(antdComponentProps.gutter[0], clientId)}
+				</style>
 				<InspectorControls>
 					<BlockVisibility
 						attributes={savedAttributes}
