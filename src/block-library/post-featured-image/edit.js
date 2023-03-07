@@ -180,7 +180,7 @@ export default function Edit({
 					<style>
 						{generateStyles(savedAttributes, clientId, undefined, ".ant-image")}
 					</style>
-					{}
+					{/** @TODO: Add an option of reset. Rendering anything inside MediaReplace breaks the block. Needs debugging */}
 					{!!src && !isDescendentOfQueryLoop && (
 						<BlockControls group="other">
 							<MediaReplaceFlow
