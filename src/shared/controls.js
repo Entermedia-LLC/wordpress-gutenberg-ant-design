@@ -10,6 +10,8 @@ import {
 	ButtonGroup,
 	Button,
 	BaseControl,
+	TextareaControl,
+	ExternalLink,
 } from "@wordpress/components";
 
 // Shared controls for components
@@ -394,5 +396,46 @@ export const TextControls = ({
 				</div>
 			</PanelBody>
 		</>
+	);
+};
+
+export const ImageControls = ({
+	updateAttributes,
+	savedAttributes,
+	setAttributes,
+}) => {
+	return (
+		<PanelBody title={__("Settings")}>
+			<ToggleControl
+				label={__("Lightbox")}
+				help={__("Displays the image in a lightbox when clicked.")}
+				checked={savedAttributes.api.preview}
+				onChange={(value) => {
+					updateAttributes(
+						"api",
+						"preview",
+						value,
+						savedAttributes,
+						setAttributes
+					);
+				}}
+			/>
+
+			<TextareaControl
+				label={__("Alt Text (Alternative Text)")}
+				help={
+					<>
+						<ExternalLink href="https://www.w3.org/WAI/tutorials/images/decision-tree">
+							{__("Describe the purpose of the image")}
+						</ExternalLink>
+						{__("Leave empty if the image is purely decorative.")}
+					</>
+				}
+				value={savedAttributes.api.alt}
+				onChange={(value) =>
+					updateAttributes("api", "alt", value, savedAttributes, setAttributes)
+				}
+			/>
+		</PanelBody>
 	);
 };

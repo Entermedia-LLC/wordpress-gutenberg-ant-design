@@ -1,0 +1,35 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/post-featured-image",
+	"version": "0.1.0",
+	"title": "Post Featured Image",
+	"description": "Display a post's featured image.",
+	"textdomain": "gutenberg-ant-design",
+	"icon": "format-image",
+	"category": "ant-design",
+	"usesContext": [ "postId", "postType", "queryId" ],
+	"attributes": {
+		"api": {
+			"type": "object"
+		},
+		"settings": {
+			"type": "object"
+		},
+		"options": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "array"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"supports": {
+		"customClassName": false
+	}
+}

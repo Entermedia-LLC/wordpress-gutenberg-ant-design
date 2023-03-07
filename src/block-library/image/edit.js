@@ -14,10 +14,7 @@ import {
 	BlockIcon,
 } from "@wordpress/block-editor";
 import {
-	PanelBody,
-	ExternalLink,
-	TextareaControl,
-	ToggleControl,
+	PanelBody
 } from "@wordpress/components";
 import { image as icon } from "@wordpress/icons";
 
@@ -33,6 +30,7 @@ import {
 } from "../../shared";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
+import { ImageControls } from "../../shared/controls";
 import { BlockScreenSizeButtonGroup } from "../../block-editor/block-screen-size-button-group";
 
 /**
@@ -144,44 +142,11 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 						/>
 					</PanelBody>
 
-					<PanelBody title={__("Settings")}>
-						<ToggleControl
-							label={__("Lightbox")}
-							help={__("Displays the image in a lightbox when clicked.")}
-							checked={savedAttributes.api.preview}
-							onChange={(value) => {
-								updateAttributes(
-									"api",
-									"preview",
-									value,
-									savedAttributes,
-									setAttributes
-								);
-							}}
-						/>
-
-						<TextareaControl
-							label={__("Alt Text (Alternative Text)")}
-							help={
-								<>
-									<ExternalLink href="https://www.w3.org/WAI/tutorials/images/decision-tree">
-										{__("Describe the purpose of the image")}
-									</ExternalLink>
-									{__("Leave empty if the image is purely decorative.")}
-								</>
-							}
-							value={savedAttributes.api.alt}
-							onChange={(value) =>
-								updateAttributes(
-									"api",
-									"alt",
-									value,
-									savedAttributes,
-									setAttributes
-								)
-							}
-						/>
-					</PanelBody>
+					<ImageControls
+						updateAttributes={updateAttributes}
+						savedAttributes={savedAttributes}
+						setAttributes={setAttributes}
+					/>
 					<BlockStyles
 						styles={savedAttributes.styles}
 						onChange={(screenSize, attribute, value) => {
