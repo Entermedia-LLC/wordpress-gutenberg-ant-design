@@ -30,7 +30,6 @@ import { store as noticesStore } from "@wordpress/notices";
  * Import andt components, dependencies & configuration
  */
 import { Image } from "antd";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import {
 	updateAttributes,
 	createDefaultAttributes,
@@ -175,7 +174,7 @@ export default function Edit({
 
 	return (
 		<>
-			<AntDProvider theme={antdTheme}>
+			<AntDProvider>
 				<div {...blockProps}>
 					{src && <Image {...antdComponentProps} />}
 					<style>
