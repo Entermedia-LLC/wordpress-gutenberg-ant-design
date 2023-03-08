@@ -39,7 +39,7 @@ import { screenSizes } from "../../_config";
 /**
  * Import theme-specific dependencies
  */
-import wpTheme from "../../../../../themes/headless/theme.json";
+import wpTheme from "../../../../../themes/wordpress-headless/theme.json";
 
 // Import internal block editor component dependencies
 import { BlockOptionButtonGroup } from "../block-option-button-group";

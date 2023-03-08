@@ -11786,7 +11786,7 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 
-const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group"];
+const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image"];
 const screenSizes = {
   xs: {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XS Screens"),
@@ -11954,7 +11954,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_config */ "./src/_config.js");
-/* harmony import */ var _themes_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../themes/headless/theme.json */ "../../themes/headless/theme.json");
+/* harmony import */ var _themes_wordpress_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../themes/wordpress-headless/theme.json */ "../../themes/wordpress-headless/theme.json");
 /* harmony import */ var _block_option_button_group__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../block-option-button-group */ "./src/block-editor/block-option-button-group/index.js");
 /* harmony import */ var _block_screen_size_button_group__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block-screen-size-button-group */ "./src/block-editor/block-screen-size-button-group/index.js");
 
@@ -12032,7 +12032,7 @@ const BlockStyles = _ref => {
     name: "Background",
     color: token.colorBgBase
   }];
-  const themeFonts = [..._themes_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__.settings.typography.fontFamilies];
+  const themeFonts = [..._themes_wordpress_headless_theme_json__WEBPACK_IMPORTED_MODULE_6__.settings.typography.fontFamilies];
   const fontFamilyOptions = [{
     value: "",
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Default")
@@ -12751,6 +12751,7 @@ const generateStyles = function (attribute, clientId) {
   if (childSelector) {
     selector += ` ${childSelector}`;
   }
+  selector = `.editor-styles-wrapper ${selector}`;
   if (typeof styles === "undefined") {
     return;
   }
@@ -12906,6 +12907,7 @@ const textAttributes = (0,_shared__WEBPACK_IMPORTED_MODULE_0__.createDefaultAttr
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ImageControls": () => (/* binding */ ImageControls),
 /* harmony export */   "TextControls": () => (/* binding */ TextControls),
 /* harmony export */   "TitleControls": () => (/* binding */ TitleControls)
 /* harmony export */ });
@@ -13125,6 +13127,30 @@ const TextControls = _ref2 => {
       updateAttributes("api", "strong", value, savedAttributes, setAttributes);
     }
   }))));
+};
+const ImageControls = _ref3 => {
+  let {
+    updateAttributes,
+    savedAttributes,
+    setAttributes
+  } = _ref3;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Settings")
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Lightbox"),
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Displays the image in a lightbox when clicked."),
+    checked: savedAttributes.api.preview,
+    onChange: value => {
+      updateAttributes("api", "preview", value, savedAttributes, setAttributes);
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Alt Text (Alternative Text)"),
+    help: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ExternalLink, {
+      href: "https://www.w3.org/WAI/tutorials/images/decision-tree"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Describe the purpose of the image")), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Leave empty if the image is purely decorative.")),
+    value: savedAttributes.api.alt,
+    onChange: value => updateAttributes("api", "alt", value, savedAttributes, setAttributes)
+  }));
 };
 
 /***/ }),
@@ -26651,14 +26677,14 @@ module.exports = JSON.parse('{"$schema":"https://json.schemastore.org/block.json
 
 /***/ }),
 
-/***/ "../../themes/headless/theme.json":
-/*!****************************************!*\
-  !*** ../../themes/headless/theme.json ***!
-  \****************************************/
+/***/ "../../themes/wordpress-headless/theme.json":
+/*!**************************************************!*\
+  !*** ../../themes/wordpress-headless/theme.json ***!
+  \**************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"},{"fontFamily":"\\"Quicksand\\"","slug":"quicksand","name":"Quicksand","fontFace":[{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/Quicksand-VariableFont_wght.ttf"]}]}]}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"},{"fontFamily":"\\"Quicksand\\"","slug":"quicksand","name":"Quicksand","fontFace":[{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/Quicksand-VariableFont_wght.ttf"]}]},{"fontFamily":"\\"Vidaloka\\"","slug":"vidaloka","name":"Vidaloka","fontFace":[{"fontFamily":"Vidaloka","src":["file:./fonts/Vidaloka/Vidaloka-Regular.ttf"]}]}]}}}');
 
 /***/ })
 
