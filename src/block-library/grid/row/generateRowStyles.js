@@ -6,9 +6,9 @@ import { theme } from "antd";
 
 
 // Generates padding for child elements based on parent gutterValue
-export const generateRowStyles = (styles, clientId) => {
+export const generateRowStyles = (gutterArray, clientId) => {
 
-	if (typeof styles === "undefined") {
+	if (typeof gutterArray === "undefined") {
 		return;
 	}
 	const { useToken } = theme;
@@ -18,7 +18,7 @@ export const generateRowStyles = (styles, clientId) => {
   
 
   Object.entries(screenSizes).forEach(([key]) => {
-    const paddingValue = styles[key];
+    const paddingValue = gutterArray[key];
 
     if(paddingValue) {
       const minWidth = token[screenSizes[key].antdToken]
