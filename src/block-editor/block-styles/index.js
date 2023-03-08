@@ -61,6 +61,7 @@ export const availableProperties = [
 	"max-height",
 	"border-radius",
 	"border",
+	"font-weight",
 ];
 
 // Block styles component
@@ -274,6 +275,28 @@ export const BlockStyles = ({
 										}
 										labelPosition="top"
 									/>
+
+									{allowedProperties.includes("font-weight") && (
+										<SelectControl
+											label={__("Font Weight")}
+											options={[
+												{ label: "Default", value: "" },
+												{ label: "Thin (100)", value: 100 },
+												{ label: "Extra Light (200)", value: 200 },
+												{ label: "Light (300)", value: 300 },
+												{ label: "Normal (400)", value: 400 },
+												{ label: "Medium (500)", value: 500 },
+												{ label: "Semi Bold (600)", value: 600 },
+												{ label: "Bold (700)", value: 700 },
+												{ label: "Extra Bold (800)", value: 800 },
+											]}
+											value={styles[screenSize]["fontWeight"]}
+											onChange={(value) =>
+												onChange(screenSize, "fontWeight", value)
+											}
+											labelPosition="top"
+										/>
+									)}
 
 									<FontSizePicker
 										value={styles[screenSize]["fontSize"]}

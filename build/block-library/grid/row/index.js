@@ -7932,7 +7932,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height", "border-radius", "border"];
+const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height", "border-radius", "border", "font-weight"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -8091,6 +8091,39 @@ const BlockStyles = _ref => {
         options: fontFamilyOptions,
         value: styles[screenSize]["fontFamily"],
         onChange: value => onChange(screenSize, "fontFamily", value),
+        labelPosition: "top"
+      }), allowedProperties.includes("font-weight") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Font Weight"),
+        options: [{
+          label: "Default",
+          value: ""
+        }, {
+          label: "Thin (100)",
+          value: 100
+        }, {
+          label: "Extra Light (200)",
+          value: 200
+        }, {
+          label: "Light (300)",
+          value: 300
+        }, {
+          label: "Normal (400)",
+          value: 400
+        }, {
+          label: "Medium (500)",
+          value: 500
+        }, {
+          label: "Semi Bold (600)",
+          value: 600
+        }, {
+          label: "Bold (700)",
+          value: 700
+        }, {
+          label: "Extra Bold (800)",
+          value: 800
+        }],
+        value: styles[screenSize]["fontWeight"],
+        onChange: value => onChange(screenSize, "fontWeight", value),
         labelPosition: "top"
       }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.FontSizePicker, {
         value: styles[screenSize]["fontSize"],
@@ -8399,14 +8432,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/row/index.js");
 /* harmony import */ var _antd_provider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../antd-provider */ "./src/antd-provider.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../_config */ "./src/_config.js");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../shared */ "./src/shared.js");
 /* harmony import */ var _block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../block-editor/block-visibility */ "./src/block-editor/block-visibility/index.js");
 /* harmony import */ var _block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../block-editor/block-styles */ "./src/block-editor/block-styles/index.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/block-library/grid/row/editor.scss");
+/* harmony import */ var _generateRowStyles__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./generateRowStyles */ "./src/block-library/grid/row/generateRowStyles.js");
 
 
 /**
@@ -8433,6 +8467,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+
 // Define the component's default attributes
 const defaultAttributes = (0,_shared__WEBPACK_IMPORTED_MODULE_7__.createDefaultAttributes)({
   api: {
@@ -8454,7 +8489,7 @@ function Edit(_ref) {
   } = _ref;
   const {
     useToken
-  } = antd__WEBPACK_IMPORTED_MODULE_11__["default"];
+  } = antd__WEBPACK_IMPORTED_MODULE_12__["default"];
   const {
     token
   } = useToken();
@@ -8551,9 +8586,9 @@ function Edit(_ref) {
       }
     }
   }
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_antd_provider__WEBPACK_IMPORTED_MODULE_5__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_12__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_antd_provider__WEBPACK_IMPORTED_MODULE_5__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(antd__WEBPACK_IMPORTED_MODULE_13__["default"], (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: `antd-gutenberg-block`
-  }, innerBlocksProps, antdComponentProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_7__.generateStyles)(savedAttributes, clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__.BlockVisibility, {
+  }, innerBlocksProps, antdComponentProps)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_7__.generateStyles)(savedAttributes, clientId), (0,_generateRowStyles__WEBPACK_IMPORTED_MODULE_11__.generateRowStyles)(antdComponentProps.gutter[0], clientId)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_8__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
@@ -8680,6 +8715,58 @@ function Edit(_ref) {
     enabledScreenSizes: savedAttributes.visibility
   }))));
 }
+
+/***/ }),
+
+/***/ "./src/block-library/grid/row/generateRowStyles.js":
+/*!*********************************************************!*\
+  !*** ./src/block-library/grid/row/generateRowStyles.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "generateRowStyles": () => (/* binding */ generateRowStyles)
+/* harmony export */ });
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../_config */ "./src/_config.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
+/**
+ * Import andt components, dependencies & configuration
+ */
+
+
+
+// Generates padding for child elements based on parent gutterValue
+const generateRowStyles = (gutterArray, clientId) => {
+  if (typeof gutterArray === "undefined") {
+    return;
+  }
+  const {
+    useToken
+  } = antd__WEBPACK_IMPORTED_MODULE_1__["default"];
+  const {
+    token
+  } = useToken();
+  let inlineStyles = "";
+  Object.entries(_config__WEBPACK_IMPORTED_MODULE_0__.screenSizes).forEach(_ref => {
+    let [key] = _ref;
+    const paddingValue = gutterArray[key];
+    if (paddingValue) {
+      const minWidth = token[_config__WEBPACK_IMPORTED_MODULE_0__.screenSizes[key].antdToken];
+      const padding = paddingValue / 2;
+      inlineStyles += `
+      @media only screen and (min-width: ${minWidth}px) {
+       .gutenberg-ant-design--${clientId} > div {
+          padding-left: ${padding}px;
+          padding-right: ${padding}px;
+        }
+      }
+    `;
+    }
+  });
+  return inlineStyles;
+};
 
 /***/ }),
 
@@ -8811,7 +8898,8 @@ const availableStyleProperties = {
   maxWidth: "max-width",
   maxHeight: "max-height",
   borderRadius: "border-radius",
-  border: "border"
+  border: "border",
+  fontWeight: "font-weight"
 };
 
 /**
@@ -14724,4 +14812,3 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
-

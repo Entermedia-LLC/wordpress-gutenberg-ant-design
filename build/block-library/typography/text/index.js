@@ -11988,7 +11988,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height", "border-radius", "border"];
+const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height", "border-radius", "border", "font-weight"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -12147,6 +12147,39 @@ const BlockStyles = _ref => {
         options: fontFamilyOptions,
         value: styles[screenSize]["fontFamily"],
         onChange: value => onChange(screenSize, "fontFamily", value),
+        labelPosition: "top"
+      }), allowedProperties.includes("font-weight") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.SelectControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Font Weight"),
+        options: [{
+          label: "Default",
+          value: ""
+        }, {
+          label: "Thin (100)",
+          value: 100
+        }, {
+          label: "Extra Light (200)",
+          value: 200
+        }, {
+          label: "Light (300)",
+          value: 300
+        }, {
+          label: "Normal (400)",
+          value: 400
+        }, {
+          label: "Medium (500)",
+          value: 500
+        }, {
+          label: "Semi Bold (600)",
+          value: 600
+        }, {
+          label: "Bold (700)",
+          value: 700
+        }, {
+          label: "Extra Bold (800)",
+          value: 800
+        }],
+        value: styles[screenSize]["fontWeight"],
+        onChange: value => onChange(screenSize, "fontWeight", value),
         labelPosition: "top"
       }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.FontSizePicker, {
         value: styles[screenSize]["fontSize"],
@@ -12698,7 +12731,8 @@ const availableStyleProperties = {
   maxWidth: "max-width",
   maxHeight: "max-height",
   borderRadius: "border-radius",
-  border: "border"
+  border: "border",
+  fontWeight: "font-weight"
 };
 
 /**

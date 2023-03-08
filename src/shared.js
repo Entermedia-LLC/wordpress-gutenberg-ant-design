@@ -43,6 +43,7 @@ export const availableStyleProperties = {
 	maxHeight: "max-height",
 	borderRadius: "border-radius",
 	border: "border",
+	fontWeight: "font-weight",
 };
 
 /**

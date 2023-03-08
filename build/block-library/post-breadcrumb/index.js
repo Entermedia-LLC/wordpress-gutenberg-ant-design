@@ -14932,7 +14932,8 @@ const availableStyleProperties = {
   maxWidth: "max-width",
   maxHeight: "max-height",
   borderRadius: "border-radius",
-  border: "border"
+  border: "border",
+  fontWeight: "font-weight"
 };
 
 /**
