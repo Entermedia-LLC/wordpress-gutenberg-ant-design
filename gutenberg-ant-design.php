@@ -65,28 +65,3 @@ add_action(
 		);
 	}
 );
-
-
-add_action(
-	'wp_default_styles',
-	function( $styles ) {
-
-		/* Create an array with the two handles wp-block-library and
-		 * wp-block-library-theme.
-		 */
-		$handles = [ 'wp-block-library', 'wp-block-library-theme' ];
-
-		foreach ( $handles as $handle ) {
-			// Search and compare with the list of registered style handles:
-			$style = $styles->query( $handle, 'registered' );
-			if ( ! $style ) {
-				continue;
-			}
-			// Remove the style
-			$styles->remove( $handle );
-			// Remove path and dependencies
-			$styles->add( $handle, false, [] );
-		}
-	},
-	PHP_INT_MAX
-);
