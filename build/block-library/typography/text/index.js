@@ -11988,7 +11988,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Available properties
-const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height"];
+const availableProperties = ["padding", "background", "text", "margin", "margin-bottom", "margin-top", "margin-left", "margin-right", "width", "height", "max-width", "max-height", "border-radius", "border"];
 
 // Block styles component
 const BlockStyles = _ref => {
@@ -12201,7 +12201,15 @@ const BlockStyles = _ref => {
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Max Height"),
         value: styles[screenSize].maxHeight,
         onChange: value => onChange(screenSize, "maxHeight", value)
-      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
+      })), allowedProperties.includes("border") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border"),
+        value: styles[screenSize].border,
+        onChange: value => onChange(screenSize, "border", value)
+      }), allowedProperties.includes("border-radius") && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Border Radius"),
+        value: styles[screenSize].borderRadius,
+        onChange: value => onChange(screenSize, "borderRadius", value)
+      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.__experimentalToggleGroupControl, {
         value: activeSpacing,
         isBlock: true,
         label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Spacing"),
@@ -12688,7 +12696,9 @@ const availableStyleProperties = {
   height: "height",
   textAlignment: "text-align",
   maxWidth: "max-width",
-  maxHeight: "max-height"
+  maxHeight: "max-height",
+  borderRadius: "border-radius",
+  border: "border"
 };
 
 /**
@@ -26829,7 +26839,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"block-library/typography/text/index": 0,
-/******/ 			"block-library/group/style-index": 0,
+/******/ 			"block-library/button/style-index": 0,
 /******/ 			"block-library/typography/text/style-index": 0
 /******/ 		};
 /******/ 		
@@ -26880,7 +26890,7 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/group/style-index","block-library/typography/text/style-index"], () => (__webpack_require__("./src/block-library/typography/text/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["block-library/button/style-index","block-library/typography/text/style-index"], () => (__webpack_require__("./src/block-library/typography/text/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

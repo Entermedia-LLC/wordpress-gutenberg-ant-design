@@ -59,6 +59,8 @@ export const availableProperties = [
 	"height",
 	"max-width",
 	"max-height",
+	"border-radius",
+	"border",
 ];
 
 // Block styles component
@@ -355,6 +357,24 @@ export const BlockStyles = ({
 										/>
 									)}
 								</div>
+
+								{allowedProperties.includes("border") && (
+									<TextControl
+										label={__("Border")}
+										value={styles[screenSize].border}
+										onChange={(value) => onChange(screenSize, "border", value)}
+									/>
+								)}
+
+								{allowedProperties.includes("border-radius") && (
+									<TextControl
+										label={__("Border Radius")}
+										value={styles[screenSize].borderRadius}
+										onChange={(value) =>
+											onChange(screenSize, "borderRadius", value)
+										}
+									/>
+								)}
 
 								<ToggleGroupControl
 									value={activeSpacing}

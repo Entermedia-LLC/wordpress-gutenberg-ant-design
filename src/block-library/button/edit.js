@@ -27,6 +27,7 @@ import {
 	generateStyles,
 } from "../../shared";
 import { BlockVisibility } from "../../block-editor/block-visibility";
+import { BlockStyles } from "../../block-editor/block-styles";
 
 /**
  * Import editor styles
@@ -343,6 +344,22 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 							/>
 						</div>
 					</PanelBody>
+					<BlockStyles
+						styles={savedAttributes.styles}
+						onChange={(screenSize, attribute, value) => {
+							updateAttributes(
+								"styles",
+								screenSize,
+								{
+									...savedAttributes.styles[screenSize],
+									[attribute]: value,
+								},
+								savedAttributes,
+								setAttributes
+							);
+						}}
+						enabledScreenSizes={savedAttributes.visibility}
+					/>
 				</InspectorControls>
 			</AntDProvider>
 		</>

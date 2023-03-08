@@ -41,6 +41,8 @@ export const availableStyleProperties = {
 	textAlignment: "text-align",
 	maxWidth: "max-width",
 	maxHeight: "max-height",
+	borderRadius: "border-radius",
+	border: "border",
 };
 
 /**

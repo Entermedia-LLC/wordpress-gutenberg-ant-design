@@ -14930,7 +14930,9 @@ const availableStyleProperties = {
   height: "height",
   textAlignment: "text-align",
   maxWidth: "max-width",
-  maxHeight: "max-height"
+  maxHeight: "max-height",
+  borderRadius: "border-radius",
+  border: "border"
 };
 
 /**
