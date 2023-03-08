@@ -2,7 +2,7 @@
  * Import andt components, dependencies & configuration
  */
 import { ConfigProvider } from "antd";
-import antdTheme from "../../../themes/headless/antd-theme.json";
+import antdTheme from "../../../themes/wordpress-headless/antd-theme.json";
 
 /**
  * Gutenberg component provider

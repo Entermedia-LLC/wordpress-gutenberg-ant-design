@@ -129,6 +129,8 @@ export const generateStyles = (
 		selector += ` ${childSelector}`;
 	}
 
+	selector = `.editor-styles-wrapper ${selector}`;
+
 	if (typeof styles === "undefined") {
 		return;
 	}

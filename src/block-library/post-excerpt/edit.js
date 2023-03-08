@@ -17,7 +17,7 @@ import { Typography } from "antd";
 import AntDProvider from "../../antd-provider";
 import { updateAttributes, generateStyles } from "../../shared";
 import { textAttributes } from "../../shared/attributes";
-import antdTheme from "../../../../../themes/headless/antd-theme.json";
+import antdTheme from "../../../../../themes/wordpress-headless/antd-theme.json";
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
 import { TextControls } from "../../shared/controls";
