@@ -14714,3 +14714,4 @@ module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
+
