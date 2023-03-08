@@ -29,7 +29,7 @@ import { store as noticesStore } from "@wordpress/notices";
 /**
  * Import andt components, dependencies & configuration
  */
-import { Image, ConfigProvider } from "antd";
+import { Image } from "antd";
 import antdTheme from "../../../../../themes/headless/antd-theme.json";
 import {
 	updateAttributes,
@@ -39,6 +39,7 @@ import {
 import { BlockVisibility } from "../../block-editor/block-visibility";
 import { BlockStyles } from "../../block-editor/block-styles";
 import { BlockScreenSizeButtonGroup } from "../../block-editor/block-screen-size-button-group";
+import AntDProvider from "../../antd-provider";
 
 /**
  * Import editor styles
@@ -174,7 +175,7 @@ export default function Edit({
 
 	return (
 		<>
-			<ConfigProvider theme={antdTheme}>
+			<AntDProvider theme={antdTheme}>
 				<div {...blockProps}>
 					{src && <Image {...antdComponentProps} />}
 					<style>
@@ -296,7 +297,7 @@ export default function Edit({
 						/>
 					</InspectorControls>
 				</div>
-			</ConfigProvider>
+			</AntDProvider>
 		</>
 	);
 }
