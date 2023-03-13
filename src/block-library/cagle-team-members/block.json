@@ -1,0 +1,30 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "gutenberg-ant-design/cagle-team-members",
+	"version": "0.1.0",
+	"title": "Cagle team memebers",
+	"description": "Displays shortcode for cagle team memebers",
+	"textdomain": "gutenberg-ant-design",
+	"category": "ant-design",
+	"attributes": {
+		"api": {
+			"type": "object"
+		},
+		"settings": {
+			"type": "object"
+		},
+		"visibility": {
+			"type": "array"
+		},
+		"styles": {
+			"type": "object"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"supports": {
+		"customClassName": false
+	}
+}
