@@ -12348,7 +12348,9 @@ function AntDProvider(_ref) {
   } = _ref;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_2__["default"], {
     theme: {
-      token: _themes_wordpress_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_1__
+      token: {
+        ..._themes_wordpress_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_1__
+      }
     }
   }, children);
 }

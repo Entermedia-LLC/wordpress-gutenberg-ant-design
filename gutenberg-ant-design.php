@@ -40,6 +40,7 @@ function gutenberg_ant_design_register_blocks() {
 	register_block_type( __DIR__ . '/build/block-library/post-featured-image' );
 	register_block_type( __DIR__ . '/build/block-library/list/item' );
 	register_block_type( __DIR__ . '/build/block-library/list/list' );
+	register_block_type( __DIR__ . '/build/block-library/cagle-team-members' );
 }
 add_action( 'init', 'gutenberg_ant_design_register_blocks' );
 
