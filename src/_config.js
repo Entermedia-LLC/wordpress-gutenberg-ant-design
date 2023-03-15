@@ -14,6 +14,7 @@ export const availableInnerBlocks = [
 	"gutenberg-ant-design/row",
 	"gutenberg-ant-design/group",
 	"gutenberg-ant-design/post-featured-image",
+	"gutenberg-ant-design/list",
 ];
 
 export const screenSizes = {

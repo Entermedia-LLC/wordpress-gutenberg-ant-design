@@ -7455,7 +7455,7 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 
-const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image"];
+const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image", "gutenberg-ant-design/list"];
 const screenSizes = {
   xs: {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XS Screens"),
@@ -14234,7 +14234,7 @@ module.exports = JSON.parse('{"white":"#ffffff","black":"#000000","blue.1":"#e6f
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"},{"fontFamily":"\\"Quicksand\\"","slug":"quicksand","name":"Quicksand","fontFace":[{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/Quicksand-VariableFont_wght.ttf"]}]},{"fontFamily":"\\"Vidaloka\\"","slug":"vidaloka","name":"Vidaloka","fontFace":[{"fontFamily":"Vidaloka","src":["file:./fonts/Vidaloka/Vidaloka-Regular.ttf"]}]}]}}}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/theme.json","version":2,"settings":{"appearanceTools":true,"typography":{"fontFamilies":[{"fontFamily":"-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif","slug":"system-fonts","name":"System fonts"},{"fontFamily":"\\"Quicksand\\"","slug":"quicksand","name":"Quicksand","fontFace":[{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/static/Quicksand-Bold.ttf"],"fontWeight":"700","fontStyle":"normal"},{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/static/Quicksand-Light.ttf"],"fontWeight":"300","fontStyle":"normal"},{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/static/Quicksand-Medium.ttf"],"fontWeight":"500","fontStyle":"normal"},{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/static/Quicksand-Regular.ttf"],"fontWeight":"400","fontStyle":"normal"},{"fontFamily":"Quicksand","src":["file:./fonts/Quicksand/static/Quicksand-SemiBold.ttf"],"fontWeight":"600","fontStyle":"normal"}]},{"fontFamily":"\\"Vidaloka\\"","slug":"vidaloka","name":"Vidaloka","fontFace":[{"fontFamily":"Vidaloka","src":["file:./fonts/Vidaloka/Vidaloka-Regular.ttf"]}]}]}}}');
 
 /***/ })
 

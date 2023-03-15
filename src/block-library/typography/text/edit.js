@@ -11,6 +11,7 @@ import {
 /**
  * Import andt components, dependencies & configuration
  */
+import AntDProvider from "../../../antd-provider";
 import { Typography } from "antd";
 import { updateAttributes, generateStyles } from "../../../shared";
 import { textAttributes } from "../../../shared/attributes";
