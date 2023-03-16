@@ -4,18 +4,22 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from "@wordpress/i18n";
+import { applyFilters } from "@wordpress/hooks";
 
-export const availableInnerBlocks = [
-	"gutenberg-ant-design/button",
-	"gutenberg-ant-design/image",
-	"gutenberg-ant-design/title",
-	"gutenberg-ant-design/text",
-	"gutenberg-ant-design/paragraph",
-	"gutenberg-ant-design/row",
-	"gutenberg-ant-design/group",
-	"gutenberg-ant-design/post-featured-image",
-	"gutenberg-ant-design/list",
-];
+export const availableInnerBlocks = applyFilters(
+	"gutenbergAntDesign.availableInnerBlocks",
+	[
+		"gutenberg-ant-design/button",
+		"gutenberg-ant-design/image",
+		"gutenberg-ant-design/title",
+		"gutenberg-ant-design/text",
+		"gutenberg-ant-design/paragraph",
+		"gutenberg-ant-design/row",
+		"gutenberg-ant-design/group",
+		"gutenberg-ant-design/post-featured-image",
+		"gutenberg-ant-design/list",
+	]
+);
 
 export const screenSizes = {
 	xs: {

@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^5.0.0",
+		"@wordpress/hooks": "^3.29.0",
 		"@wordpress/icons": "^9.16.0",
 		"antd": "^5.1.4",
 		"lodash": "^4.17.21",

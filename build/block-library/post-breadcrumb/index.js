@@ -14532,13 +14532,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 
-const availableInnerBlocks = ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image", "gutenberg-ant-design/list"];
+
+const availableInnerBlocks = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.availableInnerBlocks", ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image", "gutenberg-ant-design/list"]);
 const screenSizes = {
   xs: {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XS Screens"),
@@ -29575,6 +29578,17 @@ module.exports = window["wp"]["coreData"];
 
 "use strict";
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/hooks":
+/*!*******************************!*\
+  !*** external ["wp","hooks"] ***!
+  \*******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["hooks"];
 
 /***/ }),
 
