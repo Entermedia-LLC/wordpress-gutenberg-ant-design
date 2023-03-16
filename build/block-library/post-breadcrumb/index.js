@@ -14590,14 +14590,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/config-provider/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/config-provider/index.js");
 /* harmony import */ var _themes_wordpress_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../themes/wordpress-headless/antd-theme.json */ "../../themes/wordpress-headless/antd-theme.json");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared */ "./src/shared.js");
 
 /**
  * Import andt components, dependencies & configuration
  */
 
 
+
+
+// convert json style object to css variables.
+const cssVars = (0,_shared__WEBPACK_IMPORTED_MODULE_2__.convertJsonToCssVariables)(_themes_wordpress_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_1__);
 
 /**
  * Gutenberg component provider
@@ -14606,13 +14611,18 @@ function AntDProvider(_ref) {
   let {
     children
   } = _ref;
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(antd__WEBPACK_IMPORTED_MODULE_3__["default"], {
     theme: {
       token: {
         ..._themes_wordpress_headless_antd_theme_json__WEBPACK_IMPORTED_MODULE_1__
       }
     }
-  }, children);
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("style", {
+    jsx: true,
+    global: true
+  }, `
+				${cssVars}
+			`), children);
 }
 
 /***/ }),
@@ -14878,6 +14888,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Save": () => (/* binding */ Save),
 /* harmony export */   "SaveWithInnerBlocks": () => (/* binding */ SaveWithInnerBlocks),
 /* harmony export */   "availableStyleProperties": () => (/* binding */ availableStyleProperties),
+/* harmony export */   "convertJsonToCssVariables": () => (/* binding */ convertJsonToCssVariables),
 /* harmony export */   "createDefaultAttributes": () => (/* binding */ createDefaultAttributes),
 /* harmony export */   "generateStyles": () => (/* binding */ generateStyles),
 /* harmony export */   "updateAttributes": () => (/* binding */ updateAttributes)
@@ -15099,6 +15110,26 @@ const generateStyles = function (attribute, clientId) {
   }
   return inlineStyles;
 };
+
+/**
+ * Does the conversion of json into valid css variables.
+ * e.g: colorTextQuaternary will be converted to --antd-colortextquaternary
+ * blue.1 will be converted to --antd-blue-1
+ */
+function convertJsonToCssVariables(json) {
+  let cssVars = ":root {\n";
+  for (const key in json) {
+    const value = json[key];
+    const varName = "--antd-" + key.replace(/\./g, "-").toLowerCase();
+    if (typeof value === "number" && !varName.includes("weight")) {
+      cssVars += `\t${varName}: ${value}px;\n`;
+    } else {
+      cssVars += `\t${varName}: ${value};\n`;
+    }
+  }
+  cssVars += "}";
+  return cssVars;
+}
 
 /***/ }),
 
