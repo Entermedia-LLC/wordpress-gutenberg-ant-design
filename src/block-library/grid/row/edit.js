@@ -79,6 +79,9 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 	// Component processing
 	const { align, gutter, wrap, justify } = savedAttributes.api;
+	const allowedProperties = [...availableProperties].filter(
+		(property) => !["margin-left", "margin-right"].includes(property)
+	);
 
 	// Component helpers
 
@@ -325,6 +328,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
 					<BlockStyles
 						styles={savedAttributes.styles}
+						allowedProperties={allowedProperties}
 						onChange={(screenSize, attribute, value) => {
 							updateAttributes(
 								"styles",

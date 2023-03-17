@@ -8541,6 +8541,7 @@ function Edit(_ref) {
     wrap,
     justify
   } = savedAttributes.api;
+  const allowedProperties = [..._block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__.availableProperties].filter(property => !["margin-left", "margin-right"].includes(property));
 
   // Component helpers
 
@@ -8719,6 +8720,7 @@ function Edit(_ref) {
     }
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_styles__WEBPACK_IMPORTED_MODULE_9__.BlockStyles, {
     styles: savedAttributes.styles,
+    allowedProperties: allowedProperties,
     onChange: (screenSize, attribute, value) => {
       (0,_shared__WEBPACK_IMPORTED_MODULE_7__.updateAttributes)("styles", screenSize, {
         ...savedAttributes.styles[screenSize],
