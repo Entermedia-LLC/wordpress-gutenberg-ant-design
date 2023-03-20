@@ -1,84 +1,22 @@
 /**
- * Import @wordpress dependencies
+ * Import component dependencies & configuration
  */
-import { __ } from "@wordpress/i18n";
-import {
-	useBlockProps,
-	useInnerBlocksProps,
-	InspectorControls,
-} from "@wordpress/block-editor";
-
-/**
- * Import andt components, dependencies & configuration
- */
-import { availableInnerBlocks } from "../../_config";
-import {
-	generateStyles,
-	createDefaultAttributes,
-	updateAttributes,
-} from "../../shared";
-import { BlockVisibility } from "../../block-editor/block-visibility";
-import { BlockStyles } from "../../block-editor/block-styles";
-
-/**
- * Import editor styles
- */
-import "./editor.scss";
-
-// Define the component's default attributes
-const defaultAttributes = createDefaultAttributes({
-	api: {},
-});
+import AntDProvider from "../../antd-provider";
+import Group from "./group";
 
 /**
  * Gutenberg Edit component
  */
 export default function Edit({ attributes, setAttributes, clientId }) {
-	// Used by the Gutenberg editor to save & output blocks properly
-	const blockProps = useBlockProps({
-		className: `gutenberg-ant-design--${clientId}`,
-	});
-	const innerBlocksProps = useInnerBlocksProps(blockProps, {
-		allowedBlocks: availableInnerBlocks,
-		orientation: "horizontal",
-	});
-
-	// Merge the default attributes with the saved ones
-	const savedAttributes = { ...defaultAttributes, ...attributes };
-
-	// Component states
-
-	// Component processing
-
-	// Component helpers
-
 	return (
 		<>
-			<div {...innerBlocksProps} />
-			<style>{generateStyles(savedAttributes, clientId)}</style>
-			<InspectorControls>
-				<BlockVisibility
-					attributes={savedAttributes}
+			<AntDProvider>
+				<Group
+					attributes={attributes}
 					setAttributes={setAttributes}
+					clientId={clientId}
 				/>
-
-				<BlockStyles
-					styles={savedAttributes.styles}
-					onChange={(screenSize, attribute, value) => {
-						updateAttributes(
-							"styles",
-							screenSize,
-							{
-								...savedAttributes.styles[screenSize],
-								[attribute]: value,
-							},
-							savedAttributes,
-							setAttributes
-						);
-					}}
-					enabledScreenSizes={savedAttributes.visibility}
-				/>
-			</InspectorControls>
+			</AntDProvider>
 		</>
 	);
 }
