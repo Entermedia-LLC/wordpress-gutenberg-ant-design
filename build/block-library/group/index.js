@@ -5715,7 +5715,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_config */ "./src/_config.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
 
 // Import external dependencies
 
@@ -5729,7 +5728,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Import andt components, dependencies & configuration
  */
-
 
 
 // Shared constants
@@ -5811,9 +5809,9 @@ const SaveWithInnerBlocks = () => {
 };
 
 // @TODO: Can be cleaned up to be more DRY
-const generateStyles = function (attribute, clientId) {
-  let specificitySelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
-  let childSelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+const generateStyles = function (attribute, clientId, token) {
+  let specificitySelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+  let childSelector = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : undefined;
   const {
     styles,
     visibility
@@ -5829,12 +5827,6 @@ const generateStyles = function (attribute, clientId) {
   if (typeof styles === "undefined") {
     return;
   }
-  const {
-    useToken
-  } = antd__WEBPACK_IMPORTED_MODULE_5__["default"];
-  const {
-    token
-  } = useToken();
 
   // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {

@@ -13059,6 +13059,96 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _antd_provider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../antd-provider */ "./src/antd-provider.js");
+/* harmony import */ var _postTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./postTitle */ "./src/block-library/post-title/postTitle.js");
+
+/**
+ * Import component dependencies & configuration
+ */
+
+
+
+/**
+ * Gutenberg Edit component
+ */
+function Edit(_ref) {
+  let {
+    attributes,
+    setAttributes,
+    clientId,
+    context
+  } = _ref;
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_antd_provider__WEBPACK_IMPORTED_MODULE_1__["default"], null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_postTitle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    attributes: attributes,
+    setAttributes: setAttributes,
+    clientId: clientId,
+    context: context
+  }));
+}
+
+/***/ }),
+
+/***/ "./src/block-library/post-title/index.js":
+/*!***********************************************!*\
+  !*** ./src/block-library/post-title/index.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/title.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/block-library/post-title/edit.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared */ "./src/shared.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/block-library/post-title/block.json");
+/**
+ * Registers a new block provided a unique name and an object defining its behavior.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+/**
+ * Every block starts by registering a new block type definition.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
+ */
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  /**
+   * @see ./save.js
+   */
+  save: _shared__WEBPACK_IMPORTED_MODULE_2__.Save,
+  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"]
+});
+
+/***/ }),
+
+/***/ "./src/block-library/post-title/postTitle.js":
+/*!***************************************************!*\
+  !*** ./src/block-library/post-title/postTitle.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PostTitle)
+/* harmony export */ });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
@@ -13071,6 +13161,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
 /* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/typography/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
 /* harmony import */ var _antd_provider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../antd-provider */ "./src/antd-provider.js");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../shared */ "./src/shared.js");
 /* harmony import */ var _shared_attributes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../shared/attributes */ "./src/shared/attributes.js");
@@ -13111,7 +13202,7 @@ const {
 /**
  * Gutenberg Edit component
  */
-function Edit(_ref) {
+function PostTitle(_ref) {
   let {
     attributes,
     setAttributes,
@@ -13122,6 +13213,13 @@ function Edit(_ref) {
       queryId
     }
   } = _ref;
+  const {
+    useToken
+  } = antd__WEBPACK_IMPORTED_MODULE_14__["default"];
+  const {
+    token
+  } = useToken();
+
   // Dyncamic data for Post title
   const [rawTitle = "", setTitle, fullTitle] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_5__.useEntityProp)("postType", postType, "title", postId);
 
@@ -13186,7 +13284,7 @@ function Edit(_ref) {
       }
     }, fullTitle?.rendered));
   }
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_antd_provider__WEBPACK_IMPORTED_MODULE_6__["default"], null, titleElement, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_7__.generateStyles)(savedAttributes, clientId, `h${savedAttributes.api.level}.ant-typography`)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_10__.BlockVisibility, {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, titleElement, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("style", null, (0,_shared__WEBPACK_IMPORTED_MODULE_7__.generateStyles)(savedAttributes, clientId, token, `h${savedAttributes.api.level}.ant-typography`)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_block_editor_block_visibility__WEBPACK_IMPORTED_MODULE_10__.BlockVisibility, {
     attributes: savedAttributes,
     setAttributes: setAttributes
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
@@ -13229,54 +13327,6 @@ function Edit(_ref) {
 
 /***/ }),
 
-/***/ "./src/block-library/post-title/index.js":
-/*!***********************************************!*\
-  !*** ./src/block-library/post-title/index.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/title.js");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/block-library/post-title/edit.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared */ "./src/shared.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/block-library/post-title/block.json");
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
-  /**
-   * @see ./edit.js
-   */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  /**
-   * @see ./save.js
-   */
-  save: _shared__WEBPACK_IMPORTED_MODULE_2__.Save,
-  icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_4__["default"]
-});
-
-/***/ }),
-
 /***/ "./src/shared.js":
 /*!***********************!*\
   !*** ./src/shared.js ***!
@@ -13303,7 +13353,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_config */ "./src/_config.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/theme/index.js");
 
 // Import external dependencies
 
@@ -13317,7 +13366,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Import andt components, dependencies & configuration
  */
-
 
 
 // Shared constants
@@ -13399,9 +13447,9 @@ const SaveWithInnerBlocks = () => {
 };
 
 // @TODO: Can be cleaned up to be more DRY
-const generateStyles = function (attribute, clientId) {
-  let specificitySelector = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : undefined;
-  let childSelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+const generateStyles = function (attribute, clientId, token) {
+  let specificitySelector = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+  let childSelector = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : undefined;
   const {
     styles,
     visibility
@@ -13417,12 +13465,6 @@ const generateStyles = function (attribute, clientId) {
   if (typeof styles === "undefined") {
     return;
   }
-  const {
-    useToken
-  } = antd__WEBPACK_IMPORTED_MODULE_5__["default"];
-  const {
-    token
-  } = useToken();
 
   // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {
