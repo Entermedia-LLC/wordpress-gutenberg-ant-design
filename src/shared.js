@@ -11,7 +11,6 @@ import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
  * Import andt components, dependencies & configuration
  */
 import { screenSizes } from "./_config";
-import { theme } from "antd";
 
 // Shared constants
 export const availableStyleProperties = {
@@ -118,6 +117,7 @@ export const SaveWithInnerBlocks = () => {
 export const generateStyles = (
 	attribute,
 	clientId,
+	token,
 	specificitySelector = undefined,
 	childSelector = undefined
 ) => {
@@ -137,10 +137,7 @@ export const generateStyles = (
 	if (typeof styles === "undefined") {
 		return;
 	}
-
-	const { useToken } = theme;
-	const { token } = useToken();
-
+	
 	// @TODO: This needs to be cleaned up
 	const definitionOutput = (property, value) => {
 		if (property.startsWith("padding-") || property.startsWith("margin-")) {
