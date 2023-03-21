@@ -7490,82 +7490,87 @@ const sizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gu
   size: "var(--antd-sizexxl)"
 }]);
 const fontSizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.fontSizes", [{
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Normal"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSize"),
   slug: "fontSize",
   size: "var(--antd-fontsize)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Normal")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Small Font"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeSM"),
   slug: "fontSizeSM",
   size: "var(--antd-fontsizesm)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("SM Font")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Large Font"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeLG"),
   slug: "fontSizeLG",
   size: "var(--antd-fontsizelg)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("LG Font")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("X-Large Font"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeXL"),
   slug: "fontSizeXL",
   size: "var(--antd-fontsizexl)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XL Font")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 1"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeHeading1"),
   slug: "fontSizeHeading1",
   size: "var(--antd-fontsizeheading1)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H1")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 2"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeHeading2"),
   slug: "fontSizeHeading2",
   size: "var(--antd-fontsizeheading2)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H2")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 3"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeHeading3"),
   slug: "fontSizeHeading3",
   size: "var(--antd-fontsizeheading3)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H3")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 4"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeHeading4"),
   slug: "fontSizeHeading4",
   size: "var(--antd-fontsizeheading4)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H4")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 5"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("fontSizeHeading5"),
   slug: "fontSizeHeading5",
   size: "var(--antd-fontsizeheading5)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H5")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XX-Small"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("size"),
+  slug: "size",
+  size: "var(--antd-size)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Size")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeXXS"),
   slug: "sizeXXS",
   size: "var(--antd-sizexxs)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XXS")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("X-Small"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeXS"),
   slug: "sizeXS",
   size: "var(--antd-sizexs)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XS")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Small"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeSM"),
   slug: "sizeSM",
   size: "var(--antd-sizesm)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("SM")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Medium"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeMD"),
   slug: "sizeMD",
   size: "var(--antd-sizemd)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("MD")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Large"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeLG"),
   slug: "sizeLG",
   size: "var(--antd-sizelg)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("LG")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("X-Large"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeXL"),
   slug: "sizeXL",
   size: "var(--antd-sizexl)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XL")
 }, {
-  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XX-Large"),
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("sizeXXL"),
   slug: "sizeXXL",
   size: "var(--antd-sizexxl)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XXL")
