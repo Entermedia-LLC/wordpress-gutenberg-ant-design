@@ -44,6 +44,7 @@ import wpTheme from "../../../../../themes/wordpress-headless/theme.json";
 // Import internal block editor component dependencies
 import { BlockOptionButtonGroup } from "../block-option-button-group";
 import { BlockScreenSizeButtonGroup } from "../block-screen-size-button-group";
+import { fontSizes } from "../../_config";
 
 // Available properties
 export const availableProperties = [
@@ -99,51 +100,6 @@ export const BlockStyles = ({
 				label: name || fontFamily,
 			};
 		}),
-	];
-
-	const fontSizes = [
-		{
-			name: __("XX-Small"),
-			slug: "sizeXXS",
-			size: "var(--antd-sizexxs)",
-			shortName: __("XXS"),
-		},
-		{
-			name: __("X-Small"),
-			slug: "sizeXS",
-			size: "var(--antd-sizexs)",
-			shortName: __("XS"),
-		},
-		{
-			name: __("Small"),
-			slug: "sizeSM",
-			size: "var(--antd-sizesm)",
-			shortName: __("SM"),
-		},
-		{
-			name: __("Medium"),
-			slug: "sizeMD",
-			size: "var(--antd-sizemd)",
-			shortName: __("MD"),
-		},
-		{
-			name: __("Large"),
-			slug: "sizeLG",
-			size: "var(--antd-sizelg)",
-			shortName: __("LG"),
-		},
-		{
-			name: __("X-Large"),
-			slug: "sizeXL",
-			size: "var(--antd-sizexl)",
-			shortName: __("XL"),
-		},
-		{
-			name: __("XX-Large"),
-			slug: "sizeXXL",
-			size: "var(--antd-sizexxl)",
-			shortName: __("XXL"),
-		},
 	];
 
 	return (
