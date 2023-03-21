@@ -56,6 +56,6 @@ html :where(.wp-block) {
 }
 
 // Fix for margin in Gutenberg blocks
-.editor-styles-wrapper .is-layout-flow > * + *:not(.antd-gutenberg-block) {
-	margin-block-start: 0;
+.editor-styles-wrapper .is-layout-flow > * + * {
+	margin-block-start: 0 !important;
 }
