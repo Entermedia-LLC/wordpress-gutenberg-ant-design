@@ -12,7 +12,6 @@ import { __ } from "@wordpress/i18n";
 import {
 	MediaUpload,
 	MediaUploadCheck,
-	FontSizePicker,
 	BlockIcon,
 } from "@wordpress/block-editor";
 import {
@@ -28,6 +27,7 @@ import {
 	GradientPicker,
 	SelectControl,
 	TextareaControl,
+	FontSizePicker,
 } from "@wordpress/components";
 
 /**
@@ -99,6 +99,51 @@ export const BlockStyles = ({
 				label: name || fontFamily,
 			};
 		}),
+	];
+
+	const fontSizes = [
+		{
+			name: __("XX-Small"),
+			slug: "sizeXXS",
+			size: "var(--antd-sizexxs)",
+			shortName: __("XXS"),
+		},
+		{
+			name: __("X-Small"),
+			slug: "sizeXS",
+			size: "var(--antd-sizexs)",
+			shortName: __("XS"),
+		},
+		{
+			name: __("Small"),
+			slug: "sizeSM",
+			size: "var(--antd-sizesm)",
+			shortName: __("SM"),
+		},
+		{
+			name: __("Medium"),
+			slug: "sizeMD",
+			size: "var(--antd-sizemd)",
+			shortName: __("MD"),
+		},
+		{
+			name: __("Large"),
+			slug: "sizeLG",
+			size: "var(--antd-sizelg)",
+			shortName: __("LG"),
+		},
+		{
+			name: __("X-Large"),
+			slug: "sizeXL",
+			size: "var(--antd-sizexl)",
+			shortName: __("XL"),
+		},
+		{
+			name: __("XX-Large"),
+			slug: "sizeXXL",
+			size: "var(--antd-sizexxl)",
+			shortName: __("XXL"),
+		},
 	];
 
 	return (
@@ -299,8 +344,9 @@ export const BlockStyles = ({
 									)}
 
 									<FontSizePicker
+										fontSizes={fontSizes}
 										value={styles[screenSize]["fontSize"]}
-										fallbackFontSize={16}
+										fallbackFontSize={token.size}
 										onChange={(value) =>
 											onChange(screenSize, "fontSize", value)
 										}
