@@ -23,6 +23,12 @@ export const availableInnerBlocks = applyFilters(
 
 export const fontSizes = applyFilters("gutenbergAntDesign.fontSizes", [
 	{
+		name: __("Default"),
+		slug: "fontSize",
+		size: "var(--antd-fontsize)",
+		shortName: __("Default"),
+	},
+	{
 		name: __("XX-Small"),
 		slug: "sizeXXS",
 		size: "var(--antd-sizexxs)",

@@ -7698,6 +7698,11 @@ __webpack_require__.r(__webpack_exports__);
 
 const availableInnerBlocks = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.availableInnerBlocks", ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image", "gutenberg-ant-design/list"]);
 const fontSizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.fontSizes", [{
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default"),
+  slug: "fontSize",
+  size: "var(--antd-fontsize)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default")
+}, {
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XX-Small"),
   slug: "sizeXXS",
   size: "var(--antd-sizexxs)",
