@@ -21,6 +21,45 @@ export const availableInnerBlocks = applyFilters(
 	]
 );
 
+export const sizes = applyFilters("gutenbergAntDesign.sizes", [
+	{
+		token: "size",
+		size: "var(--antd-size)",
+	},
+	{
+		token: "sizeXXS",
+		size: "var(--antd-sizexxs)",
+	},
+	{
+		token: "sizeXS",
+		size: "var(--antd-sizexs)",
+	},
+	{
+		token: "sizeSM",
+		size: "var(--antd-sizesm)",
+	},
+	{
+		token: "sizeMD",
+		size: "var(--antd-sizemd)",
+	},
+	{
+		token: "sizeMS",
+		size: "var(--antd-sizems)",
+	},
+	{
+		token: "sizeLG",
+		size: "var(--antd-sizelg)",
+	},
+	{
+		token: "sizeXL",
+		size: "var(--antd-sizexl)",
+	},
+	{
+		token: "sizeXXL",
+		size: "var(--antd-sizexxl)",
+	},
+]);
+
 export const fontSizes = applyFilters("gutenbergAntDesign.fontSizes", [
 	{
 		name: __("Normal"),

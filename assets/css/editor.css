@@ -16,3 +16,46 @@ html :where(.wp-block) {
 	margin-left: 0;
 	margin-right: 0;
 }
+
+.wp-inspector-option-grid {
+	align-items: center;
+	column-gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
+	margin-bottom: 24px;
+}
+
+.wp-inspector-option-grid .components-base-control,
+.wp-inspector-option-grid .components-base-control:last-child {
+	margin-bottom: 0;
+}
+
+.wp-inspector-option-grid--no-margin {
+	margin-bottom: 0;
+}
+
+.wp-inspector-option-grid--two-column {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+// Fix for large images that break layout.
+.ant-image {
+	max-width: 100%;
+}
+
+.ant-image img {
+	height: 100% !important;
+	object-fit: cover;
+	width: 100% !important;
+}
+
+// Fix for typography settings specific to the Gutenberg editor.
+.ant-typography del .rich-text,
+.ant-typography u .rich-text {
+	text-decoration: inherit;
+}
+
+// Fix for margin in Gutenberg blocks
+.editor-styles-wrapper .is-layout-flow > * + *:not(.antd-gutenberg-block) {
+	margin-block-start: 0;
+}

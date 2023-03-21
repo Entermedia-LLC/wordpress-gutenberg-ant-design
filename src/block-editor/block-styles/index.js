@@ -45,6 +45,7 @@ import wpTheme from "../../../../../themes/wordpress-headless/theme.json";
 import { BlockOptionButtonGroup } from "../block-option-button-group";
 import { BlockScreenSizeButtonGroup } from "../block-screen-size-button-group";
 import { fontSizes } from "../../_config";
+import { BlockAntdSizeSelection } from "../block-antd-size-selection";
 
 // Available properties
 export const availableProperties = [
@@ -447,14 +448,13 @@ export const BlockStyles = ({
 
 											{activePadding && (
 												<>
-													<ToggleGroupControl
-														label={activePadding}
-														value={() =>
+													<BlockAntdSizeSelection
+														label={`Ant Design Token`}
+														value={
 															styles[screenSize][`padding${activePadding}`]
 														}
-														isBlock
 														onChange={(value) => {
-															if (value && token[value]) {
+															if (value) {
 																onChange(
 																	screenSize,
 																	`padding${activePadding}`,
@@ -462,32 +462,7 @@ export const BlockStyles = ({
 																);
 															}
 														}}
-													>
-														<ToggleGroupControlOption
-															value="sizeXS"
-															label="xs"
-														/>
-														<ToggleGroupControlOption
-															value="sizeSM"
-															label="xm"
-														/>
-														<ToggleGroupControlOption
-															value="sizeMD"
-															label="md"
-														/>
-														<ToggleGroupControlOption
-															value="sizeLG"
-															label="lg"
-														/>
-														<ToggleGroupControlOption
-															value="sizeXL"
-															label="xl"
-														/>
-														<ToggleGroupControlOption
-															value="sizeXXL"
-															label="xxl"
-														/>
-													</ToggleGroupControl>
+													/>
 
 													<TextControl
 														label={__("Custom")}
@@ -551,14 +526,11 @@ export const BlockStyles = ({
 
 											{activeMargin && (
 												<>
-													<ToggleGroupControl
-														label={activeMargin}
-														value={() =>
-															styles[screenSize][`margin${activeMargin}`]
-														}
-														isBlock
+													<BlockAntdSizeSelection
+														label={`Ant Design Token`}
+														value={styles[screenSize][`margin${activeMargin}`]}
 														onChange={(value) => {
-															if (value && token[value]) {
+															if (value) {
 																onChange(
 																	screenSize,
 																	`margin${activeMargin}`,
@@ -566,32 +538,7 @@ export const BlockStyles = ({
 																);
 															}
 														}}
-													>
-														<ToggleGroupControlOption
-															value="sizeXS"
-															label="xs"
-														/>
-														<ToggleGroupControlOption
-															value="sizeSM"
-															label="xm"
-														/>
-														<ToggleGroupControlOption
-															value="sizeMD"
-															label="md"
-														/>
-														<ToggleGroupControlOption
-															value="sizeLG"
-															label="lg"
-														/>
-														<ToggleGroupControlOption
-															value="sizeXL"
-															label="xl"
-														/>
-														<ToggleGroupControlOption
-															value="sizeXXL"
-															label="xxl"
-														/>
-													</ToggleGroupControl>
+													/>
 
 													<TextControl
 														label={__("Custom")}

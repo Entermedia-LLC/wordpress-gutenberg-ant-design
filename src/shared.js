@@ -137,20 +137,10 @@ export const generateStyles = (
 	if (typeof styles === "undefined") {
 		return;
 	}
-	
+
 	// @TODO: This needs to be cleaned up
 	const definitionOutput = (property, value) => {
-		if (property.startsWith("padding-") || property.startsWith("margin-")) {
-			if (
-				typeof value !== "undefined" &&
-				typeof value === "string" &&
-				typeof token[value] !== "undefined"
-			) {
-				return `${property}: ${token[value]}px;\n`;
-			} else {
-				return `${property}: ${value};\n`;
-			}
-		} else if (property === "background-image" && typeof value === "object") {
+		if (property === "background-image" && typeof value === "object") {
 			return `background-image: url('${value.url}');\n`;
 		} else if (property === "background-repeat") {
 			return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;

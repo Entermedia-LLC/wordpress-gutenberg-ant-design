@@ -14529,7 +14529,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "availableInnerBlocks": () => (/* binding */ availableInnerBlocks),
 /* harmony export */   "fontSizes": () => (/* binding */ fontSizes),
-/* harmony export */   "screenSizes": () => (/* binding */ screenSizes)
+/* harmony export */   "screenSizes": () => (/* binding */ screenSizes),
+/* harmony export */   "sizes": () => (/* binding */ sizes)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -14543,6 +14544,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const availableInnerBlocks = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.availableInnerBlocks", ["gutenberg-ant-design/button", "gutenberg-ant-design/image", "gutenberg-ant-design/title", "gutenberg-ant-design/text", "gutenberg-ant-design/paragraph", "gutenberg-ant-design/row", "gutenberg-ant-design/group", "gutenberg-ant-design/post-featured-image", "gutenberg-ant-design/list"]);
+const sizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.sizes", [{
+  token: "size",
+  size: "var(--antd-size)"
+}, {
+  token: "sizeXXS",
+  size: "var(--antd-sizexxs)"
+}, {
+  token: "sizeXS",
+  size: "var(--antd-sizexs)"
+}, {
+  token: "sizeSM",
+  size: "var(--antd-sizesm)"
+}, {
+  token: "sizeMD",
+  size: "var(--antd-sizemd)"
+}, {
+  token: "sizeMS",
+  size: "var(--antd-sizems)"
+}, {
+  token: "sizeLG",
+  size: "var(--antd-sizelg)"
+}, {
+  token: "sizeXL",
+  size: "var(--antd-sizexl)"
+}, {
+  token: "sizeXXL",
+  size: "var(--antd-sizexxl)"
+}]);
 const fontSizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)("gutenbergAntDesign.fontSizes", [{
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Normal"),
   slug: "fontSize",
@@ -15142,13 +15171,7 @@ const generateStyles = function (attribute, clientId, token) {
 
   // @TODO: This needs to be cleaned up
   const definitionOutput = (property, value) => {
-    if (property.startsWith("padding-") || property.startsWith("margin-")) {
-      if (typeof value !== "undefined" && typeof value === "string" && typeof token[value] !== "undefined") {
-        return `${property}: ${token[value]}px;\n`;
-      } else {
-        return `${property}: ${value};\n`;
-      }
-    } else if (property === "background-image" && typeof value === "object") {
+    if (property === "background-image" && typeof value === "object") {
       return `background-image: url('${value.url}');\n`;
     } else if (property === "background-repeat") {
       return `background-repeat: ${value ? "repeat" : "no-repeat"};\n`;
