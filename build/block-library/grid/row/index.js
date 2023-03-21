@@ -7703,6 +7703,46 @@ const fontSizes = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.applyFilters)
   size: "var(--antd-fontsize)",
   shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Default")
 }, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Small Font"),
+  slug: "fontSizeSM",
+  size: "var(--antd-fontsizesm)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("SM Font")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Large Font"),
+  slug: "fontSizeLG",
+  size: "var(--antd-fontsizelg)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("LG Font")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("X-Large Font"),
+  slug: "fontSizeXL",
+  size: "var(--antd-fontsizexl)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XL Font")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 1"),
+  slug: "fontSizeHeading1",
+  size: "var(--antd-fontsizeheading1)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H1")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 2"),
+  slug: "fontSizeHeading2",
+  size: "var(--antd-fontsizeheading2)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H2")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 3"),
+  slug: "fontSizeHeading3",
+  size: "var(--antd-fontsizeheading3)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H3")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 4"),
+  slug: "fontSizeHeading4",
+  size: "var(--antd-fontsizeheading4)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H4")
+}, {
+  name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading 5"),
+  slug: "fontSizeHeading5",
+  size: "var(--antd-fontsizeheading5)",
+  shortName: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("H5")
+}, {
   name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("XX-Small"),
   slug: "sizeXXS",
   size: "var(--antd-sizexxs)",
