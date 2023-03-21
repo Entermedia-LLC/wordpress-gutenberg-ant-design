@@ -21,7 +21,7 @@ export const availableInnerBlocks = applyFilters(
 	]
 );
 
-export const fontSizes = [
+export const fontSizes = applyFilters("gutenbergAntDesign.fontSizes", [
 	{
 		name: __("XX-Small"),
 		slug: "sizeXXS",
@@ -64,7 +64,7 @@ export const fontSizes = [
 		size: "var(--antd-sizexxl)",
 		shortName: __("XXL"),
 	},
-];
+]);
 
 export const screenSizes = {
 	xs: {
