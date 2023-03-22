@@ -63,7 +63,10 @@ add_action(
 	function() {
 		wp_enqueue_style(
 				'admin-styles',
-				plugin_dir_url( __FILE__ ) . 'assets/css/editor.css'
+				plugin_dir_url( __FILE__ ) . 'assets/css/editor.css',
+				[],
+				// @TODO: Make this fixed, dynamic during dev to prevent caching
+				time(),
 		);
 	}
 );
