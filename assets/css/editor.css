@@ -38,7 +38,7 @@ html :where(.wp-block) {
 	grid-template-columns: repeat(2, 1fr);
 }
 
-// Fix for large images that break layout.
+/* Fix for large images that break layout.*/
 .ant-image {
 	max-width: 100%;
 }
@@ -49,13 +49,13 @@ html :where(.wp-block) {
 	width: 100% !important;
 }
 
-// Fix for typography settings specific to the Gutenberg editor.
+/* Fix for typography settings specific to the Gutenberg editor. */
 .ant-typography del .rich-text,
 .ant-typography u .rich-text {
 	text-decoration: inherit;
 }
 
-// Fix for margin in Gutenberg blocks
+/* Fix for margin in Gutenberg blocks */
 .editor-styles-wrapper .is-layout-flow > * + * {
 	margin-block-start: 0 !important;
 }
