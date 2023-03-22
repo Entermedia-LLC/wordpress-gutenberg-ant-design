@@ -62,7 +62,7 @@ add_action(
 	'admin_enqueue_scripts',
 	function() {
 		wp_enqueue_style(
-				'admin-styles',
+				'gutenberg-ant-design-admin-styles',
 				plugin_dir_url( __FILE__ ) . 'assets/css/editor.css',
 				[],
 				// @TODO: Make this fixed, dynamic during dev to prevent caching
