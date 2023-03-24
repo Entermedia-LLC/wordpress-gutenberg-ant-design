@@ -75,9 +75,9 @@ export default function Breadcrumb({
 				<AntBreadcrumb.Item>
 					<a href="#">Home</a>
 				</AntBreadcrumb.Item>
-				<Breadcrumb.Item>
+				<AntBreadcrumb.Item>
 					<a href="#">{record.title.raw}</a>
-				</Breadcrumb.Item>
+				</AntBreadcrumb.Item>
 			</AntBreadcrumb>
 			<style>{generateStyles(savedAttributes, clientId, token)}</style>
 
